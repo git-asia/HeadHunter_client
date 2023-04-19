@@ -20,6 +20,20 @@ yarn dev
 yarn build
 ```
 
+### Linting
+
+#### regular
+
+```
+yarn lint
+```
+
+#### with auto-fix
+
+```
+yarn lint:fix
+```
+
 ## Made with:
 
 <a href='https://vitejs.dev/' target="_blank"><img alt='Vite' src='https://img.shields.io/badge/VITE-100000?style=for-the-badge&logo=Vite&logoColor=FFEE00&labelColor=FF0099&color=black'/></a>
