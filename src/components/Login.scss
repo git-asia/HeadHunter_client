@@ -8,6 +8,14 @@
   opacity: 1;
 }
 
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
 .logo {
   position: absolute;
   top: 399px;
@@ -17,11 +25,11 @@
 }
 
 .login-email, .login-password {
-  position: absolute;
   width: 350px;
   height: 40px;
   background: #292A2B 0 0 no-repeat padding-box;
   opacity: 1;
+  margin-bottom: 15px;
 }
 
 .login-email {
@@ -34,8 +42,7 @@
   left: 785px;
 }
 
-.link-button-password {
-  position: absolute;
+.forgot-password-link {
   top: 615px;
   left: 1003px;
   width: 130px;
@@ -47,7 +54,19 @@
   opacity: 1;
 }
 
-.link-button-register {
+.forgot-password {
+  text-decoration: none;
+  top: 615px;
+  left: 1003px;
+  width: 130px;
+  height: 23px;
+  color: var(--unnamed-color-f7f7f7);
+  text-align: center;
+  font: normal normal medium 14px/24px Catamaran;
+  letter-spacing: 0.7px;
+  opacity: 1;
+}
+.register-container {
   position: absolute;
   top: 660px;
   left: 1044px;
@@ -57,7 +76,7 @@
   opacity: 1;
 }
 
-.login-button {
+.link-login-button {
   position: absolute;
   top: 666px;
   left: 1054px;
@@ -69,3 +88,14 @@
   letter-spacing: 0;
   opacity: 1;
 }
+
+
+
+.login-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+
