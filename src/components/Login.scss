@@ -1,0 +1,43 @@
+.page-background {
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 1080px;
+  background: #222224 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+
+.logo {
+  top: 399px;
+  left: 898px;
+  width: 124px;
+  height: 76px;
+}
+
+.login-email, .login-password {
+  width: 350px;
+  height: 40px;
+  background: #292A2B 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+.login-email {
+  top: 505px;
+  left: 785px;
+}
+
+.login-password {
+  top: 560px;
+  left: 785px;
+}
+
+.link-button-password {
+  top: 615px;
+  left: 1003px;
+  width: 130px;
+  height: 23px;
+  // color: var(--unnamed-color-f7f7f7); dodać zmienną
+  text-align: center;
+  font: normal normal medium 14px/24px Catamaran;
+  letter-spacing: 0.7px;
+  opacity: 1;
+}
