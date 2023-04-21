@@ -1,7 +1,7 @@
 {
   "name": "headhunter-client",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,10 +11,14 @@
     "lint:fix": "eslint . --ext .ts,.tsx --fix"
   },
   "dependencies": {
+    "bootstrap": "^5.2.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-bootstrap": "^2.7.4",
+    "react-dom": "^18.2.0",
+    "sass": "^1.62.0"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.2.6",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react-swc": "^3.0.0",
@@ -23,6 +27,7 @@
     "eslint-config-react-app": "^7.0.1",
     "typescript": "^4.9.3",
     "vite": "^4.2.0",
-    "vite-plugin-eslint": "^1.8.1"
+    "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-sass-dts": "^1.3.4"
   }
 }
