@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;500;700&display=swap");
+.user-data__container {
+  width: 100%;
+}
+
+.user-data__nav {
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+  background-color: #292a2b;
+  h4 {
+    text-align: left;
+    font: normal normal normal 18px/30px "Catamaran";
+    margin-left: 16px;
+    color: #f7f7f7;
+  }
+  div {
+    display: flex;
+    width: 15.5rem;
+    padding: 0 1rem;
+    justify-content: space-between;
+    align-items: center;
+    input {
+      height: 39px;
+      background-color: #e02735;
+      color: #f7f7f7;
+      outline: 0;
+      border: 0;
+      padding: 0.5rem 1rem;
+      font: normal normal normal 16px/27px Catamaran;
+    }
+  }
+}
+.user-data__nav__svg--rotate {
+  transform: rotate(180deg);
+}
+.user-data__fragments {
+  display: flex;
+  border-bottom: 16px solid #1e1e1f;
+  div:not(:last-child) {
+    border-right: 2px solid #292a2b;
+  }
+}

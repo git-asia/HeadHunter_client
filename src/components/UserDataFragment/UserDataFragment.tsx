@@ -6,13 +6,13 @@ interface Props {
 export const UserDataFragment = ({ header, value }: Props) => {
   const [valueStart, restOfValue] = value.split("/");
   return (
-    <div className="container">
-      <h4 className="header">{header}</h4>
-      <h4 className="value">
+    <div className="user-data-fragment__container">
+      <h4 className="user-data-fragment__header">{header}</h4>
+      <h4 className="user-data-fragment__value">
         {value.includes("/") ? (
           <>
             {valueStart}
-            <span className="value__dark">/{restOfValue}</span>
+            <span className="user-data-fragment__value--dark">/{restOfValue}</span>
           </>
         ) : (
           value
