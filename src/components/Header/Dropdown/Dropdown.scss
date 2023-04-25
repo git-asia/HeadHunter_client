@@ -1,0 +1,24 @@
+@import '../../../variables';
+
+.dropdown-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  .avatar {
+    width: 4.5rem;
+  }
+
+  .user-name {
+    margin-right: 2rem;
+    margin-bottom: 0;
+    font-size: $fs-xl;
+    white-space: nowrap;
+    color: $white;
+  }
+
+  .bi {
+    color: $mid-dark-arrow;
+    font-size: $fs-md;
+  }
+}
