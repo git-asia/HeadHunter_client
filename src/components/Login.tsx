@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Container, Form, Image, ButtonGroup, Row, Col} from 'react-bootstrap';
 import './Login.scss';
-import logoImage from '../assets/react.svg' // testowe logo
+// import logoImage from '../assets/img/megak-logo.png' // testowe logo
 
 export const Login: React.FC = () => {
     return (
@@ -11,7 +11,7 @@ export const Login: React.FC = () => {
                     <Col>
                         <Form>
                             <div className="logo">
-                                <Image src={logoImage} alt="MegaK Logo"/>
+                                 {/*<Image src={logoImage} alt="MegaK Logo"/>*/}
                             </div>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Control className="login-email" type="email" placeholder="E-mail"/>
