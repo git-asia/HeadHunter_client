@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@300;400;500;700&display=swap");
+@import '../../variables';
+
 .user-data__container {
   width: 100%;
 }
@@ -6,22 +7,24 @@
 .user-data__nav {
   display: flex;
   justify-content: space-between;
-  height: 70px;
-  background-color: #292a2b;
+  height: 7rem;
+  background-color: $lightest-dark;
+
   h4 {
     text-align: left;
     font: normal normal normal 18px/30px "Catamaran";
-    margin-left: 16px;
+    margin-left: 1.6rem;
     color: #f7f7f7;
   }
-  div {
+  .input-container {
     display: flex;
     width: 15.5rem;
     padding: 0 1rem;
     justify-content: space-between;
     align-items: center;
+
     input {
-      height: 39px;
+      height: 3.9rem;
       background-color: #e02735;
       color: #f7f7f7;
       outline: 0;
@@ -36,8 +39,8 @@
 }
 .user-data__fragments {
   display: flex;
-  border-bottom: 16px solid #1e1e1f;
+  border-bottom: 1.6rem solid $header-dark;
   div:not(:last-child) {
-    border-right: 2px solid #292a2b;
+    border-right: 2px solid $lightest-dark;
   }
 }

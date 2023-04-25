@@ -1,8 +1,10 @@
-import "./UserDataFragment.styles.scss";
+import "./UserDataFragment.scss";
+
 interface Props {
   header: string;
   value: string;
 }
+
 export const UserDataFragment = ({ header, value }: Props) => {
   const [valueStart, restOfValue] = value.split("/");
   return (

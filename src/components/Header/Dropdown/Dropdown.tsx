@@ -1,6 +1,7 @@
 import React from "react";
 import avatar from "../../../assets/images/avatar-holder.png";
 
+import { AiFillCaretDown } from 'react-icons/ai';
 import './Dropdown.scss';
 
 export const Dropdown = () => {
@@ -8,7 +9,8 @@ export const Dropdown = () => {
             <div className="dropdown-wrapper">
                 <img src={avatar} alt="avatar" className="avatar" />
                 <p className="user-name">Imię Nazwisko</p>
-                <i className="bi bi-caret-down-fill"></i>
+                {/*<i className="bi bi-caret-down-fill"></i>*/}
+                <AiFillCaretDown className="caret-down"/>
             </div>
     );
 };

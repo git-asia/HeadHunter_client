@@ -1,7 +1,9 @@
 import { UserDataFragment } from "./UserDataFragment/UserDataFragment";
-import { IoIosArrowDown } from "react-icons/io";
-import "./UserData.styles.scss";
 import { useState } from "react";
+import { IoIosArrowDown } from "react-icons/io";
+
+import "./UserData.scss";
+
 interface Props {
   name: string;
   FragmentsValues: {
@@ -15,7 +17,7 @@ export const UserData = ({ FragmentsValues, name }: Props) => {
     <div className="user-data__container">
       <div className="user-data__nav">
         <h4>{name}</h4>
-        <div>
+        <div className="input-container">
           <input
             type="button"
             value="Zarezerwuj rozmowę"
