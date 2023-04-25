@@ -1,4 +1,4 @@
-import { UserDataFragment } from "../UserDataFragment/UserDataFragment";
+import { UserDataFragment } from "./UserDataFragment/UserDataFragment";
 import { IoIosArrowDown } from "react-icons/io";
 import "./UserData.styles.scss";
 import { useState } from "react";
