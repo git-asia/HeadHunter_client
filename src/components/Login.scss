@@ -2,10 +2,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 1920px;
-  height: 1080px;
+  min-width: 1920px;
+  min-height: 1080px;
   background: #222224 0 0 no-repeat padding-box;
-  opacity: 1;
 }
 
 .login-container {
@@ -17,21 +16,29 @@
 }
 
 .logo {
-  position: absolute;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   top: 399px;
   left: 898px;
   width: 124px;
   height: 76px;
+  margin-bottom: 20px;
   background: transparent url('../assets/img/megak-logo.png') 0 0 no-repeat padding-box;
-  opacity: 1;
+  background-size: contain;
 }
 
 .login-email, .login-password {
   width: 350px;
   height: 40px;
   background: #292A2B 0 0 no-repeat padding-box;
-  opacity: 1;
+  padding: 0;
+  border: none;
   margin-bottom: 15px;
+}
+
+.login-email::placeholder, .login-password::placeholder {
+  padding-left: 17px;
 }
 
 .login-email {
@@ -45,59 +52,10 @@
 }
 
 .forgot-password-link {
-  top: 615px;
-  left: 1003px;
   width: 130px;
   height: 23px;
   color: var(--unnamed-color-f7f7f7);
   text-align: center;
   font: normal normal medium 14px/24px Catamaran;
   letter-spacing: 0.7px;
-  opacity: 1;
 }
-
-.forgot-password {
-  text-decoration: none;
-  top: 615px;
-  left: 1003px;
-  width: 130px;
-  height: 23px;
-  color: var(--unnamed-color-f7f7f7);
-  text-align: center;
-  font: normal normal medium 14px/24px Catamaran;
-  letter-spacing: 0.7px;
-  opacity: 1;
-}
-.register-container {
-  position: absolute;
-  top: 660px;
-  left: 1044px;
-  width: 91px;
-  height: 39px;
-  background: var(--unnamed-color-e02735) 0 0 no-repeat padding-box;
-  opacity: 1;
-}
-
-.link-login-button {
-  position: absolute;
-  top: 666px;
-  left: 1054px;
-  width: 71px;
-  height: 27px;
-  color: var(--unnamed-color-f7f7f7);
-  text-align: left;
-  font: normal normal normal 16px/27px Catamaran;
-  letter-spacing: 0;
-  opacity: 1;
-}
-
-
-
-.login-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-

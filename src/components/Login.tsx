@@ -1,7 +1,8 @@
 import React from 'react';
-import {Button, Container, Form, Image, ButtonGroup, Row, Col} from 'react-bootstrap';
+import {Button, Container, Form, ButtonGroup, Row, Col} from 'react-bootstrap';
+import '../App.scss'
 import './Login.scss';
-// import logoImage from '../assets/img/megak-logo.png' // testowe logo
+
 
 export const Login: React.FC = () => {
     return (
@@ -10,9 +11,7 @@ export const Login: React.FC = () => {
                 <Row>
                     <Col>
                         <Form>
-                            <div className="logo">
-                                 {/*<Image src={logoImage} alt="MegaK Logo"/>*/}
-                            </div>
+                            <div className="logo"></div>
                             <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Control className="login-email" type="email" placeholder="E-mail"/>
                             </Form.Group>
@@ -20,29 +19,31 @@ export const Login: React.FC = () => {
                                 <Form.Control className="login-password" type="password" placeholder="Hasło"/>
                             </Form.Group>
                         </Form>
-                        <div className="forgot-password-container">
-                            <Button
-                                variant="link"
-                                className="forgot-password-link float-end"
-                                //onClick={() => {
-                                // }}
-                            >
-                                Zapomniałeś hasła?
-                            </Button>
-                        </div>
+                    </Col>
+                </Row>
+                <Row className="justify-content-end">
+                    <Col xs={4}>
+                        <Button
+                            variant="light"
+                            className="forgot-password-link"
+                            //onClick={() => {
+                            // }}
+                        >
+                            Zapomniałeś hasła?
+                        </Button>
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
+                    <Col xl={8}>
                         <ButtonGroup className="mb-3">
-                            <Button className="forgot-password-link float-end" variant="outline-danger">Nie masz
-                                konta?
+                            <p>Nie masz konta?</p>
+                            <Button className="register-link" variant="link">
                                 Zarejestruj się</Button>
                         </ButtonGroup>
                     </Col>
-                    <Col>
-                        <ButtonGroup className="mb-3 float-end">
-                            <Button className="link-login-button" variant="danger">Zaloguj się</Button>
+                    <Col xl={4}>
+                        <ButtonGroup className="mb-3">
+                            <Button className="link-login-button" variant="light">Zaloguj się</Button>
                         </ButtonGroup>
                     </Col>
                 </Row>
