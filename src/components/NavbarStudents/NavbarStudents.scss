@@ -1,0 +1,23 @@
+@import "../../_variables";
+
+.navbar-wrapper {
+  width: 100%;
+
+  .students-availability {
+    display: flex;
+
+    .availability-option {
+      height: 7rem;
+      display: flex;
+      align-items: center;
+      padding: 0 3rem;
+      list-style: none;
+      border-bottom: 3px solid $active-underline;
+
+      p {
+      font-size: $fs-xl;
+      color: $white;
+      }
+    }
+  }
+}
