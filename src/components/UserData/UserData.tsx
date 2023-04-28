@@ -11,6 +11,7 @@ interface Props {
     header: string;
   }[];
 }
+
 export const UserData = ({ FragmentsValues, name }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
   return (

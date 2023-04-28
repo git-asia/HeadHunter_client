@@ -2,6 +2,7 @@
 
 .user-data__container {
   width: 100%;
+  padding: 0 2rem;
 }
 
 .user-data__nav {
@@ -12,7 +13,7 @@
 
   h4 {
     text-align: left;
-    font: normal normal normal 18px/30px "Catamaran";
+    font: normal normal normal 18px/30px;
     margin-left: 1.6rem;
     color: #f7f7f7;
   }
@@ -30,7 +31,7 @@
       outline: 0;
       border: 0;
       padding: 0.5rem 1rem;
-      font: normal normal normal 16px/27px Catamaran;
+      font: normal normal normal 16px/27px;
     }
   }
 }
