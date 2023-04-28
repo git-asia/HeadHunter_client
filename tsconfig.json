@@ -13,6 +13,8 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "baseUrl": ".",
+    "paths": { "types": ["../HeadHunter_server/types/"] },
     "noEmit": true,
     "jsx": "react-jsx"
   },
