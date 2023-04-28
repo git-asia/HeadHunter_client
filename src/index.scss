@@ -9,13 +9,11 @@
 }
 
 html,
-body {
+body,
+:root {
   height: 100%;
-}
-
-html, :root {
   font-size: 62.5%;
-  font-family: $primary-font;
+  font-family: 'Catamaran', sans-serif;
   scroll-behavior: smooth;
 }
 
