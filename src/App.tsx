@@ -1,16 +1,17 @@
 import React from "react";
-import {Header} from "./components/Header/Header";
+import { Header } from "./components/Header/Header";
+import { ListView } from "./views/ListView/ListView";
 
 import "./App.scss";
-
 
 
 export const App = () => {
 
   return (
-    <div>
-      <Header/>
-    </div>
+    <>
+        <Header/>
+        <ListView/>
+    </>
   );
 };
 
