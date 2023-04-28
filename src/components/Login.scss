@@ -1,5 +1,5 @@
 .page-background {
-  position: absolute;
+  //position: absolute;
   top: 0;
   left: 0;
   min-width: 1920px;
@@ -16,6 +16,7 @@
 }
 
 .logo {
+  position: absolute;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -34,7 +35,7 @@
   background: #292A2B 0 0 no-repeat padding-box;
   padding: 0;
   border: none;
-  margin-bottom: 15px;
+  //margin-bottom: 15px;
 }
 
 .login-email::placeholder, .login-password::placeholder {
@@ -42,16 +43,21 @@
 }
 
 .login-email {
+  position: absolute;
+
   top: 505px;
   left: 785px;
 }
 
 .login-password {
+  position: absolute;
+
   top: 560px;
   left: 785px;
 }
 
 .forgot-password-link {
+  position: absolute;
   width: 130px;
   height: 23px;
   color: var(--unnamed-color-f7f7f7);
