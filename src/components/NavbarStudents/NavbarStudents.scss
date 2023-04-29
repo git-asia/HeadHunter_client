@@ -6,18 +6,24 @@
   .students-availability {
     display: flex;
 
-    .availability-option {
+    li {
       height: 7rem;
       display: flex;
       align-items: center;
       padding: 0 3rem;
       list-style: none;
-      border-bottom: 3px solid $active-underline;
 
-      p {
-      font-size: $fs-xl;
-      color: $white;
+      button {
+        font-size: $fs-xl;
+        background-color: inherit;
+        color: $white;
+        cursor: pointer;
+
+        &.active {
+          border-bottom: 3px solid $active-underline;
+        }
       }
     }
   }
 }
+
