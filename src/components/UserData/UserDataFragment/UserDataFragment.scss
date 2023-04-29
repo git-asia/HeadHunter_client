@@ -1,4 +1,4 @@
-@import '../../../variables';
+@import "../../../variables";
 
 .user-data-fragment__container {
   height: 6rem;
@@ -12,13 +12,16 @@
   .user-data-fragment__header {
     margin: 0;
     text-align: left;
-    font: normal normal normal 12px/15px Catamaran;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
     letter-spacing: 0;
     color: $light-arrow;
   }
   .user-data-fragment__value {
     text-align: left;
-    font: normal normal bold 15px/25px Catamaran;
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+    font-weight: bold;
     letter-spacing: 1.5px;
     color: $white;
 

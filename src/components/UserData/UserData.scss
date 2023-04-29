@@ -1,4 +1,4 @@
-@import '../../variables';
+@import "../../variables";
 
 .user-data__container {
   width: 100%;
@@ -7,19 +7,21 @@
 
 .user-data__nav {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   height: 7rem;
   background-color: $lightest-dark;
 
   h4 {
+    font-weight: normal;
     text-align: left;
-    font: normal normal normal 18px/30px;
+    font-size: 1.8rem;
+    line-height: 3rem;
     margin-left: 1.6rem;
     color: #f7f7f7;
   }
   .input-container {
     display: flex;
-    width: 15.5rem;
     padding: 0 1rem;
     justify-content: space-between;
     align-items: center;
@@ -31,7 +33,9 @@
       outline: 0;
       border: 0;
       padding: 0.5rem 1rem;
-      font: normal normal normal 16px/27px;
+      margin-right: 1.5rem;
+      font-size: 1.6rem;
+      line-height: 2.7rem;
     }
   }
 }
