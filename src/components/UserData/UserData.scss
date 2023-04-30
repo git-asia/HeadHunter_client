@@ -15,7 +15,7 @@
   h4 {
     font-weight: normal;
     text-align: left;
-    font-size: 1.8rem;
+    font-size: $fs-xl;
     line-height: 3rem;
     margin-left: 1.6rem;
     color: #f7f7f7;
@@ -34,7 +34,7 @@
       border: 0;
       padding: 0.5rem 1rem;
       margin-right: 1.5rem;
-      font-size: 1.6rem;
+      font-size: $fs-lg;
       line-height: 2.7rem;
     }
   }

@@ -12,14 +12,14 @@
   .user-data-fragment__header {
     margin: 0;
     text-align: left;
-    font-size: 1.2rem;
+    font-size: $fs-xs;
     line-height: 1.5rem;
     letter-spacing: 0;
     color: $light-arrow;
   }
   .user-data-fragment__value {
     text-align: left;
-    font-size: 1.5rem;
+    font-size: $fs-md;
     line-height: 2.5rem;
     font-weight: bold;
     letter-spacing: 1.5px;
