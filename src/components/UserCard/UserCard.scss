@@ -5,8 +5,9 @@
   background-color: $lightest-dark;
   display: flex;
   align-items: center;
+  height: fit-content;
   flex-direction: column;
-  padding: 1.5rem;
+  padding: 2rem;
   .Usercard__avatar {
     height: 15rem;
     width: 15rem;

@@ -1,12 +1,12 @@
 @import "../../../variables";
 
 .user-data-fragment__container {
-  height: 6rem;
+  height: 11rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
-  padding: 1rem;
+  padding: 2rem;
   background-color: $primary-dark;
 
   .user-data-fragment__header {
