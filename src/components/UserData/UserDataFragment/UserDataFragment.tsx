@@ -4,7 +4,7 @@ import "./UserDataFragment.scss";
 interface Props {
   header: string;
   value: string;
-  showStars: boolean;
+  showStars?: boolean;
 }
 
 export const UserDataFragment = ({ header, value, showStars = false }: Props) => {
