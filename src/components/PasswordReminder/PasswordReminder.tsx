@@ -14,7 +14,7 @@ export const PasswordReminder: React.FC = () => {
               className="login-email"
               color="primary"
               type="email"
-              label="E-mail"
+              placeholder="E-mail"
               variant="outlined"
               fullWidth
             />
