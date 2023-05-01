@@ -1,4 +1,4 @@
-@import '../../../variables';
+@import "../../../variables";
 
 .user-data-fragment__container {
   height: 6rem;
@@ -16,16 +16,29 @@
     letter-spacing: 0;
     color: $light-arrow;
   }
-  .user-data-fragment__value {
-    text-align: left;
-    font: normal normal bold 15px/25px Catamaran;
-    letter-spacing: 1.5px;
-    color: $white;
+  div {
+    display: flex;
+    width: 100%;
+    .user-data-fragment__value {
+      text-align: left;
+      font: normal normal bold 15px/25px Catamaran;
+      letter-spacing: 1.5px;
+      color: $white;
 
-    .user-data-fragment__value--dark {
-      margin-left: 0.3rem;
-      color: $mid-dark-arrow;
-      font-weight: normal;
+      .user-data-fragment__value--dark {
+        margin-left: 0.3rem;
+        color: $mid-dark-arrow;
+        font-weight: normal;
+      }
+    }
+    .user-data-fragment__stars {
+      margin-left: 1rem;
+      .user-data-fragment__star--red {
+        fill: $primary-btn;
+      }
+      .user-data-fragment__star--gray {
+        fill: $text-dark;
+      }
     }
   }
 }
