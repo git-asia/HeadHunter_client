@@ -1,6 +1,7 @@
 @import "../../variables";
+
 .CVView__wrapper {
-  padding-top: 2rem;
+  padding: 2rem 1rem;
   background-color: $primary-dark;
   height: fit-content;
   width: 100%;
@@ -8,6 +9,10 @@
   gap: 0.5rem;
   display: flex;
   justify-content: center;
+  overflow-x: auto;
+  @media (max-width: 105rem) {
+    justify-content: start;
+  }
 }
 .CVView__back {
   height: 4rem;

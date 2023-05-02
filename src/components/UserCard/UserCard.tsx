@@ -1,9 +1,10 @@
-import "./UserCard.scss";
 import logo from "../../assets/images/avatar-holder.png";
 import { BsGithub } from "react-icons/bs";
 import { GiPhone } from "react-icons/gi";
 import { GrMail } from "react-icons/gr";
 import { Button } from "../Button/Button";
+import "./UserCard.scss";
+
 interface Props {
   name: string;
   github: string;
@@ -11,6 +12,7 @@ interface Props {
   email: string;
   aboutMe: string;
 }
+
 export const UserCard = ({ name, github, phoneNumber, email, aboutMe }: Props) => {
   const slicedPhoneNumber = [];
   for (let i = 0; i < phoneNumber.length; i += 3) {

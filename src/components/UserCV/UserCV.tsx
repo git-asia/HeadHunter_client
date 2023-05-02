@@ -1,7 +1,7 @@
 import { UserDataFragment } from "../UserData/UserDataFragment/UserDataFragment";
 import { UserCVFragment } from "./UserCVFragment/UserCVFragment";
-import "./UserCV.scss";
 import { AiOutlinePaperClip } from "react-icons/ai";
+import "./UserCV.scss";
 interface Props {
   grades: { header: string; value: string }[];
   expectations: { header: string; value: string }[];
