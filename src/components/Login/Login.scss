@@ -1,0 +1,65 @@
+@import '../../variables';
+
+.page-background {
+  width: 100vw;
+  height: 100vh;
+  background: $header-dark;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.login-container {
+  width: 80%;
+}
+
+.logo {
+  display: block;
+  margin: 2rem auto;
+  max-width: 8.9rem;
+  height: auto;
+}
+
+input#login-email, input#login-pass {
+  width: 100%;
+  height: 4rem;
+  background-color: $input-bgc;
+  border: none;
+  margin: 2rem auto;
+  font-size: $fs-sm;
+  font-weight: 400;
+  padding: 0 0 0 5px;
+}
+
+input#login-email::placeholder, input#login-pass::placeholder {
+  opacity: 0.75;
+}
+
+Button.login-btn {
+  margin: 1rem auto;
+  height: 4rem;
+  background-color: $primary-btn;
+  color: $white;
+  text-align: center;
+  text-transform: none;
+  font-size: $fs-sm;
+}
+
+.forgot-password-link {
+  color: $white;
+  text-align: right;
+  text-transform: none;
+  font-size: $fs-sm;
+}
+
+.login-ask {
+  color: $white;
+  font-size: $fs-sm;
+}
+
+.login-link {
+  color: $white;
+  font-size: $fs-sm;
+  font-weight: bold;
+  text-transform: none;
+  vertical-align: baseline;
+}
