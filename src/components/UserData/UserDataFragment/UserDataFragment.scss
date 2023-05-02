@@ -1,12 +1,12 @@
 @import "../../../variables";
 
 .user-data-fragment__container {
-  height: 6rem;
+  height: 11rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
-  padding: 1rem;
+  padding: 2rem;
   background-color: $primary-dark;
 
   .user-data-fragment__header {
@@ -17,18 +17,29 @@
     letter-spacing: 0;
     color: $light-arrow;
   }
-  .user-data-fragment__value {
-    text-align: left;
-    font-size: $fs-md;
-    line-height: 2.5rem;
-    font-weight: bold;
-    letter-spacing: 1.5px;
-    color: $white;
+  div {
+    display: flex;
+    width: 100%;
+    .user-data-fragment__value {
+      text-align: left;
+      font: normal normal bold 15px/25px Catamaran;
+      letter-spacing: 1.5px;
+      color: $white;
 
-    .user-data-fragment__value--dark {
-      margin-left: 0.3rem;
-      color: $mid-dark-arrow;
-      font-weight: normal;
+      .user-data-fragment__value--dark {
+        margin-left: 0.3rem;
+        color: $mid-dark-arrow;
+        font-weight: normal;
+      }
+    }
+    .user-data-fragment__stars {
+      margin-left: 1rem;
+      .user-data-fragment__star--red {
+        fill: $primary-btn;
+      }
+      .user-data-fragment__star--gray {
+        fill: $text-dark;
+      }
     }
   }
 }

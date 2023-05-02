@@ -1,0 +1,14 @@
+@import "../../variables";
+
+.Button__input {
+  height: 3.9rem;
+  background-color: $primary-btn;
+  color: $white;
+  outline: 0;
+  border: 0;
+  padding: 0.5rem 1.5rem;
+  font-size: $fs-lg;
+}
+.Button__input--clickable {
+  cursor: pointer;
+}
