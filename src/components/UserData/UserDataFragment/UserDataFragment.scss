@@ -12,7 +12,8 @@
   .user-data-fragment__header {
     margin: 0;
     text-align: left;
-    font: normal normal normal 12px/15px Catamaran;
+    font-size: $fs-xs;
+    line-height: 1.5rem;
     letter-spacing: 0;
     color: $light-arrow;
   }
