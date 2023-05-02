@@ -9,14 +9,9 @@ export const ListView = () => {
   return (
     <>
       <div className="page-wrapper">
-        <div className="list-wrapper">
-          <UserData />
-        </div>
-          <Pagination/>
+        <div className="list-wrapper">{/* <UserData /> */}</div>
+        <Pagination/>
       </div>
     </>
   );
 };
-
-
-
