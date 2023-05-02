@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Container, Grid, TextField } from "@mui/material";
+import logo from "../../assets/images/logo.png";
 import "../../App.scss";
 import "./PasswordReminder.scss";
 
@@ -9,7 +10,7 @@ export const PasswordReminder: React.FC = () => {
       <Container maxWidth="md" className="login-container">
         <Grid container spacing={3}>
           <Grid item xs={12} className="email-box">
-            <div className="logo" />
+            <img src={logo} alt="Logo" className="logo" />
             <TextField
               className="login-email"
               id="login-email"
