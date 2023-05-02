@@ -1,17 +1,18 @@
-import React from 'react';
-import { Container, Grid, TextField, Button } from "@mui/material";
-import '../../App.scss';
-import './PasswordReminder.scss';
+import React from "react";
+import { Button, Container, Grid, TextField } from "@mui/material";
+import "../../App.scss";
+import "./PasswordReminder.scss";
 
 export const PasswordReminder: React.FC = () => {
   return (
     <div className="page-background">
       <Container maxWidth="md" className="login-container">
         <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <div className="logo"/>
+          <Grid item xs={12} className="email-box">
+            <div className="logo" />
             <TextField
               className="login-email"
+              id="login-email"
               color="primary"
               type="email"
               placeholder="E-mail"
