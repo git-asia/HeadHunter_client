@@ -1,0 +1,43 @@
+@import '../../variables';
+
+.pagination-wrapper  {
+  width: $width-80;
+  margin: 0 auto;
+
+  .custom-pagination  {
+    font-size: $fs-xs;
+    margin-top: 2rem;
+
+    .icon-arrow{
+      color: $primary-dark;
+      background-color: $light-arrow;
+      border-radius: 0;
+      font-size: $fs-lg;
+      opacity: 1;
+      width: 2.6rem;
+      height: 2.6rem;
+    }
+    .icon-arrow:disabled{
+      background-color: $dark-arrow;
+    }
+    .icon-arrow-margin{
+      margin-right: 1rem;
+    }
+
+    .text {
+      font-family: $primary-font;
+      color: $white;
+      font-size: $fs-lg;
+    }
+  }
+}
+
+.MuiInputBase-root{
+  background-color: white;
+  color: black;
+  //width: 3.1rem;
+  //height: 2.4rem;
+  margin-right: 1.6rem;
+}
+
+
