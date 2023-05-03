@@ -20,11 +20,11 @@ export const PasswordReminder: React.FC = () => {
               variant="outlined"
               fullWidth
             />
-          </Grid>
-          <Grid item xs={12}>
-            <Button className="link-login-button" variant="contained">
-              Zresetuj hasło
-            </Button>
+            <Grid container xs={12} justifyContent="center">
+              <Button className="login-btn">
+                Zresetuj hasło
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
       </Container>
