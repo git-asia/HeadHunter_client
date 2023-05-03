@@ -10,11 +10,12 @@
       height: 7rem;
       display: flex;
       align-items: center;
-      padding: 0 3rem;
       list-style: none;
 
       button {
+        width: 100%;
         font-size: $fs-xl;
+        padding: 0 3rem $fs-xl;
         background-color: inherit;
         color: $white;
         cursor: pointer;
