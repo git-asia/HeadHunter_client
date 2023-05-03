@@ -23,9 +23,7 @@ export const NavbarStudents = () => {
           <button className={activeCategory === 'allStudents' ? 'active' : ''}
             onClick={() => handleClick('allStudents')}
             onKeyDown={(event) => handleKeyPress(event, 'allStudents')}
-             tabIndex="0"
              aria-pressed={activeCategory === 'allStudents'}
-             type="button"
           >
             Dostępni kursanci
           </button>
@@ -34,9 +32,7 @@ export const NavbarStudents = () => {
           <button className={activeCategory === 'forInterview' ? 'active' : ''}
             onClick={() => handleClick('forInterview')}
             onKeyDown={(event) => handleKeyPress(event, 'forInterview')}
-            tabIndex="0"
             aria-pressed={activeCategory === 'forInterview'}
-            type="button"
           >
             Do rozmowy
           </button>
