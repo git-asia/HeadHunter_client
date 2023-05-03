@@ -5,10 +5,13 @@ import {Pagination} from "../../components/Pagination/Pagination";
 
 import "./ListView.scss";
 import "../../_variables.sass";
+import { Header } from "../../components/Header/Header";
+
 
 export const ListView = () => {
   return (
     <>
+      <Header/>
       <div className="page-wrapper">
         <div className="list-wrapper">
           <NavbarStudents/>

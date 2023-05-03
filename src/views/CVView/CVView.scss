@@ -1,19 +1,25 @@
 @import "../../variables";
 
-.CVView__wrapper {
-  padding: 2rem 1rem;
-  background-color: $primary-dark;
-  height: fit-content;
+.CVView__container {
   width: 100%;
-  margin: 0 auto;
-  gap: 0.5rem;
-  display: flex;
-  justify-content: center;
-  overflow-x: auto;
-  @media (max-width: 105rem) {
-    justify-content: start;
+  background-color: $primary-dark;
+
+  .CVView__wrapper {
+    padding: 2rem 1rem;
+    background-color: $primary-dark;
+    height: fit-content;
+    width: 80%;
+    margin: 0 auto;
+    gap: 0.5rem;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    @media (max-width: 105rem) {
+      justify-content: start;
+    }
   }
 }
+
 .CVView__back {
   height: 4rem;
   min-width: 7rem;
