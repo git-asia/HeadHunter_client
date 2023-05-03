@@ -1,0 +1,22 @@
+@import "../../../variables";
+
+.UserCV__fragment {
+  background-color: $secondary-dark;
+  width: 100%;
+  .UserCV__fragment__heading {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-left: 3rem;
+    height: 6rem;
+    background-color: $lightest-dark;
+    h3 {
+      color: $white;
+      font-size: 2rem;
+    }
+  }
+  .UserCV__fragment__value {
+    width: 100%;
+    display: flex;
+  }
+}

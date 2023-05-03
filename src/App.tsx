@@ -4,13 +4,13 @@ import { ListView } from "./views/ListView/ListView";
 
 import "./index.scss"
 
-
 export const App = () => {
 
   return (
     <>
         <Header/>
         <ListView/>
+
     </>
   );
 };

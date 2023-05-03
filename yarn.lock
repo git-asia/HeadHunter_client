@@ -1692,6 +1692,7 @@
   dependencies:
     "@types/react" "*"
 
+
 "@types/react@*", "@types/react@^18.2.0":
   version "18.2.0"
   resolved "https://registry.npmjs.org/@types/react/-/react-18.2.0.tgz"
