@@ -2,9 +2,9 @@ import React from "react";
 import {Routes, Route} from 'react-router-dom';
 import { ListView } from "./views/ListView/ListView";
 import { CVView } from "./views/CVView/CVView";
+import { Login } from "./components/Login/Login";
 
 import "./index.scss"
-import { Login } from "./components/Login/Login";
 
 export const App = () => {
 
