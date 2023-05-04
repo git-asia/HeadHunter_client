@@ -1,11 +1,11 @@
 import React from "react";
 import { NavbarStudents } from "../../components/NavbarStudents/NavbarStudents";
-import { UserData } from "../../components/UserData/UserData";
+//import { UserData } from "../../components/UserData/UserData";
 import {Pagination} from "../../components/Pagination/Pagination";
+import { Header } from "../../components/Header/Header";
 
 import "./ListView.scss";
-import "../../_variables.sass";
-import { Header } from "../../components/Header/Header";
+import "../../index.scss"
 
 
 export const ListView = () => {

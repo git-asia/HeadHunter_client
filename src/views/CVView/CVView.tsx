@@ -1,9 +1,11 @@
 import { UserCV } from "../../components/UserCV/UserCV";
 import { UserCard } from "../../components/UserCard/UserCard";
 import { IoIosArrowDown } from "react-icons/io";
-import "./CVView.scss";
 import { Header } from "../../components/Header/Header";
 import React from "react";
+
+import "./CVView.scss";
+import "../../index.scss"
 
 export const CVView = () => {
   return (
