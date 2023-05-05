@@ -6,33 +6,16 @@
   background: $header-dark;
   display: table-cell;
   vertical-align: middle;
+}
 
   .login-container {
     width: 40%;
 
-    .logo {
-      height: auto;
-      max-width: 12.4rem;
-      display: block;
-      margin: 3rem auto;
-    }
-
-    .MuiInputBase-root {
-      margin: 0;
-    }
-
-    .css-wb57ya-MuiFormControl-root-MuiTextField-root {
-      align-items: center;
-
-      .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
-        font-family: unset;
-      }
-    }
-
-    .css-wb57ya-MuiFormControl-root-MuiTextField-root {
-      margin-bottom: 1.5rem;
-    }
-  }
+.logo {
+  display: block;
+  margin: 2rem auto;
+  max-width: 8.9rem;
+  height: auto;
 }
 
 input#login-email, input#login-pass {
@@ -42,8 +25,10 @@ input#login-email, input#login-pass {
   background-color: $lightest-dark;
   color: $input-holder;
   border: none;
+  margin: 2rem auto;
   font-size: $fs-sm;
   font-weight: 400;
+  padding: 0 0 0 5px;
 }
 
 input#login-email::placeholder, input#login-pass::placeholder {
@@ -51,28 +36,20 @@ input#login-email::placeholder, input#login-pass::placeholder {
 }
 
 Button.login-btn {
-  height: 4rem;
   margin: 1rem auto;
-  padding: 1rem .6rem;
-  text-align: center;
-  font-size: $fs-lg;
-  font-weight: normal;
+  height: 4rem;
   background-color: $primary-btn;
-  border-radius: 0;
+  color: $white;
+  text-align: center;
+  text-transform: none;
+  font-size: $fs-sm;
 }
 
 .forgot-password-link {
-  text-align: right;
-}
-
-.infoAboutValidation,
-.login-ask,
-.login-link,
-.forgot-password-link,
-.login-btn {
   color: $white;
-  font-size: $fs-sm;
+  text-align: right;
   text-transform: none;
+  font-size: $fs-sm;
 }
 
 .login-ask {
@@ -82,7 +59,6 @@ Button.login-btn {
 .login-link {
   padding: 0;
   font-weight: bold;
+  text-transform: none;
   vertical-align: baseline;
-  border-bottom: .5px solid $white;
-  border-radius: 0;
 }

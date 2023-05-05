@@ -1,7 +1,6 @@
 import { UserDataFragment } from "./UserDataFragment/UserDataFragment";
-import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-
+import { useState } from "react";
 import "./UserData.scss";
 
 interface Props {
