@@ -5,20 +5,37 @@
   align-items: center;
   gap: 1rem;
 
-  .avatar {
-    width: 4.5rem;
-  }
+}
 
-  .user-name {
-    margin-right: 2rem;
-    margin-bottom: 0;
+.dropdown__menu{
+
+  background-color: $header-dark;
+  color: $white;
+
+  .item {
+    font-family: $primary-font ;
     font-size: $fs-xl;
-    white-space: nowrap;
-    color: $white;
   }
 
-  .caret-down {
-    color: $mid-dark-arrow;
-    font-size: $fs-md;
+}
+
+.dropdown__button{
+
+  .text{
+    font-size: $fs-xl;
+    font-family: $primary-font ;
+    text-transform: capitalize;
+    color: $white;
+    white-space: nowrap;
+    margin-right: 1.6rem;
+    margin-left: 0.5rem;
+    margin-top: 0.2rem;
   }
+
+}
+
+.dropdown__icon{
+  font-size: 2.3rem;
+  color: $white;
+  margin-top: -0.6rem;
 }

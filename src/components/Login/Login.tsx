@@ -14,7 +14,6 @@ export const Login: React.FC = () => {
             <TextField
               className="login-email"
               id="login-email"
-              color="primary"
               type="email"
               placeholder="E-mail"
               variant="outlined"
@@ -23,7 +22,6 @@ export const Login: React.FC = () => {
             <TextField
               className="login-pass"
               id="login-pass"
-              color="primary"
               type="password"
               placeholder="Hasło"
               variant="outlined"

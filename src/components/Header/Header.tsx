@@ -1,7 +1,6 @@
 import React from "react";
 import {Dropdown} from "./Dropdown/Dropdown";
 import logo from "../../assets/images/logo.png";
-//import {Container} from 'react-bootstrap';
 
 import "./Header.scss";
 
