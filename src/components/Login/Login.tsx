@@ -54,6 +54,10 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
     setEmail(event.target.value);
   };
 
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
+
   return (
     <div className="page-background">
       <Container className="login-container">
@@ -78,6 +82,7 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
               variant="outlined"
               fullWidth
               value={password}
+              onChange={handlePasswordChange}
             />
           </Grid>
           <Grid item xs={12} container justifyContent="flex-end">
