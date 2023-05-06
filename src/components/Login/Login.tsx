@@ -8,7 +8,7 @@ export const Login: React.FC = () => {
   return (
     <div className="page-background">
       <Container className="login-container">
-        <Grid container spacing={3}>
+        <Grid container spacing={1}>
           <Grid item xs={12} className="email-box">
             <img src={logo} alt="Logo" className="logo" />
             <TextField
