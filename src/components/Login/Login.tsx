@@ -50,6 +50,10 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
     const user = await login({ email, password });
   };
 
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
+
   return (
     <div className="page-background">
       <Container className="login-container">
@@ -64,6 +68,7 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
               variant="outlined"
               fullWidth
               value={email}
+              onChange={handleEmailChange}
             />
             <TextField
               className="login-pass"
