@@ -7,13 +7,13 @@ import "./index.scss";
 import { AuthWrapper } from "./components/Auth/AuthWrapper";
 
 export const App = () => {
-  const [isLoggedIn] = useState(true); //do zmiany w momencie przekazywania wartości z backend, dodanie właściwości setLoggedIn do <Login/>
+  const [isLoggedIn, setLoggedIn] = useState(true); //do zmiany w momencie przekazywania wartości z backend
 
   return (
     <>
       <Routes>
         <Route>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Login  setLoggedIn={setLoggedIn}/>} />
         </Route>
         <Route  path="/" element={<AuthWrapper isLoggedIn={isLoggedIn}/>}>
           <Route path="/list" element={<ListView />}/>
