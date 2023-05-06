@@ -1,13 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { App } from "./App";
-import { StyledEngineProvider } from "@mui/material";
-import "./index.scss";
+import { StyledEngineProvider } from '@mui/material'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import {App} from './App'
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+import './index.scss'
+import { BrowserRouter } from "react-router-dom";
+
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <StyledEngineProvider injectFirst>
-      <App />
-    </StyledEngineProvider>
+    <BrowserRouter>
+      <StyledEngineProvider injectFirst>
+          <App />
+      </StyledEngineProvider>
+    </BrowserRouter>
   </React.StrictMode>,
-);
+)
