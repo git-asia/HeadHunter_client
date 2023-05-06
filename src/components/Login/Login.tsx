@@ -1,24 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Container, Grid, TextField } from "@mui/material";
 import logo from "../../assets/images/logo.png";
 import "../../App.scss";
 import "./Login.scss";
 
 export const Login: React.FC = () => {
+  const [inputTextEmail, setInputTextEmail] = useState(false);
+  const [inputTextPassword, setInputTextPassword] = useState(false);
+
   return (
     <div className="page-background">
       <Container className="login-container">
         <Grid container spacing={1}>
           <Grid item xs={12} className="email-box">
             <img src={logo} alt="Logo" className="logo" />
+            <p className="infoAboutValidation"
+               style={{ display: inputTextEmail ? "none" : "" }}
+            >To nie jest prawidłowy e-mail</p>
             <TextField
               className="login-email"
               id="login-email"
               type="email"
               placeholder="E-mail"
               variant="outlined"
+              onChange={e => setInputTextEmail(/^\S+@\S+\.\S+$/.test(e.target.value))}
               fullWidth
             />
+            <p className="infoAboutValidation"
+               style={{ display: inputTextPassword ? "none" : "" }}
+            >Hasło musi mieć co najmniej 8 znaków, składać się z dużych i małych liter, cyfr i znaków specjalnych</p>
             <TextField
               className="login-pass"
               id="login-pass"
@@ -26,6 +36,7 @@ export const Login: React.FC = () => {
               placeholder="Hasło"
               variant="outlined"
               fullWidth
+              onChange={e => setInputTextPassword(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/.test(e.target.value))}
             />
           </Grid>
           <Grid item xs={12} container justifyContent="flex-end">

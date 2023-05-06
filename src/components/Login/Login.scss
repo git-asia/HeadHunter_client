@@ -16,9 +16,11 @@
       display: block;
       margin: 3rem auto;
     }
+
     .MuiInputBase-root {
       margin: 0;
     }
+
     .css-wb57ya-MuiFormControl-root-MuiTextField-root {
       align-items: center;
 
@@ -63,6 +65,7 @@ Button.login-btn {
   text-align: right;
 }
 
+.infoAboutValidation,
 .login-ask,
 .login-link,
 .forgot-password-link,
@@ -71,9 +74,11 @@ Button.login-btn {
   font-size: $fs-sm;
   text-transform: none;
 }
+
 .login-ask {
   margin-right: 1rem;
 }
+
 .login-link {
   padding: 0;
   font-weight: bold;
@@ -81,4 +86,3 @@ Button.login-btn {
   border-bottom: .5px solid $white;
   border-radius: 0;
 }
-
