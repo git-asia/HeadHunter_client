@@ -24,9 +24,6 @@
       margin: 1rem 2rem;
 
     }
-
-
-
   }
 
 
@@ -63,5 +60,85 @@
 
   }
 
+  .dialog{
+    display: inline-block;
+    .box-star{
+
+
+      background-color: $lightest-dark;
+
+    }
+
+    .icon{
+      color: red;
+      font-size: $fs-lg;
+    }
+  }
+
 }
 
+.dialog-paper{
+  background-color: #0a0a0a;
+  border-radius: 0;
+  border-width: 0;
+
+}
+////
+//.box-star {
+//  color: $white;
+//  background-color: $lightest-dark;
+//  margin: 0 0.6rem;
+//  width: 4.2rem;
+//  height: 2.7rem;
+//
+//}
+
+.box-star, .box-star:hover input#from{
+  color: $white;
+  background-color: $lightest-dark;
+  height: 3rem;
+}
+
+.box-star-checked, .box-star-checked:hover{
+  color: $white;
+  background-color: $primary-btn;
+  height: 3rem;
+}
+.icon{
+  color: $primary-btn;
+  font-size: $fs-lg;
+  margin-left: -0.5rem;
+  padding: 0;
+}
+.icon-active{
+  color: $white;
+  font-size: $fs-lg;
+  margin-left: -0.5rem;
+  padding: 0;
+}
+.text-checkbox{
+  font-size: $fs-xs;
+  color: $white;
+  font-family: $secondary-font ;
+  text-transform: capitalize;
+}
+
+.title{
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: $white;
+  font-size: $fs-md;
+  font-family: $secondary-font ;
+
+}
+.margin{
+  margin-left: 3rem;
+}
+
+//.MuiIconButton-label {
+//  display: none;
+//}
+//.MuiCheckbox-root {
+//  opacity: 0;
+//  position: absolute;
+//}
