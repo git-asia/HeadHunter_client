@@ -5,8 +5,8 @@ import "../../App.scss";
 import "./Login.scss";
 
 export const Login: React.FC = () => {
-  const [inputTextEmail, setInputTextEmail] = useState(false);
-  const [inputTextPassword, setInputTextPassword] = useState(false);
+  const [inputTextEmail, setInputTextEmail] = useState(true);
+  const [inputTextPassword, setInputTextPassword] = useState(true);
 
   return (
     <div className="page-background">
