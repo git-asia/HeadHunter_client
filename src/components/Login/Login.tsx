@@ -5,13 +5,44 @@ import "../../App.scss";
 import "./Login.scss";
 import { useNavigate } from "react-router-dom";
 
-export const Login: React.FC = () => {
+interface LoginProps {
+  setLoggedIn: (loggedIn: boolean) => void;
+}
+
+interface LoginParams {
+  email: any;
+  password: any;
+}
+
+export const Login: React.FC<LoginProps> = ({setLoggedIn}) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
 
+  const login = async ({email, password}: LoginParams) => {
+    try {
+      const response = await fetch('http://localhost:5000/logowanie_z_BE', {   // dodać ścieżkę do API z BE
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password })
+      })
+        if (response.ok) {
+        setLoggedIn(true);
+        navigate('/');
+        } else {
+          // dodać obługę błędu
+        }
+    } catch () {
+      // dodać obsługę błędu
+    }
+  }
+
   const handeSubmit = async (e: React.MouseEvent) => {
     e.preventDefault();
+
+    const user = await login({email : email, password : password})
   }
 
   return (
