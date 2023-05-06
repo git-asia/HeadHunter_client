@@ -1,0 +1,41 @@
+@import '../../../variables';
+
+.dropdown-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+}
+
+.dropdown__menu{
+
+  background-color: $header-dark;
+  color: $white;
+
+  .item {
+    font-family: $primary-font ;
+    font-size: $fs-xl;
+  }
+
+}
+
+.dropdown__button{
+
+  .text{
+    font-size: $fs-xl;
+    font-family: $primary-font ;
+    text-transform: capitalize;
+    color: $white;
+    white-space: nowrap;
+    margin-right: 1.6rem;
+    margin-left: 0.5rem;
+    margin-top: 0.2rem;
+  }
+
+}
+
+.dropdown__icon{
+  font-size: 2.3rem;
+  color: $white;
+  margin-top: -0.6rem;
+}

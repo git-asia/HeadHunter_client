@@ -1,0 +1,23 @@
+@import '../../variables';
+
+.header {
+  height: 8rem;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $header-dark;
+
+  .header-wrapper {
+    width: $width-80;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: auto;
+
+    .logo {
+      max-width: 8.9rem;
+      height: auto;
+    }
+  }
+}

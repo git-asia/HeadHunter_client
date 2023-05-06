@@ -1,0 +1,16 @@
+@import '../../variables';
+
+.page-wrapper {
+  width: 100vw;
+  height: 91.2vh;
+  padding: 1rem 0;
+  background-color: $primary-dark;
+
+  .list-wrapper {
+    //height: 95%;
+    width: $width-80;
+    margin: 0 auto;
+    background-color: $lightest-dark;
+  }
+}
+
