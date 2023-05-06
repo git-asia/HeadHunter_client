@@ -8,7 +8,7 @@ export const Login: React.FC = () => {
   return (
     <div className="page-background">
       <Container className="login-container">
-        <Grid spacing={3}>
+        <Grid container spacing={3}>
           <Grid item xs={12} className="email-box">
             <img src={logo} alt="Logo" className="logo" />
             <TextField
@@ -28,14 +28,15 @@ export const Login: React.FC = () => {
               fullWidth
             />
           </Grid>
-          <Grid container xs={12} justifyContent="flex-end">
+          <Grid item xs={12} container justifyContent="flex-end">
             <Button className="forgot-password-link" color="primary">
               Zapomniałeś hasła?
             </Button>
           </Grid>
           <Grid
-            container
+            item
             xs={12}
+            container
             className="second-line"
             direction={"row"}
             justifyContent={"space-between"}
