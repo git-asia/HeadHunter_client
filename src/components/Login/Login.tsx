@@ -10,40 +10,45 @@ interface LoginProps {
 }
 
 interface LoginParams {
-  email: any;
-  password: any;
+  email: string;
+  password: string;
 }
 
-export const Login: React.FC<LoginProps> = ({setLoggedIn}) => {
+export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("")
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
-  const login = async ({email, password}: LoginParams) => {
+  const login = async ({ email, password }: LoginParams) => {
     try {
-      const response = await fetch('http://localhost:5000/logowanie_z_BE', {   // dodać ścieżkę do API z BE
-        method: 'POST',
+      const response = await fetch("http://localhost:5000/logowanie_z_BE", {   // dodać ścieżkę do API z BE
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({ email, password })
-      })
-        if (response.ok) {
+      });
+      const data = await response.json();
+
+      if (response.ok) {
         setLoggedIn(true);
-        navigate('/');
-        } else {
-          // dodać obługę błędu
-        }
-    } catch () {
-      // dodać obsługę błędu
+        localStorage.setItem('token', data.user.token);
+        navigate("/");
+      } else {
+        setError(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+      setError('An error occurred during login.');
     }
-  }
+  };
 
   const handeSubmit = async (e: React.MouseEvent) => {
     e.preventDefault();
 
-    const user = await login({email : email, password : password})
-  }
+    const user = await login({ email, password });
+  };
 
   return (
     <div className="page-background">
