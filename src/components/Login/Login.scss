@@ -48,6 +48,15 @@ input#login-email::placeholder, input#login-pass::placeholder {
   opacity: 0.75;
 }
 
+.login-pass-visibility {
+  background-color: $lightest-dark;
+  color: $input-holder;
+
+  &:hover {
+    background-color: $lightest-dark;
+  }
+}
+
 Button.login-btn {
   height: 4rem;
   margin: 1rem auto;
