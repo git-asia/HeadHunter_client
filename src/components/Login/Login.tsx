@@ -19,6 +19,7 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const login = async ({ email, password }: LoginParams) => {
     try {
