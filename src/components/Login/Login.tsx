@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button, Container, Grid, TextField } from "@mui/material";
 import logo from "../../assets/images/logo.png";
 import "../../App.scss";
 import "./Login.scss";
-import { useNavigate } from "react-router-dom";
 
 interface LoginProps {
   setLoggedIn: (loggedIn: boolean) => void;

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+import { AuthWrapper } from "./components/Auth/AuthWrapper";
 import { ListView } from "./views/ListView/ListView";
 import { CVView } from "./views/CVView/CVView";
 import { Login } from "./components/Login/Login";
 import "./index.scss";
-import { AuthWrapper } from "./components/Auth/AuthWrapper";
 
 export const App = () => {
   const [isLoggedIn, setLoggedIn] = useState(true); //do zmiany w momencie przekazywania wartości z backend
