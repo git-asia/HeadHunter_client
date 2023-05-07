@@ -1,0 +1,105 @@
+@import '../../../variables';
+
+.dialog-paper{
+  background-color: #0a0a0a;
+  border-radius: 0;
+  border-width: 0;
+
+  .title-bar{
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -3rem;
+
+    .title{
+      font-family: $primary-font;
+      font-weight: bold;
+      color: $white;
+      font-size: $fs-xxl;
+    }
+
+    .clear-button, .clear-button:hover {
+      background-color: #172A35;
+      font-family: $secondary-font ;
+      color: $white;
+      font-size: $fs-sm;
+      text-transform: none;
+      float: left;
+      margin-right: 3rem;
+    }
+
+
+  }
+  .box-star, .box-star:hover, .box-star-checked, .box-star-checked:hover, .MuiInputBase-root{
+    color: $white;
+    background-color: $lightest-dark;
+    height: 3rem;
+
+  }
+
+  .MuiInput-underline{
+    color: $white;
+    font-size: $fs-xs;
+    font-family: $secondary-font ;
+    margin-left: 1rem;
+  }
+  .box-star-checked, .box-star-checked:hover{
+    background-color: $primary-btn;
+  }
+
+  .icon{
+    color: $primary-btn;
+    font-size: $fs-lg;
+    margin-left: -0.5rem;
+    padding: 0;
+  }
+  .icon-active{
+    color: $white;
+    font-size: $fs-lg;
+    margin-left: -0.5rem;
+    padding: 0;
+  }
+  .text-checkbox{
+    font-size: $fs-xs;
+    color: $white;
+    font-family: $secondary-font ;
+    text-transform: none;
+  }
+
+  .margin-left{
+    margin-left: 0.8rem;
+  }
+
+  .margin-right{
+    margin-right: 0.8rem;
+  }
+
+  .title{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: $white;
+    font-size: $fs-md;
+    font-family: $secondary-font ;
+  }
+
+  .cancel-button{
+    font-family: $primary-font;
+    font-size: $fs-lg;
+    text-transform: capitalize;
+    color: $white ;
+  }
+  .com-exp{
+    width: 12rem;
+  }
+
+  .controlled-radio{
+    .MuiSvgIcon-root{
+      color: $lightest-dark;
+    }
+  }
+
+  .degree{
+    .MuiSelect-select{
+      text-align: center;
+    }
+  }
+}
