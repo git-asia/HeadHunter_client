@@ -220,7 +220,7 @@ export const FilterWindow = (props:any) => {
                     />
                 </Grid>
 
-                <p className="title">Oczekiwane wynagrodzenie miesięczne netto</p>
+                <p className="title">Zgoda na odbycie bezptatnych praktyk/stażu na poczatek</p>
                 <RadioGroup
                     name="controlled-radio-buttons-group"
                     className="controlled-radio"
@@ -258,7 +258,7 @@ export const FilterWindow = (props:any) => {
             <DialogActions>
                 <Button onClick={props.handleClose} className="cancel-button">Anuluj</Button>
 
-                <Button onClick={lookState} className="box-star-checked cancel-button">Zastosuj</Button>
+                <Button onClick={lookState} className="box-star-checked cancel-button">Pokaż wyniki</Button>
             </DialogActions>
         </Paper>
 
