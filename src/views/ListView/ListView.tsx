@@ -1,19 +1,27 @@
 import React from "react";
-import { UserData } from "../../components/UserData/UserData";
+import { NavbarStudents } from "../../components/NavbarStudents/NavbarStudents";
+//import { UserData } from "../../components/UserData/UserData";
 import {Pagination} from "../../components/Pagination/Pagination";
-
-import "./ListView.scss";
-import "../../_variables.sass";
+import { Header } from "../../components/Header/Header";
 import {SearchFilterBar} from "../../components/SearchFilterBar/SearchFilterBar";
 
+import "./ListView.scss";
+import "../../index.scss"
+
+
+
 export const ListView = () => {
-  return (
-    <>
-      <div className="page-wrapper">
-          <SearchFilterBar/>
-        <div className="list-wrapper">{/* <UserData /> */}</div>
-        <Pagination/>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <Header/>
+            <div className="page-wrapper">
+                <div className="list-wrapper">
+                    <NavbarStudents/>
+                    <SearchFilterBar/>
+                    <div className="list-wrapper">{/* <UserData /> */}</div>
+                </div>
+                <Pagination/>
+            </div>
+        </>
+    );
 };
