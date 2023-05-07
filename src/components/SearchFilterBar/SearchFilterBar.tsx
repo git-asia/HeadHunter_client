@@ -8,25 +8,22 @@ import {
     FormControl,
     InputAdornment,
     TextField,
-    Checkbox,
     FormControlLabel,
-    FormGroup,
     Paper,
     ToggleButtonGroup,
     ToggleButton,
-    Box,
     Grid,
     RadioGroup,
     Radio,
     Autocomplete,
+    Select,
+    MenuItem,
 } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import StarIcon from '@mui/icons-material/Star';
 
 import "./SearchFilterBar.scss";
-
 
 type FilterState = {
     expectedTypeWork: {
@@ -46,13 +43,16 @@ type FilterState = {
     },
     canTakeApprenticeship: boolean|null;
     monthsOfCommercialExp: string|null;
+    courseCompletion: number
+    courseEngagement: number
+    projectDegree: number
+    teamProjectDegree: number
+
     [key: string]: any;
 }
 
 export const SearchFilterBar = () => {
-
-
-    const [filters, setFilters] = useState<FilterState>({
+    const initialState = {
         expectedTypeWork: {
             remoteWork: false,
             inOffice: false,
@@ -69,50 +69,50 @@ export const SearchFilterBar = () => {
         },
         canTakeApprenticeship: null,
         monthsOfCommercialExp: null,
-    });
+        courseCompletion: 1,
+        courseEngagement: 1,
+        projectDegree: 1,
+        teamProjectDegree: 1,
 
-    const filtersChange = ( stateName: string, substateName:string, value?: string | number | undefined| null) => {
-        setFilters({
-            ...filters,
-            [stateName]: {
-                ...filters[stateName],
-                [substateName]: value ?? !filters[stateName][substateName],
-            },
-        });
-    };
+    }
 
+    const [filters, setFilters] = useState<FilterState>(initialState);
+    const [showClearIcon, setShowClearIcon] = useState("none");
+    const [search, setSearch] = useState('');
+    const [open, setOpen] = useState(false);
+
+    const title= [['Ocena przejścia kursu','courseCompletion'],['Ocena aktywności i zaangażowania na kursie','courseEngagement'], ['Ocena kodu w projekcie własnym','projectDegree'], ['Ocena pracy w zespole w Scrum','teamProjectDegree']];
     const months: string[] = ['miesiąc', 'miesiące', 'miesięcy'];
 
-    const monthList: string[] = Array.from({length: 30}, (_, i) => {
-        const month: string = i + 1 + ' ' + months[2];
-        if (i === 0) {
+    const filtersChange = ( stateName: string,  substateName:string ,value?: string | number | undefined| null| boolean) => {
+        if (substateName !== '') {
+            setFilters({
+                ...filters,
+                [stateName]: {
+                    ...filters[stateName],
+                    [substateName]: value ?? !filters[stateName][substateName],
+                },
+            });
+        } else {
+            setFilters({
+                ...filters,
+                [stateName]: value,
+            });
+        }
+    };
+
+    const monthList: string[] = Array.from({length: 31}, (_, i) => {
+        const month: string = i  + ' ' + months[2];
+        if (i === 1) {
             return month.replace(months[2], months[0]);
-        } else if (i === 1 || i === 2 || i === 3 || i % 10 === 2 || i % 10 === 3 || i % 10 === 4) {
+        } else if(i>=12 && i<=16){
+           return month;
+        }else if ( i === 1 || i === 2 || i === 3 || i % 10 === 2 || i % 10 === 3 || i % 10 === 4) {
             return month.replace(months[2], months[1]);
         } else {
             return month;
         }
     });
-
-
-
-    const lookState = ()=>{
-        console.log(filters);
-        console.log(monthList)
-    }
-
-
-
-
-
-
-
-
-
-
-    const [showClearIcon, setShowClearIcon] = useState("none");
-    const [search, setSearch] = useState('');
-    const [checked, setChecked] = useState('box-star');
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setShowClearIcon(event.target.value === "" ? "none" : "flex");
@@ -122,19 +122,9 @@ export const SearchFilterBar = () => {
 
     const handleClick = (): void => {
         setSearch('');
-    };
-    const handleChange22 = (event: React.MouseEvent<HTMLElement>, isChecked: string) => {
-        if(checked==='box-star')
-            setChecked('box-star-checked');
-        else
-            setChecked('box-star');
+        setShowClearIcon('none');
     };
 
-
-
-
-    const [open, setOpen] = useState(false);
-    const [selectedValue, setSelectedValue] = useState("");
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -143,22 +133,13 @@ export const SearchFilterBar = () => {
         setOpen(false);
     };
 
-    const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSelectedValue(event.target.value);
-    };
+    const clear = () =>{
+        setFilters(initialState);
+    }
 
-    const title= ['Ocena przejścia kursu','Ocena aktywności i zaangażowania na kursie', 'Ocena kodu w projekcie własnym', 'Ocena pracy w zespole w Scrum'];
-
-    // const [checked, setChecked] = useState('box-star');
-    //
-    // const handletest = (event :any) => {
-    //     setChecked(event.target.checked);
-    //     if (event.target.checked) {
-    //         setChecked('box-star-checked');;
-    //     } else {
-    //         setChecked('box-star');
-    //     }
-    // };
+    const lookState = ()=>{
+        console.log(filters);
+     }
 
     return(
         <div className="SearchFilterBar-wrapper">
@@ -181,7 +162,7 @@ export const SearchFilterBar = () => {
                                 style={{ display: showClearIcon }}
                                 onClick={handleClick}
                             >
-                                <ClearIcon sx={{ color: "#666666", fontSize: 50  }} /> {/* TODO nie działa zmiana wielkości ikony*/}
+                                <ClearIcon className="icon" />
                             </InputAdornment>
                         ),
                     }}
@@ -197,90 +178,36 @@ export const SearchFilterBar = () => {
                 <span className="text"> Filtrowanie </span>
             </Button>
 
-
                 <Dialog open={open} onClose={handleClose} className="dialog" >
                     <Paper className="dialog-paper">
-                    <DialogTitle>Filtrowanie</DialogTitle>
-
+                        <Grid container alignItems="center" className="title-bar">
+                            <DialogTitle className="title">Filtrowanie</DialogTitle>
+                            <Button onClick={clear} className="clear-button">Wyczyść wszystkie</Button>
+                        </Grid>
 
                     <DialogContent className="dialog">
-                        {/*<FormGroup className="dialog">*/}
 
-
-
-                        {/*{title.map((title,index) => (*/}
-                        {/*    <div key={index}>*/}
-                        {/*      <p className="title">{title}</p>*/}
-                        {/*        <div >*/}
-                        {/*            {[1, 2, 3, 4, 5].map((value) => (*/}
-                        {/*                <FormControlLabel*/}
-                        {/*                    key={value}*/}
-                        {/*                    className={checked}*/}
-                        {/*                    onChange={handletest}*/}
-                        {/*                    control={*/}
-
-                        {/*                        <Checkbox*/}
-                        {/*                            icon={<StarIcon className="icon" />}*/}
-                        {/*                            checkedIcon={<StarIcon className="icon-active" />}*/}
-
-                        {/*                        />*/}
-
-                        {/*                    }*/}
-                        {/*                    label={<span className="text-checkbox">{value}</span>}*/}
-                        {/*                    labelPlacement="start"*/}
-                        {/*                />*/}
-                        {/*            ))}*/}
-                        {/*        </div>*/}
-                        {/*    </div>*/}
-                        {/*    ))}*/}
-
-                        {/*<div>*/}
-                        {/*    <p className="title">Preferowane miejsce pracy</p>*/}
-                        {/*    <FormControlLabel*/}
-
-
-                        {/*        // onChange={handletest}*/}
-                        {/*        className="box-star"*/}
-                        {/*        control={*/}
-
-                        {/*            <Checkbox*/}
-                        {/*                icon={<StarIcon className="icon" />}*/}
-                        {/*                checkedIcon={<StarIcon className="icon-active" />}*/}
-
-                        {/*            />*/}
-
-                        {/*        }*/}
-                        {/*        label={<span className="text-checkbox">Praca zdalna</span>}*/}
-                        {/*        labelPlacement="start"*/}
-                        {/*    />*/}
-                        {/*    <FormControlLabel*/}
-                        {/*        className="box-star"*/}
-                        {/*        onChange={handletest}*/}
-                        {/*        control={*/}
-
-                        {/*            <Checkbox*/}
-                        {/*                disableRipple={true}*/}
-                        {/*            />*/}
-
-                        {/*        }*/}
-                        {/*        label={<span className="text-checkbox">Praca w biurze</span>}*/}
-                        {/*        labelPlacement="start"*/}
-                        {/*    />*/}
-
-                        {/*    <FormControlLabel*/}
-                        {/*        className="box-star"*/}
-                        {/*        control={*/}
-                        {/*            <Checkbox*/}
-                        {/*                // checked={checked}*/}
-                        {/*                // onChange={handleCheckboxChange}*/}
-
-                        {/*            />*/}
-                        {/*        }*/}
-                        {/*        label="Tekst labelki"*/}
-                        {/*    />*/}
-
-                        {/*</div>*/}
-
+                        {title.map((title,index) => (
+                            <div key={index} className="degree">
+                              <p className="title">{title[0]}</p>
+                                <Grid container alignItems="center">
+                                    <p className="text-checkbox">Ocena</p>
+                                    <FormControl variant="standard">
+                                        <Select
+                                            onChange={(event) =>filtersChange(title[1],'', event.target.value as number)}
+                                            value={filters[title[1]]}
+                                        >
+                                            <MenuItem value={1}>1</MenuItem>
+                                            <MenuItem value={2}>2</MenuItem>
+                                            <MenuItem value={3}>3</MenuItem>
+                                            <MenuItem value={4}>4</MenuItem>
+                                            <MenuItem value={5}>5</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                    <p className="text-checkbox margin-left">i wyższa</p>
+                                </Grid>
+                            </div>
+                            ))}
 
                         <p className="title">Preferowane miejsce pracy</p>
                         <ToggleButtonGroup>
@@ -339,19 +266,19 @@ export const SearchFilterBar = () => {
 
                         <p className="title">Oczekiwane wynagrodzenie miesięczne netto</p>
                         <Grid container alignItems="center">
-                            <p className="text-checkbox">Od</p>
+                            <p className="text-checkbox margin-right">Od</p>
                             <TextField
                                 className="box-star text-checkbox"
                                 value={filters.expectedSalary.min}
-                                placeholder="np. 1000"
+                                placeholder="np. 1000 zł"
                                 variant="standard"
                                 onChange={(event) =>filtersChange('expectedSalary', 'min',event.target.value)}
                             />
-                            <p className="text-checkbox">Do</p>
+                            <p className="text-checkbox margin-left margin-right">Do</p>
                             <TextField
                                 className="box-star"
                                 value={filters.expectedSalary.max}
-                                placeholder="np. 1000"
+                                placeholder="np. 4000 zł"
                                 variant="standard"
                                 onChange={(event) =>filtersChange('expectedSalary', 'max',event.target.value)}
                             />
@@ -360,29 +287,42 @@ export const SearchFilterBar = () => {
                         <p className="title">Oczekiwane wynagrodzenie miesięczne netto</p>
                         <RadioGroup
                             name="controlled-radio-buttons-group"
+                            className="controlled-radio"
                             onChange={(event) =>filtersChange('canTakeApprenticeship', '',event.target.value)}
                         >
-                            <FormControlLabel value="true" control={<Radio />} label="Tak" className="text-checkbox" />
-                            <FormControlLabel value="false" control={<Radio />} label="Nie"  className="text-checkbox"/>
+                            <FormControlLabel
+                                value="true"
+                                control={<Radio />}
+                                label="Tak"
+                                className="text-checkbox"
+                            />
+                            <FormControlLabel
+                                value="false"
+                                control={<Radio />}
+                                label="Nie"
+                                className="text-checkbox"
+                            />
                         </RadioGroup>
 
-                        <p className="title">Oczekiwane wynagrodzenie miesięczne netto</p>
-
+                        <p className="title">Ilość miesięcy doświadczenia komercyjnego kandydata w programowaniu</p>
                         <Autocomplete
                             disablePortal
-                            id="combo-box-demo"
                             options={monthList}
-                            className="box-star text-checkbox"
-                            onChange={(event,value) =>filtersChange('monthsOfCommercialExp', '', value)}
-                            renderInput={(params) => <TextField {...params} label="Movie" className="box-star text-checkbox" />}
+                            className="box-star text-checkbox com-exp"
+                            onChange={(event, value) => filtersChange('monthsOfCommercialExp', '', value)}
+                            renderInput={(params) =>
+                                <TextField
+                                    className="text-checkbox "
+                                    {...params}
+                                    variant="standard"
+                                />}
                         />
-
-
 
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={handleClose}>Anuluj</Button>
-                        <Button onClick={lookState}>Zastosuj</Button>
+                        <Button onClick={handleClose} className="cancel-button">Anuluj</Button>
+
+                        <Button onClick={lookState} className="box-star-checked cancel-button">Zastosuj</Button>
                     </DialogActions>
                     </Paper>
                 </Dialog>
