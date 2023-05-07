@@ -55,7 +55,7 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
   };
 
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
+    setPassword(event.target.value);
   };
 
   return (
