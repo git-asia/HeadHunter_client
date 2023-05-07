@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Container, Grid, TextField } from "@mui/material";
+import { Button, Container, Grid, IconButton, InputAdornment, TextField } from "@mui/material";
 import logo from "../../assets/images/logo.png";
 import "../../App.scss";
 import "./Login.scss";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 interface LoginProps {
   setLoggedIn: (loggedIn: boolean) => void;
@@ -61,6 +62,7 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
 
   const handlePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  }
 
   return (
     <div className="page-background">
@@ -87,6 +89,16 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
               fullWidth
               value={password}
               onChange={handlePasswordChange}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={handlePasswordVisibility}
+                    >
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
           </Grid>
           <Grid item xs={12} container justifyContent="flex-end">
