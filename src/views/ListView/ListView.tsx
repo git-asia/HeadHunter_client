@@ -9,7 +9,6 @@ import "./ListView.scss";
 import "../../index.scss"
 
 
-
 export const ListView = () => {
     return (
         <>
@@ -25,3 +24,4 @@ export const ListView = () => {
         </>
     );
 };
+
