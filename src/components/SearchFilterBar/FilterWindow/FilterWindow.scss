@@ -25,10 +25,10 @@
       text-transform: none;
       float: left;
       margin-right: 3rem;
+      border-radius: 0;
     }
-
-
   }
+
   .box-star, .box-star:hover, .box-star-checked, .box-star-checked:hover, .MuiInputBase-root{
     color: $white;
     background-color: $lightest-dark;
@@ -84,8 +84,9 @@
   .cancel-button{
     font-family: $primary-font;
     font-size: $fs-lg;
-    text-transform: capitalize;
+    text-transform: none;
     color: $white ;
+    border-radius: 0;
   }
   .com-exp{
     width: 12rem;
@@ -102,4 +103,8 @@
       text-align: center;
     }
   }
+}
+
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper{
+  border-radius: 0;
 }
