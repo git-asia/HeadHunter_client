@@ -59,6 +59,9 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
     setEmail(event.target.value);
   };
 
+  const handlePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+
   return (
     <div className="page-background">
       <Container className="login-container">
