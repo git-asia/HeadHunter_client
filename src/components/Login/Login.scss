@@ -87,6 +87,7 @@ Button.login-btn {
   border-radius: 0;
 }
 
-.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
+.css-1bp1ao6.Mui-focused .MuiOutlinedInput-notchedOutline {
   border-color: $primary-btn;
 }
