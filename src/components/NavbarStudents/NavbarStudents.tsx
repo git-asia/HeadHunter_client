@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, KeyboardEvent } from 'react';
 
 import "./NavbarStudents.scss"
 
@@ -6,11 +6,11 @@ export const NavbarStudents = () => {
 
   const [activeCategory, setActiveCategory] = useState('allStudents');
 
-  const handleClick = (category) => {
+  const handleClick = (category: string) => {
     setActiveCategory(category);
   };
 
-  const handleKeyPress = (event, category) => {
+  const handleKeyPress = (event: KeyboardEvent<HTMLButtonElement>, category: string) => {
     if (event.key === 'Enter' || event.key === ' ') {
       setActiveCategory(category);
     }
