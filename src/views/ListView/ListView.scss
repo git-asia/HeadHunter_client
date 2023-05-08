@@ -1,4 +1,4 @@
-@import '../../variables';
+@import "../../variables";
 
 .page-wrapper {
   width: 100vw;
@@ -8,9 +8,10 @@
 
   .list-wrapper {
     //height: 95%;
-    width: $width-80;
+    // width: $width-80;
+    max-width: 180rem;
+    width: 97.5%;
     margin: 0 auto;
     background-color: $lightest-dark;
   }
 }
-
