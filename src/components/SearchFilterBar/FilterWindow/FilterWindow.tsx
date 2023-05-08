@@ -71,6 +71,22 @@ export const FilterWindow = (props:any) => {
 
     }
 
+    const queryMaker = (filters:FilterState) => {
+        let query = '';
+       query += `$courseCompletion=${filters.courseCompletion}`
+       query += `$courseEngagement=${filters.courseEngagement}`
+       query += `$projectDegree=${filters.projectDegree}`
+       query += `$teamProjectDegree=${filters.teamProjectDegree}`
+       if (!filters.monthsOfCommercialExp === null) {
+        query += `$monthsOfCommercialExp=${filters.monthsOfCommercialExp}`
+       }
+       if (!filters.canTakeApprenticeship === null) {
+        query += `$canTakeApprenticeship=${filters.number}`
+       }
+
+        return query
+    }
+
     const [filters, setFilters] = useState<FilterState>(initialState);
     const title= [['Ocena przejścia kursu','courseCompletion'],['Ocena aktywności i zaangażowania na kursie','courseEngagement'], ['Ocena kodu w projekcie własnym','projectDegree'], ['Ocena pracy w zespole w Scrum','teamProjectDegree']];
     const months: string[] = ['miesiąc', 'miesiące', 'miesięcy'];
@@ -110,7 +126,10 @@ export const FilterWindow = (props:any) => {
     }
 
     const lookState = ()=>{
-        console.log(filters);
+        queryMaker(filters)
+        console.log(queryMaker(filters)
+        
+        );
     }
 
 
@@ -261,6 +280,5 @@ export const FilterWindow = (props:any) => {
                 <Button onClick={lookState} className="box-star-checked cancel-button">Pokaż wyniki</Button>
             </DialogActions>
         </Paper>
-
     )
 }
