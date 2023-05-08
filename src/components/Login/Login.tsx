@@ -93,12 +93,13 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton className="login-pass-visibility"
+                    <IconButton
                       edge="end"
                       aria-label="toggle password visibility"
                       onClick={handlePasswordVisibility}
+                      className="login-pass-visibility-icon"
                     >
-                      {showPassword ? <Visibility/> : <VisibilityOff/>}
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
                 ),

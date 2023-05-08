@@ -16,9 +16,12 @@
       display: block;
       margin: 3rem auto;
     }
+
     .MuiInputBase-root {
       margin: 0;
+      background-color: $lightest-dark;
     }
+
     .css-wb57ya-MuiFormControl-root-MuiTextField-root {
       align-items: center;
 
@@ -48,13 +51,8 @@ input#login-email::placeholder, input#login-pass::placeholder {
   opacity: 0.75;
 }
 
-.login-pass-visibility {
-  background-color: $lightest-dark;
+.login-pass-visibility-icon {
   color: $input-holder;
-
-  &:hover {
-    background-color: $lightest-dark;
-  }
 }
 
 Button.login-btn {
@@ -80,9 +78,11 @@ Button.login-btn {
   font-size: $fs-sm;
   text-transform: none;
 }
+
 .login-ask {
   margin-right: 1rem;
 }
+
 .login-link {
   padding: 0;
   font-weight: bold;
