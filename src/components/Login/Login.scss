@@ -8,7 +8,7 @@
   vertical-align: middle;
 
   .login-container {
-    width: 40%;
+    max-width: 40rem;
 
     .logo {
       height: auto;
@@ -16,9 +16,11 @@
       display: block;
       margin: 3rem auto;
     }
+
     .MuiInputBase-root {
       margin: 0;
     }
+
     .css-wb57ya-MuiFormControl-root-MuiTextField-root {
       align-items: center;
 
@@ -63,6 +65,7 @@ Button.login-btn {
   text-align: right;
 }
 
+.infoAboutValidation,
 .login-ask,
 .login-link,
 .forgot-password-link,
@@ -71,9 +74,11 @@ Button.login-btn {
   font-size: $fs-sm;
   text-transform: none;
 }
+
 .login-ask {
   margin-right: 1rem;
 }
+
 .login-link {
   padding: 0;
   font-weight: bold;
@@ -82,3 +87,6 @@ Button.login-btn {
   border-radius: 0;
 }
 
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: $primary-btn;
+}
