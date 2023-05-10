@@ -1,8 +1,9 @@
 import { UserDataFragment } from "./UserDataFragment/UserDataFragment";
 import { IoIosArrowDown } from "react-icons/io";
-import { useState } from "react";
+import {useContext, useState} from "react";
 import "./UserData.scss";
 import {API_URL} from "../../config/apiUrl";
+import {FilterContext} from "../../contexts/filter.context";
 
 interface Props {
   id : string;
@@ -23,7 +24,7 @@ export const UserData = ({ id, FragmentsValues, name }: Props) => {
 
     try {
       const res = await fetch(`${API_URL}/students/status`, {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -38,6 +39,9 @@ export const UserData = ({ id, FragmentsValues, name }: Props) => {
       // zmiana state
     }
   }
+
+  const {filterCon} = useContext(FilterContext)
+  console.log(filterCon)
 
   return (
     <div className="user-data__container">
