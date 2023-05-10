@@ -17,13 +17,15 @@ export const CVView = () => {
           <span className="CVView__back__span">Wróć</span>
         </div>
         <UserCard
-          aboutMe={
+           aboutMe={
             "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea ratione esse nostrum eveniet distinctio facilis cumque, iusto eius unde? Velit suscipit dolorem excepturi magnam ut incidunt aspernatur expedita, doloremque esse."
           }
           name="Imię Nazwisko"
           github="github"
           email="email@gmail.com"
           phoneNumber="+48123456789"
+           id="5a06c091-e1d7-11ed-b007-24fd5235b3db"
+
         />
         <UserCV
           grades={[
