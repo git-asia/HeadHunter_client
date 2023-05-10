@@ -2,8 +2,10 @@ import { UserDataFragment } from "./UserDataFragment/UserDataFragment";
 import { IoIosArrowDown } from "react-icons/io";
 import { useState } from "react";
 import "./UserData.scss";
+import {API_URL} from "../../config/apiUrl";
 
 interface Props {
+  id : string;
   name: string;
   FragmentsValues: {
     value: string;
@@ -11,8 +13,32 @@ interface Props {
   }[];
 }
 
-export const UserData = ({ FragmentsValues, name }: Props) => {
+export const UserData = ({ id, FragmentsValues, name }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
+
+
+
+
+  const changeStatus= async (studentId:string) =>{
+
+    try {
+      const res = await fetch(`${API_URL}/students/status`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          action: 'reserve',
+          studentId,
+        }),
+      });
+      const data = await res.json();
+      console.log(data.message);
+    } finally {
+      // zmiana state
+    }
+  }
+
   return (
     <div className="user-data__container">
       <div className="user-data__nav">
@@ -21,9 +47,7 @@ export const UserData = ({ FragmentsValues, name }: Props) => {
           <input
             type="button"
             value="Zarezerwuj rozmowę"
-            onClick={() => {
-              // To be implemented
-            }}
+            onClick={()=>changeStatus(id)}
           />
           <IoIosArrowDown
             size={30}

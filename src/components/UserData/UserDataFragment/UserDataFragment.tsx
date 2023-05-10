@@ -1,4 +1,5 @@
 import { AiFillStar } from "react-icons/ai";
+
 import "./UserDataFragment.scss";
 
 interface Props {
