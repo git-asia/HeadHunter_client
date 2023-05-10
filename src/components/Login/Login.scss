@@ -8,7 +8,7 @@
   vertical-align: middle;
 
   .login-container {
-    width: 40%;
+    max-width: 40rem;
 
     .logo {
       height: auto;
@@ -70,6 +70,7 @@ Button.login-btn {
   text-align: right;
 }
 
+.infoAboutValidation,
 .login-ask,
 .login-link,
 .forgot-password-link,
@@ -91,3 +92,7 @@ Button.login-btn {
   border-radius: 0;
 }
 
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
+.css-1bp1ao6.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: $primary-btn;
+}

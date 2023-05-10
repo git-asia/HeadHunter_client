@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 import { Button, Container, Grid, IconButton, InputAdornment, TextField } from "@mui/material";
+
 import logo from "../../assets/images/logo.png";
 import "../../App.scss";
 import "./Login.scss";
@@ -21,6 +23,8 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [inputTextEmail, setInputTextEmail] = useState(false);
+  const [inputTextPassword, setInputTextPassword] = useState(false);
 
   const login = async ({ email, password }: LoginParams) => {
     try {
@@ -65,22 +69,28 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
     setShowPassword(!showPassword);
   };
 
+
   return (
     <div className="page-background">
       <Container className="login-container">
         <Grid container spacing={1}>
           <Grid item xs={12} className="email-box">
             <img src={logo} alt="Logo" className="logo" />
+            <p className="infoAboutValidation"
+               style={{ display: inputTextEmail ? "none" : "" }}
+            >To nie jest prawidłowy e-mail</p>
             <TextField
               className="login-email"
               id="login-email"
               type="email"
               placeholder="E-mail"
               variant="outlined"
+              onChange={e => setInputTextEmail(/^\S+@\S+\.\S+$/.test(e.target.value))}
               fullWidth
-              value={email}
-              onChange={handleEmailChange}
             />
+            <p className="infoAboutValidation"
+               style={{ display: inputTextPassword ? "none" : "" }}
+            >Hasło musi mieć co najmniej 8 znaków, składać się z dużych i małych liter, cyfr i znaków specjalnych</p>
             <TextField
               className="login-pass"
               id="login-pass"
@@ -89,7 +99,7 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
               variant="outlined"
               fullWidth
               value={password}
-              onChange={handlePasswordChange}
+             // onChange={handlePasswordChange} <--- poprawić
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -104,6 +114,7 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
                   </InputAdornment>
                 ),
               }}
+              onChange={e => setInputTextPassword(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/.test(e.target.value))}
             />
           </Grid>
           <Grid item xs={12} container justifyContent="flex-end">
@@ -125,7 +136,7 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
               <Button className="login-link">Zarejestruj się</Button>
             </Grid>
             <Grid item>
-              <Button className="login-btn" onClick={handeSubmit}>
+              <Button className="login-btn">
                 Zaloguj się
               </Button>
             </Grid>
