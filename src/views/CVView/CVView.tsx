@@ -11,7 +11,7 @@ export const CVView = () => {
   return (
     <div className="CVView__container">
       <Header/>
-      <div className="CVView__wrapper">
+      <div className="page__container">
         <div className="CVView__back">
           <IoIosArrowDown size={30} className="CVView__back__svg" />
           <span className="CVView__back__span">Wróć</span>
