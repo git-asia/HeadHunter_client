@@ -28,26 +28,25 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
 
   const login = async ({ email, password }: LoginParams) => {
     try {
-      const response = await fetch("http://localhost:5000/logowanie_z_BE", {
-        // dodać ścieżkę do API z BE
+      const response = await fetch("http://localhost:5000/logowanie_z_BE", {   // dodać ścieżkę do API z BE
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password })
       });
       const data = await response.json();
 
       if (response.ok) {
         setLoggedIn(true);
-        localStorage.setItem("token", data.user.token);
+        localStorage.setItem('token', data.user.token);
         navigate("/");
       } else {
         setError(data.message);
       }
     } catch (error) {
       console.error(error);
-      setError("An error occurred during login.");
+      setError('An error occurred during login.');
     }
   };
 
@@ -64,7 +63,6 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
   const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };
-
   const handlePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -87,6 +85,8 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
               variant="outlined"
               onChange={e => setInputTextEmail(/^\S+@\S+\.\S+$/.test(e.target.value))}
               fullWidth
+              value={email}
+              // onChange={handleEmailChange} <--- poprawić
             />
             <p className="infoAboutValidation"
                style={{ display: inputTextPassword ? "none" : "" }}
