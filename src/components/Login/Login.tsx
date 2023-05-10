@@ -1,12 +1,74 @@
 import React, { useState } from "react";
-import { Button, Container, Grid, TextField } from "@mui/material";
+
+import { useNavigate } from "react-router-dom";
+import { Button, Container, Grid, IconButton, InputAdornment, TextField } from "@mui/material";
+
 import logo from "../../assets/images/logo.png";
 import "../../App.scss";
 import "./Login.scss";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
-export const Login: React.FC = () => {
+interface LoginProps {
+  setLoggedIn: (loggedIn: boolean) => void;
+}
+
+interface LoginParams {
+  email: string;
+  password: string;
+}
+
+export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
   const [inputTextEmail, setInputTextEmail] = useState(false);
   const [inputTextPassword, setInputTextPassword] = useState(false);
+
+  const login = async ({ email, password }: LoginParams) => {
+    try {
+      const response = await fetch("http://localhost:5000/logowanie_z_BE", {
+        // dodać ścieżkę do API z BE
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        setLoggedIn(true);
+        localStorage.setItem("token", data.user.token);
+        navigate("/");
+      } else {
+        setError(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+      setError("An error occurred during login.");
+    }
+  };
+
+  const handeSubmit = async (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    const user = await login({ email, password });
+  };
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(event.target.value);
+  };
+
+  const handlePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
 
   return (
     <div className="page-background">
@@ -32,10 +94,26 @@ export const Login: React.FC = () => {
             <TextField
               className="login-pass"
               id="login-pass"
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Hasło"
               variant="outlined"
               fullWidth
+              value={password}
+             // onChange={handlePasswordChange} <--- poprawić
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      edge="end"
+                      aria-label="toggle password visibility"
+                      onClick={handlePasswordVisibility}
+                      className="login-pass-visibility-icon"
+                    >
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
               onChange={e => setInputTextPassword(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/.test(e.target.value))}
             />
           </Grid>
@@ -51,12 +129,11 @@ export const Login: React.FC = () => {
             className="second-line"
             direction={"row"}
             justifyContent={"space-between"}
-            alignItems={"baseline"}>
+            alignItems={"baseline"}
+          >
             <Grid item>
               <span className="login-ask">Nie masz konta?</span>
-              <Button className="login-link">
-                Zarejestruj się
-              </Button>
+              <Button className="login-link">Zarejestruj się</Button>
             </Grid>
             <Grid item>
               <Button className="login-btn">

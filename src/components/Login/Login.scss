@@ -19,6 +19,7 @@
 
     .MuiInputBase-root {
       margin: 0;
+      background-color: $lightest-dark;
     }
 
     .css-wb57ya-MuiFormControl-root-MuiTextField-root {
@@ -48,6 +49,10 @@ input#login-email, input#login-pass {
 
 input#login-email::placeholder, input#login-pass::placeholder {
   opacity: 0.75;
+}
+
+.login-pass-visibility-icon {
+  color: $input-holder;
 }
 
 Button.login-btn {
