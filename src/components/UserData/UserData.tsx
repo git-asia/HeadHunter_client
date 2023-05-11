@@ -4,6 +4,8 @@ import {useContext, useState} from "react";
 import "./UserData.scss";
 import {API_URL} from "../../config/apiUrl";
 import {FilterContext} from "../../contexts/filter.context";
+import {PageContext} from "../../contexts/page.context";
+import {RowsPerPage} from "../../contexts/rowsPerPage.context";
 
 interface Props {
   id : string;
@@ -16,7 +18,9 @@ interface Props {
 
 export const UserData = ({ id, FragmentsValues, name }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const {filterCon} = useContext(FilterContext)
+  const {page} = useContext(PageContext)
+  const {rowsPerPage} = useContext(RowsPerPage)
 
 
 
@@ -40,8 +44,6 @@ export const UserData = ({ id, FragmentsValues, name }: Props) => {
     }
   }
 
-  const {filterCon} = useContext(FilterContext)
-  console.log(filterCon)
 
   return (
     <div className="user-data__container">
