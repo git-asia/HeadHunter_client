@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useContext, useState} from "react";
 import {
     Autocomplete,
     Button,
@@ -17,6 +17,7 @@ import {
     ToggleButton,
     ToggleButtonGroup
 } from "@mui/material";
+import {FilterContext} from "../../../contexts/filter.context";
 
 import "./FilterWindow.scss";
 
@@ -71,7 +72,9 @@ export const FilterWindow = (props:any) => {
 
     }
 
-    const [filters, setFilters] = useState<FilterState>(initialState);
+    const {filterCon,setFilterCon} = useContext(FilterContext)
+    const [filters, setFilters] = useState<FilterState>(filterCon);
+
     const title= [['Ocena przejścia kursu','courseCompletion'],['Ocena aktywności i zaangażowania na kursie','courseEngagement'], ['Ocena kodu w projekcie własnym','projectDegree'], ['Ocena pracy w zespole w Scrum','teamProjectDegree']];
     const months: string[] = ['miesiąc', 'miesiące', 'miesięcy'];
 
@@ -107,14 +110,16 @@ export const FilterWindow = (props:any) => {
 
     const clear = () =>{
         setFilters(initialState);
+        setFilterCon(initialState);
     }
 
     const lookState = ()=>{
-        console.log(filters);
+        setFilterCon(filters);
     }
 
 
     return(
+
         <Paper className="dialog-paper">
             <Grid container alignItems="center" className="title-bar">
                 <DialogTitle className="title">Filtrowanie</DialogTitle>
