@@ -4,12 +4,12 @@ import { UserData } from "../../components/UserData/UserData";
 import {Pagination} from "../../components/Pagination/Pagination";
 import { Header } from "../../components/Header/Header";
 import {SearchFilterBar} from "../../components/SearchFilterBar/SearchFilterBar";
-
-import "./ListView.scss";
-import "../../index.scss"
 import {FilterContext} from "../../contexts/filter.context";
 import {PageContext} from "../../contexts/page.context";
 import {RowsPerPage} from "../../contexts/rowsPerPage.context";
+
+import "./ListView.scss";
+import "../../index.scss"
 
 const initialState = {
     expectedTypeWork: {
@@ -35,8 +35,6 @@ const initialState = {
 };
 
 export const ListView = () => {
-
-
 
     const FragmentsValues =[
         {
@@ -75,11 +73,8 @@ export const ListView = () => {
             value: 'Komercyjne doświadczenie w programowaniu',
             header: '6 miesięcy',
         },
-
-
-
-
     ]
+
     const [filterCon,setFilterCon] = useState(initialState)
     const [page,setPage] = useState(0);
     const [rowsPerPage,setRowsPerPage] = useState(10);
