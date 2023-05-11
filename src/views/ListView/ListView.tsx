@@ -91,19 +91,15 @@ export const ListView = () => {
                 <RowsPerPage.Provider value={{rowsPerPage,setRowsPerPage}}>
                     <FilterContext.Provider value={{filterCon, setFilterCon}}>
                         <PageContext.Provider value={{ page, setPage}}>
-                <div className="list-wrapper">
-
-
+                          <div className="list-wrapper">
                             <NavbarStudents/>
                             <SearchFilterBar/>
                              <UserData id={'fsadasdas'} name={'jakieś fajne imie'} FragmentsValues={FragmentsValues} />
-
-                </div>
-                <Pagination/>
-
-            </PageContext.Provider>
-        </FilterContext.Provider>
-</RowsPerPage.Provider>
+                          </div>
+                              <Pagination/>
+                            </PageContext.Provider>
+                        </FilterContext.Provider>
+                </RowsPerPage.Provider>
             </div>
         </>
     );
