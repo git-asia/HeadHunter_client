@@ -1,6 +1,6 @@
 import { UserDataFragment } from "./UserDataFragment/UserDataFragment";
 import { IoIosArrowDown } from "react-icons/io";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import "./UserData.scss";
 import {API_URL} from "../../config/apiUrl";
 import {FilterContext} from "../../contexts/filter.context";
@@ -44,6 +44,22 @@ export const UserData = ({ id, FragmentsValues, name }: Props) => {
     }
   }
 
+  let param= `${filterCon.expectedTypeWork.remoteWork}/${filterCon.expectedTypeWork.inOffice}/`;
+  param += `${filterCon.expectedContractType.employmentContract}/${filterCon.expectedContractType.mandateContract}/${filterCon.expectedContractType.b2b}/${filterCon.expectedContractType.workContract}/`;
+  param += `${filterCon.expectedSalary.min}/${filterCon.expectedSalary.max}/`;
+  param += `${filterCon.courseCompletion}/${filterCon.courseEngagement}/${filterCon.projectDegree}/${filterCon.teamProjectDegree}/`;
+  param += `${filterCon.canTakeApprenticeship}/${filterCon.monthsOfCommercialExp}/`;
+  param += `${page}/${rowsPerPage}/`;
+  console.log(param);
+  useEffect(() => {
+    (async () => {
+      const res = await fetch(`http://localhost:3001/students/all/${param}`, {     //@TODO nie działa API_URL
+        method: 'GET'
+      });
+      const data = await res.json();
+
+    })();
+  }, [page]);
 
   return (
     <div className="user-data__container">
