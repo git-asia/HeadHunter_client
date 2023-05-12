@@ -27,7 +27,7 @@ export const UserData = ({ id, FragmentsValues, name }: Props) => {
   const changeStatus= async (studentId:string) =>{
 
     try {
-      const res = await fetch(`${API_URL}/students/status`, {
+      const res = await fetch(`${API_URL}/student/status`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -44,22 +44,28 @@ export const UserData = ({ id, FragmentsValues, name }: Props) => {
     }
   }
 
-  let param= `${filterCon.expectedTypeWork.remoteWork}/${filterCon.expectedTypeWork.inOffice}/`;
-  param += `${filterCon.expectedContractType.employmentContract}/${filterCon.expectedContractType.mandateContract}/${filterCon.expectedContractType.b2b}/${filterCon.expectedContractType.workContract}/`;
-  param += `${filterCon.expectedSalary.min}/${filterCon.expectedSalary.max}/`;
-  param += `${filterCon.courseCompletion}/${filterCon.courseEngagement}/${filterCon.projectDegree}/${filterCon.teamProjectDegree}/`;
-  param += `${filterCon.canTakeApprenticeship}/${filterCon.monthsOfCommercialExp}/`;
-  param += `${page}/${rowsPerPage}/`;
-  console.log(param);
+
   useEffect(() => {
+
+    const min = filterCon.expectedSalary.min === '' ? '0' : filterCon.expectedSalary.min;
+    const max = filterCon.expectedSalary.max === '' ? '999999' : filterCon.expectedSalary.max;
+
+    let param= `${filterCon.expectedTypeWork.remoteWork}/${filterCon.expectedTypeWork.inOffice}/`;
+    param += `${filterCon.expectedContractType.employmentContract}/${filterCon.expectedContractType.mandateContract}/${filterCon.expectedContractType.b2b}/${filterCon.expectedContractType.workContract}/`;
+    param += `${min}/${max}/`;
+    param += `${filterCon.courseCompletion}/${filterCon.courseEngagement}/${filterCon.projectDegree}/${filterCon.teamProjectDegree}/`;
+    param += `${filterCon.canTakeApprenticeship}/${filterCon.monthsOfCommercialExp}/`;
+    param += `${page}/${rowsPerPage}/`;
+    console.log(param);
     (async () => {
-      const res = await fetch(`http://localhost:3001/students/all/${param}`, {     //@TODO nie działa API_URL
+      const res = await fetch(`http://localhost:3001/student/all/${param}`, {     //@TODO nie działa API_URL
         method: 'GET'
       });
       const data = await res.json();
+      console.log(data);
 
     })();
-  }, [page]);
+  }, [page,filterCon]);
 
   return (
     <div className="user-data__container">
