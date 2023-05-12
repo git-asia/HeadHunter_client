@@ -64,7 +64,7 @@ export const FilterWindow = (props:any) => {
             max: '',
         },
         canTakeApprenticeship: null,
-        monthsOfCommercialExp: null,
+        monthsOfCommercialExp: '0',
         courseCompletion: 1,
         courseEngagement: 1,
         projectDegree: 1,
