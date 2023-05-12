@@ -2,17 +2,19 @@
 
 .page-wrapper {
   width: 100vw;
-  height: 91.2vh;
+  height: 100vh;
   padding: 1rem 0;
   background-color: $primary-dark;
 
-  .list-wrapper {
-    //height: 95%;
-    //width: $width-80;
+  .main-wrapper {
+    width: $width-80;
     max-width: 180rem;
-    width: 97.5%;
-    margin: 0 auto;
+    margin: 2rem auto;
     background-color: $lightest-dark;
+
+    .list-wrapper {
+      padding-bottom: 1.7rem;
+    }
   }
 }
 

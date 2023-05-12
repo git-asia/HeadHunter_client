@@ -119,7 +119,7 @@ export const ListView = () => {
         <>
             <Header/>
             <div className="page-wrapper">
-                <div className="list-wrapper">
+                <div className="main-wrapper">
                     <NavbarStudents/>
                     <SearchFilterBar/>
                     <div className="list-wrapper">
