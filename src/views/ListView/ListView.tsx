@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { NavbarStudents } from "../../components/NavbarStudents/NavbarStudents";
 import { UserData } from "../../components/UserData/UserData";
 import {Pagination} from "../../components/Pagination/Pagination";
@@ -10,6 +10,7 @@ import {RowsPerPage} from "../../contexts/rowsPerPage.context";
 
 import "./ListView.scss";
 import "../../index.scss"
+import {API_URL} from "../../config/apiUrl";
 
 const initialState = {
     expectedTypeWork: {
@@ -27,7 +28,7 @@ const initialState = {
         max: "",
     },
     canTakeApprenticeship: null,
-    monthsOfCommercialExp: null,
+    monthsOfCommercialExp: '0',
     courseCompletion: 1,
     courseEngagement: 1,
     projectDegree: 1,
@@ -79,6 +80,8 @@ export const ListView = () => {
     const [page,setPage] = useState(0);
     const [rowsPerPage,setRowsPerPage] = useState(10);
 
+
+
     return (
         <>
             <Header/>
@@ -91,10 +94,10 @@ export const ListView = () => {
                             <SearchFilterBar/>
                              <UserData id={'fsadasdas'} name={'jakieś fajne imie'} FragmentsValues={FragmentsValues} />
                           </div>
-                              <Pagination/>
-                            </PageContext.Provider>
-                        </FilterContext.Provider>
-                </RowsPerPage.Provider>
+                          <Pagination/>
+                        </PageContext.Provider>
+                    </FilterContext.Provider>
+                 </RowsPerPage.Provider>
             </div>
         </>
     );
