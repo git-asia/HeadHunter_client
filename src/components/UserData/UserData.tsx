@@ -1,11 +1,12 @@
 import { UserDataFragment } from "./UserDataFragment/UserDataFragment";
 import { IoIosArrowDown } from "react-icons/io";
 import { useState } from "react";
-import "./UserData.scss";
 import {API_URL} from "../../config/apiUrl";
 
+import "./UserData.scss";
+
 interface Props {
-  id : string;
+  id? : string | undefined;
   name: string;
   FragmentsValues: {
     value: string;
@@ -17,9 +18,7 @@ export const UserData = ({ id, FragmentsValues, name }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
 
-
-
-  const changeStatus= async (studentId:string) =>{
+  const changeStatus= async (studentId:string | undefined) =>{
 
     try {
       const res = await fetch(`${API_URL}/students/status`, {
