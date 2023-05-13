@@ -1,4 +1,4 @@
-import React from "react";
+import React, {SyntheticEvent, useEffect, useState} from "react";
 import { Header } from "../../components/Header/Header";
 import { IoIosArrowDown } from "react-icons/io";
 import {Button, Container, TextField} from "@mui/material";
@@ -8,6 +8,86 @@ import "../../index.scss"
 import logo from "../../assets/images/avatar-holder.png";
 
 export const CVEdit = () => {
+    const userId = "5a06c091-e1d7-11ed-b007-24fd5235b3db"; // @TODO Nie wiem, skąd wziąć studentId
+
+    useEffect( () => {
+        const fetchData = async () => {
+            const res = await fetch(`http://localhost:3001/students/getcv/${userId}`);
+            const data = (await res.json())[0];
+            setForm({
+                firstName: data.firstName,
+                lastName: data.lastName,
+                githubUsername: data.githubUsername,
+                phoneNumber: data.phoneNumber,
+                expectedTypeWork: data.expectedTypeWork,
+                targetWorkCity: data.targetWorkCity,
+                expectedContractType: data.expectedContractType,
+                expectedSalary: data.expectedSalary,
+                canTakeApprenticeship: data.canTakeApprenticeship,
+                monthsOfCommercialExp: data.monthsOfCommercialExp,
+                bio: data.bio,
+                education: data.education,
+                courses: data.courses,
+                workExperience: data.workExperience,
+                portfolioUrls: data.portfolioUrls,
+                bonusProjectUrls: data.bonusProjectUrls,
+                projectUrls: data.projectUrls
+            });
+        }
+        fetchData()
+            .catch(console.error);
+    }, []);
+
+    const sendForm = async (e: SyntheticEvent) => {
+        e.preventDefault();
+        try {
+            const dataToSend = {
+                ...form,
+                studentId: userId,
+            }
+            const res = await fetch(`http://localhost:3001/students/changedata`, {
+                method: "PATCH",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataToSend),
+            });
+            const data = await res.json();
+            if(data===userId){
+                console.log("Dane zostały zapisane");
+            }
+        } catch (e) {
+            console.log("Coś poszło nie tak. Spróbuj później");
+        }
+    };
+
+    const updateForm = (key: string, value: string | number) => {
+        setForm(form => ({
+            ...form,
+            [key]: value,
+        }))
+    };
+
+    const [form, setForm] = useState({
+        firstName: "Jan",
+        lastName: "Testowy",
+        githubUsername: "Nick123",
+        phoneNumber: "601601601",
+        expectedTypeWork: 1,
+        targetWorkCity: "Wrocław",
+        expectedContractType: 1,
+        expectedSalary: 100000,
+        canTakeApprenticeship: 1,
+        monthsOfCommercialExp: 0,
+        bio: "Lorem ipsum...",
+        education: "Lorem ipsum...",
+        courses: "Lorem ipsum...",
+        workExperience: "Lorem ipsum...",
+        portfolioUrls: "portfolio.pl",
+        bonusProjectUrls: "github.com/bonus123",
+        projectUrls: "github.com/Nick123/myFirstProject"
+    });
+
     return (
         <div className="CVEdit__container">
             <Header/>
@@ -20,19 +100,34 @@ export const CVEdit = () => {
                     <div className="CVEdit_Usercard__avatar">
                         <img src={logo} alt="user logo" />
                     </div>
-                    <p>Imię i nazwisko:</p>
+                    <p>Imię:</p>
                     <TextField
                         className="input-name"
-                        name="name"
+                        name="firstName"
+                        value={form.firstName}
+                        onChange={e => updateForm('firstName', e.target.value)}
                         type="text"
-                        placeholder="Imię i nazwisko"
+                        placeholder="Imię"
+                        variant="outlined"
+                        fullWidth
+                    />
+                    <p>Nazwisko:</p>
+                    <TextField
+                        className="input-name"
+                        name="lastName"
+                        value={form.lastName}
+                        onChange={e => updateForm('lastName', e.target.value)}
+                        type="text"
+                        placeholder="Nazwisko"
                         variant="outlined"
                         fullWidth
                     />
                     <p>Nick z GitHuba:</p>
                     <TextField
                         className="input-name"
-                        name="github-name"
+                        name="githubUsername"
+                        value={form.githubUsername}
+                        onChange={e => updateForm('githubUsername', e.target.value)}
                         type="text"
                         placeholder="nick z GitHuba"
                         variant="outlined"
@@ -41,18 +136,11 @@ export const CVEdit = () => {
                     <p>Numer telefonu:</p>
                     <TextField
                         className="input-name"
-                        name="phone"
+                        name="phoneNumber"
+                        value={form.phoneNumber}
+                        onChange={e => updateForm('phoneNumber', e.target.value)}
                         type="text"
                         placeholder="Numer telefonu"
-                        variant="outlined"
-                        fullWidth
-                    />
-                    <p>Adres e-mail:</p>
-                    <TextField
-                        className="input-name"
-                        name="email"
-                        type="email"
-                        placeholder="Adres e-mail"
                         variant="outlined"
                         fullWidth
                     />
@@ -61,7 +149,10 @@ export const CVEdit = () => {
                     <div className="CVEdit_UserCV__text__container">
                         <h2>Oczekiwania w stosunku do zatrudnienia</h2>
                         <label>Preferowane miejsce pracy:
-                            <select name="typeWork" id="typeWork">
+                            <select
+                                name="expectedTypeWork"
+                                value={form.expectedTypeWork}
+                                onChange={e => updateForm('expectedTypeWork', e.target.value)}>
                                 <option value={1}>Praca w biurze</option>
                                 <option value={2}>Praca zdalna</option>
                             </select>
@@ -69,14 +160,18 @@ export const CVEdit = () => {
                         <p>Docelowe miasto, gdzie chce pracować kandydat</p>
                         <TextField
                             className="input-name"
-                            name="city"
+                            name="targetWorkCity"
+                            value={form.targetWorkCity}
+                            onChange={e => updateForm('targetWorkCity', e.target.value)}
                             type="text"
                             placeholder="Miasto, w którym chciałbym pracować"
                             variant="outlined"
                             fullWidth
                         />
                         <label>Oczekiwany typ kontraktu:
-                            <select name="typeContract" id="typeContract">
+                            <select name="expectedContractType"
+                                    value={form.expectedContractType}
+                                    onChange={e => updateForm('expectedContractType', e.target.value)}>
                                 <option value={1}>Umowa o pracę</option>
                                 <option value={2}>B2B</option>
                                 <option value={3}>Umowa zlecenie</option>
@@ -86,14 +181,18 @@ export const CVEdit = () => {
                         <p>Oczekiwane wynagrodzenie miesięczne netto (w PLN):</p>
                         <TextField
                             className="input-name"
-                            name="salary"
+                            name="expectedSalary"
+                            value={form.expectedSalary}
+                            onChange={e => updateForm('expectedSalary', e.target.value)}
                             type="number"
                             placeholder="Kwota netto w złótówkach"
                             variant="outlined"
                             fullWidth
                         />
                         <label>Zgoda na odbycie bezpłatnych praktyk/stażu na początek
-                            <select name="can-free" id="canFree">
+                            <select name="canTakeApprenticeship"
+                                    value={form.canTakeApprenticeship}
+                                    onChange={e => updateForm('canTakeApprenticeship', e.target.value)}>
                                 <option value={1}>Tak</option>
                                 <option value={0}>Nie</option>
                             </select>
@@ -101,7 +200,9 @@ export const CVEdit = () => {
                         <p>Komercyjne doświadczenie w programowaniu (miesiące):</p>
                         <TextField
                             className="input-name"
-                            name="months"
+                            name="monthsOfCommercialExp"
+                            value={form.monthsOfCommercialExp}
+                            onChange={e => updateForm('monthsOfCommercialExp', e.target.value)}
                             type="number"
                             placeholder="Czas komercyjnego zatrudnienia (w miesiącach)"
                             variant="outlined"
@@ -112,11 +213,13 @@ export const CVEdit = () => {
                         <h2>O mnie</h2>
                         <TextField
                             className="input-name"
-                            name="about"
+                            name="bio"
+                            value={form.bio}
+                            onChange={e => updateForm('bio', e.target.value)}
                             type="text"
                             placeholder="Kilka słów o mnie"
                             multiline={true}
-                            minRows={5}
+                            minRows={3}
                             maxRows={10}
                             fullWidth
                         />
@@ -126,10 +229,12 @@ export const CVEdit = () => {
                         <TextField
                             className="input-name"
                             name="education"
+                            value={form.education}
+                            onChange={e => updateForm('education', e.target.value)}
                             type="text"
                             placeholder="Kilka słów o mojej edukacji"
                             multiline={true}
-                            minRows={5}
+                            minRows={3}
                             maxRows={10}
                             fullWidth
                         />
@@ -139,10 +244,12 @@ export const CVEdit = () => {
                         <TextField
                             className="input-name"
                             name="courses"
+                            value={form.courses}
+                            onChange={e => updateForm('courses', e.target.value)}
                             type="text"
                             placeholder="Kilka słów o moich kursach"
                             multiline={true}
-                            minRows={5}
+                            minRows={3}
                             maxRows={10}
                             fullWidth
                         />
@@ -151,11 +258,13 @@ export const CVEdit = () => {
                         <h2>Doświadczenie</h2>
                         <TextField
                             className="input-name"
-                            name="experience"
+                            name="workExperience"
+                            value={form.workExperience}
+                            onChange={e => updateForm('workExperience', e.target.value)}
                             type="text"
                             placeholder="Kilka słów o moim doświadczeniu"
                             multiline={true}
-                            minRows={5}
+                            minRows={3}
                             maxRows={10}
                             fullWidth
                         />
@@ -164,11 +273,13 @@ export const CVEdit = () => {
                         <h2>Portfolio</h2>
                         <TextField
                             className="input-name"
-                            name="portfolio"
+                            name="portfolioUrls"
+                            value={form.portfolioUrls}
+                            onChange={e => updateForm('portfolioUrls', e.target.value)}
                             type="text"
                             placeholder="Linki do mojego portfolio"
                             multiline={true}
-                            minRows={5}
+                            minRows={3}
                             maxRows={10}
                             fullWidth
                         />
@@ -177,11 +288,13 @@ export const CVEdit = () => {
                         <h2>Projekty w zespole Scrumowym</h2>
                         <TextField
                             className="input-name"
-                            name="projctsScrum"
+                            name="bonusProjectUrls"
+                            value={form.bonusProjectUrls}
+                            onChange={e => updateForm('bonusProjectUrls', e.target.value)}
                             type="text"
-                            placeholder="Linki do projektów scrumowych oddzielone przecinkiem"
+                            placeholder="Linki do projektów scrumowych"
                             multiline={true}
-                            minRows={5}
+                            minRows={3}
                             maxRows={10}
                             fullWidth
                         />
@@ -190,17 +303,22 @@ export const CVEdit = () => {
                         <h2>Projekty na zaliczenie</h2>
                         <TextField
                             className="input-name"
-                            name="projctsCourses"
+                            name="projectUrls"
+                            value={form.projectUrls}
+                            onChange={e => updateForm('projectUrls', e.target.value)}
                             type="text"
-                            placeholder="Linki do projektów zaliczeniowych oddzielone przecinkiem"
+                            placeholder="Linki do projektów zaliczeniowych"
                             multiline={true}
-                            minRows={5}
+                            minRows={3}
                             maxRows={10}
                             fullWidth
                         />
                     </div>
-                    <Button className="sendCvBtn">
-                        Wyślij
+                    <Button
+                        className="sendCvBtn"
+                        onClick={sendForm}
+                    >
+                        Zapisz
                     </Button>
                 </Container>
             </div>
