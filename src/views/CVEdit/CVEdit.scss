@@ -96,6 +96,19 @@
           margin: 1rem;
         }
       }
+      Button.sendCvBtn {
+        display: block;
+        height: 4rem;
+        margin: 1rem auto;
+        padding: 1rem 1.5rem;
+        text-align: center;
+        font-weight: normal;
+        background-color: $primary-btn;
+        border-radius: 0;
+        color: $white;
+        font-size: $fs-sm;
+        text-transform: none;
+      }
     }
   }
 }

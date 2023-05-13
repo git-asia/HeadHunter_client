@@ -1,7 +1,7 @@
 import React from "react";
 import { Header } from "../../components/Header/Header";
 import { IoIosArrowDown } from "react-icons/io";
-import {Container, TextField} from "@mui/material";
+import {Button, Container, TextField} from "@mui/material";
 
 import "./CVEdit.scss";
 import "../../index.scss"
@@ -199,6 +199,9 @@ export const CVEdit = () => {
                             fullWidth
                         />
                     </div>
+                    <Button className="sendCvBtn">
+                        Wyślij
+                    </Button>
                 </Container>
             </div>
         </div>
