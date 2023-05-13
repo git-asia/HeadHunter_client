@@ -37,50 +37,9 @@ const initialState = {
 
 export const ListView = () => {
 
-    const FragmentsValues =[
-        {
-            value: '5',
-            header: 'Ocena przejścia kursu',
-        },
-        {
-            value: '5',
-            header: 'Ocena aktywności i zaangażowania na kursie',
-        },
-        {
-            value: '4',
-            header: 'Ocena kodu w projekcie własnym',
-        },        {
-            value: '5',
-            header: 'Ocena pracy w zespole w Scrum',
-        },        {
-            value: 'Biuro',
-            header: 'Preferowane miejsce pracy',
-        },
-        {
-            value: 'Warszawa',
-            header: 'Docelowe miasto, gdzie chce pracować kandydat',
-        },
-        {
-            value: 'Umowa o pracę',
-            header: 'Oczekiwany typ kontraktu',
-        },        {
-            value: '8 000 zł',
-            header: 'Oczekiwane wynagrodzenie miesięczne netto',
-        },        {
-            value: 'TAK',
-            header: '8 000 zł',
-        },
-        {
-            value: 'Komercyjne doświadczenie w programowaniu',
-            header: '6 miesięcy',
-        },
-    ]
-
     const [filterCon,setFilterCon] = useState(initialState)
     const [page,setPage] = useState(0);
     const [rowsPerPage,setRowsPerPage] = useState(10);
-
-
 
     return (
         <>
@@ -92,7 +51,7 @@ export const ListView = () => {
                           <div className="list-wrapper">
                             <NavbarStudents/>
                             <SearchFilterBar/>
-                             <UserData id={'fsadasdas'} name={'jakieś fajne imie'} FragmentsValues={FragmentsValues} />
+                             <UserData/>
                           </div>
                           <Pagination/>
                         </PageContext.Provider>
