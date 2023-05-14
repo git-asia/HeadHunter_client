@@ -1,18 +1,19 @@
 import React, {SyntheticEvent, useEffect, useState} from "react";
 import { Header } from "../../components/Header/Header";
 import { IoIosArrowDown } from "react-icons/io";
+import { API_URL } from "../../config/apiUrl";
+import logo from "../../assets/images/avatar-holder.png";
 import {Button, Container, TextField} from "@mui/material";
 
 import "./CVEdit.scss";
 import "../../index.scss"
-import logo from "../../assets/images/avatar-holder.png";
 
 export const CVEdit = () => {
     const userId = "5a06c091-e1d7-11ed-b007-24fd5235b3db"; // @TODO Nie wiem, skąd wziąć studentId
 
     useEffect( () => {
         const fetchData = async () => {
-            const res = await fetch(`http://localhost:3001/students/getcv/${userId}`);
+            const res = await fetch(`${API_URL}/students/getcv/${userId}`);
             const data = (await res.json())[0];
             setForm(data);
         }
@@ -27,7 +28,7 @@ export const CVEdit = () => {
                 ...form,
                 studentId: userId,
             }
-            const res = await fetch(`http://localhost:3001/students/changedata`, {
+            const res = await fetch(`${API_URL}/students/changedata`, {
                 method: "PATCH",
                 headers: {
                     'Content-Type': 'application/json',
