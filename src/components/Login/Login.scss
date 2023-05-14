@@ -8,7 +8,7 @@
   vertical-align: middle;
 
   .login-container {
-    width: 40%;
+    max-width: 40rem;
 
     .logo {
       height: auto;
@@ -16,9 +16,12 @@
       display: block;
       margin: 3rem auto;
     }
+
     .MuiInputBase-root {
       margin: 0;
+      background-color: $lightest-dark;
     }
+
     .css-wb57ya-MuiFormControl-root-MuiTextField-root {
       align-items: center;
 
@@ -48,6 +51,10 @@ input#login-email::placeholder, input#login-pass::placeholder {
   opacity: 0.75;
 }
 
+.login-pass-visibility-icon {
+  color: $input-holder;
+}
+
 Button.login-btn {
   height: 4rem;
   margin: 1rem auto;
@@ -63,6 +70,7 @@ Button.login-btn {
   text-align: right;
 }
 
+.infoAboutValidation,
 .login-ask,
 .login-link,
 .forgot-password-link,
@@ -71,9 +79,11 @@ Button.login-btn {
   font-size: $fs-sm;
   text-transform: none;
 }
+
 .login-ask {
   margin-right: 1rem;
 }
+
 .login-link {
   padding: 0;
   font-weight: bold;
@@ -82,3 +92,8 @@ Button.login-btn {
   border-radius: 0;
 }
 
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline,
+.css-1bp1ao6.Mui-focused .MuiOutlinedInput-notchedOutline,
+.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: $primary-btn;
+}
