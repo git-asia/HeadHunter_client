@@ -14,25 +14,7 @@ export const CVEdit = () => {
         const fetchData = async () => {
             const res = await fetch(`http://localhost:3001/students/getcv/${userId}`);
             const data = (await res.json())[0];
-            setForm({
-                firstName: data.firstName,
-                lastName: data.lastName,
-                githubUsername: data.githubUsername,
-                phoneNumber: data.phoneNumber,
-                expectedTypeWork: data.expectedTypeWork,
-                targetWorkCity: data.targetWorkCity,
-                expectedContractType: data.expectedContractType,
-                expectedSalary: data.expectedSalary,
-                canTakeApprenticeship: data.canTakeApprenticeship,
-                monthsOfCommercialExp: data.monthsOfCommercialExp,
-                bio: data.bio,
-                education: data.education,
-                courses: data.courses,
-                workExperience: data.workExperience,
-                portfolioUrls: data.portfolioUrls,
-                bonusProjectUrls: data.bonusProjectUrls,
-                projectUrls: data.projectUrls
-            });
+            setForm(data);
         }
         fetchData()
             .catch(console.error);
@@ -69,23 +51,23 @@ export const CVEdit = () => {
     };
 
     const [form, setForm] = useState({
-        firstName: "Jan",
-        lastName: "Testowy",
-        githubUsername: "Nick123",
-        phoneNumber: "601601601",
+        firstName: "",
+        lastName: "",
+        githubUsername: "",
+        phoneNumber: "",
         expectedTypeWork: 1,
-        targetWorkCity: "Wrocław",
+        targetWorkCity: "",
         expectedContractType: 1,
-        expectedSalary: 100000,
+        expectedSalary: '',
         canTakeApprenticeship: 1,
         monthsOfCommercialExp: 0,
-        bio: "Lorem ipsum...",
-        education: "Lorem ipsum...",
-        courses: "Lorem ipsum...",
-        workExperience: "Lorem ipsum...",
-        portfolioUrls: "portfolio.pl",
-        bonusProjectUrls: "github.com/bonus123",
-        projectUrls: "github.com/Nick123/myFirstProject"
+        bio: "",
+        education: "",
+        courses: "",
+        workExperience: "",
+        portfolioUrls: "",
+        bonusProjectUrls: "",
+        projectUrls: ""
     });
 
     return (
@@ -98,7 +80,7 @@ export const CVEdit = () => {
                 </div>
                 <Container className="CVEdit_Usercard__container">
                     <div className="CVEdit_Usercard__avatar">
-                        <img src={logo} alt="user logo" />
+                        <img src={form.githubUsername? `https://github.com/${form.githubUsername}.png`:logo} alt="user logo" />
                     </div>
                     <p>Imię:</p>
                     <TextField
