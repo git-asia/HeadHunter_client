@@ -4486,6 +4486,11 @@ util-deprecate@^1.0.1:
   resolved "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz"
   integrity sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==
 
+vite-plugin-env-compatible@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/vite-plugin-env-compatible/-/vite-plugin-env-compatible-1.1.1.tgz#2e11b059a5f3e8fc609d6a4bba84ca497081ee20"
+  integrity sha512-4lqhBWhOzP+SaCPoCVdmpM5cXzjKQV5jgFauxea488oOeElXo/kw6bXkMIooZhrh9q7gclTl8en6N9NmnqUwRQ==
+
 vite-plugin-eslint@^1.8.1:
   version "1.8.1"
   resolved "https://registry.npmjs.org/vite-plugin-eslint/-/vite-plugin-eslint-1.8.1.tgz"
