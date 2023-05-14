@@ -128,13 +128,9 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
             container
             className="second-line"
             direction={"row"}
-            justifyContent={"space-between"}
+            justifyContent={"center"}
             alignItems={"baseline"}
           >
-            <Grid item>
-              <span className="login-ask">Nie masz konta?</span>
-              <Button className="login-link">Zarejestruj się</Button>
-            </Grid>
             <Grid item>
               <Button className="login-btn">
                 Zaloguj się
