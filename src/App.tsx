@@ -5,6 +5,8 @@ import { CVView } from "./views/CVView/CVView";
 import { Login } from "./components/Login/Login";
 
 import "./index.scss"
+import {AddHr} from "./components/AddHr/AddHr";
+//import {CVEdit} from "./views/CVEdit/CVEdit";
 
 
 export const App = () => {
@@ -13,9 +15,9 @@ export const App = () => {
     <>
       <Routes>
         <Route path="/" element={<Login/>}/>
-        <Route path="/list"
-               element={<ListView/>}/>
-        <Route path="/cv" element={<CVView/>}/>
+        <Route path="/list" element={<ListView/>}/>
+          <Route path="/cv" element={<CVView/>}/>
+          <Route path="/addhr" element={<AddHr/>}/>
       </Routes>
     </>
   );
