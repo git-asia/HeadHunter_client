@@ -6,6 +6,7 @@ import { CVView } from "./views/CVView/CVView";
 import { Login } from "./components/Login/Login";
 
 import "./index.scss"
+import {AddHr} from "./components/AddHr/AddHr";
 
 
 export const App = () => {
@@ -14,6 +15,7 @@ export const App = () => {
   return (
     <>
       <Routes>
+        <Route path="/addhr" element={<AddHr/>}/>
         <Route>
           <Route path="/" element={<Login  setLoggedIn={setLoggedIn}/>} />
         </Route>
