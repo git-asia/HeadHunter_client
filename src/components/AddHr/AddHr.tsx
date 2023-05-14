@@ -5,12 +5,13 @@ import "../../App.scss";
 import "./AddHr.scss";
 
 export const AddHr: React.FC = () => {
-    const [form, setForm] = useState({
+    const emptyForm = {
         email: '',
         fullName: '',
         company: '',
         maxReservedStudents: "",
-    });
+    };
+    const [form, setForm] = useState(emptyForm);
 
     const updateForm = (key: string, value: string|number) => {
         setForm(form => ({
@@ -25,7 +26,8 @@ export const AddHr: React.FC = () => {
             const res = await fetch(`http://localhost:3001/manage/add-hr/:${form.email}/:${form.fullName}/:${form.company}/:${form.maxReservedStudents}'`);
             const data = await res.json();
             if(data.success){
-                console.log(data.message)
+                setForm(emptyForm);
+                console.log(data.message);
             }
         }
         catch (e) {
