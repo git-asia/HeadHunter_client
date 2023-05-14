@@ -1,7 +1,7 @@
 import React, {SyntheticEvent, useState} from "react";
 import { Button, Container, Grid, TextField } from "@mui/material";
 import logo from "../../assets/images/logo.png";
-import "../../App.scss";
+import "../../index.scss";
 import "./AddHr.scss";
 
 export const AddHr: React.FC = () => {
@@ -47,7 +47,10 @@ export const AddHr: React.FC = () => {
                                 type="email"
                                 placeholder="E-mail"
                                 value={form.email}
-                                onChange={e => updateForm('email', e.target.value)}
+                                onChange={e => {
+                                    updateForm('email', e.target.value);
+
+                                }}
                                 variant="outlined"
                                 fullWidth
                             />
