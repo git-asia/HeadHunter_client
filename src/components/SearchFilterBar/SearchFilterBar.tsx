@@ -81,7 +81,6 @@ export const SearchFilterBar = () => {
                 </Dialog>
 
         </div>
-    <hr />
 
         </div>
 
