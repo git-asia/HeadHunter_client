@@ -1,7 +1,6 @@
 import { UserDataFragment } from "./UserDataFragment/UserDataFragment";
 import { IoIosArrowDown } from "react-icons/io";
 import {useContext, useEffect, useState} from "react";
-import "./UserData.scss";
 import {API_URL} from "../../config/apiUrl";
 import {FilterContext} from "../../contexts/filter.context";
 import {PageContext} from "../../contexts/page.context";
@@ -12,8 +11,10 @@ import {ContractType, Internship, TypeWork} from "../../../../HeadHunter_server/
 
 
 
+import "./UserData.scss";
+
 interface Props {
-  id : string;
+  id? : string | undefined;
   name: string;
   FragmentsValues: {
     header: string;

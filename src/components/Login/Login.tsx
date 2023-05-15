@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-
+import { API_URL } from "../../config/apiUrl";
 import { useNavigate } from "react-router-dom";
 import { Button, Container, Grid, IconButton, InputAdornment, TextField } from "@mui/material";
-
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import logo from "../../assets/images/logo.png";
+
 import "../../App.scss";
 import "./Login.scss";
-import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 interface LoginProps {
   setLoggedIn: (loggedIn: boolean) => void;
@@ -28,7 +28,7 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
 
   const login = async ({ email, password }: LoginParams) => {
     try {
-      const response = await fetch("http://localhost:5000/logowanie_z_BE", {   // dodać ścieżkę do API z BE
+      const response = await fetch(`${API_URL}/logowanie_z_BE`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -128,13 +128,9 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
             container
             className="second-line"
             direction={"row"}
-            justifyContent={"space-between"}
+            justifyContent={"center"}
             alignItems={"baseline"}
           >
-            <Grid item>
-              <span className="login-ask">Nie masz konta?</span>
-              <Button className="login-link">Zarejestruj się</Button>
-            </Grid>
             <Grid item>
               <Button className="login-btn">
                 Zaloguj się

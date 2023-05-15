@@ -1,5 +1,5 @@
 import { UserCV } from "../../components/UserCV/UserCV";
-import { UserCard } from "../../components/UserCard/UserCard";
+//import { UserCard } from "../../components/UserCard/UserCard";
 import { IoIosArrowDown } from "react-icons/io";
 import { Header } from "../../components/Header/Header";
 import React from "react";
@@ -17,15 +17,6 @@ export const CVView = () => {
           <span className="CVView__back__span">Wróć</span>
         </div>
         <div className="CVView__wrapper">
-          <UserCard
-            aboutMe={
-              "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea ratione esse nostrum eveniet distinctio facilis cumque, iusto eius unde? Velit suscipit dolorem excepturi magnam ut incidunt aspernatur expedita, doloremque esse."
-            }
-            name="Imię Nazwisko"
-            github="github"
-            email="email@gmail.com"
-            phoneNumber="+48123456789"
-          />
           <UserCV
             grades={[
               { header: "Ocena projektu kursu", value: "3/5" },

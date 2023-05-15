@@ -5,6 +5,7 @@
 
   .students-availability {
     display: flex;
+    border-bottom: $border-line;
 
     li {
       height: 7rem;
