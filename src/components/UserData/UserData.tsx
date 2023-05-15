@@ -6,6 +6,7 @@ import {API_URL} from "../../config/apiUrl";
 import {FilterContext} from "../../contexts/filter.context";
 import {PageContext} from "../../contexts/page.context";
 import {RowsPerPage} from "../../contexts/rowsPerPage.context";
+import {ContractType, Internship, TypeWork} from "../../../../HeadHunter_server/types/student/student.enum";
 
 
 
@@ -16,7 +17,7 @@ interface Props {
   name: string;
   FragmentsValues: {
     header: string;
-    value: string|number;
+    value: string;
   }[];
 }
 interface AvailableStudent{
@@ -31,7 +32,7 @@ interface AvailableStudent{
   projectDegree: number;
   expectedTypeWork: number;
   expectedContractType: number;
-  canTakeApprenticeship:boolean;
+  canTakeApprenticeship:number;
   monthsOfCommercialExp: number;
 }
 
@@ -84,28 +85,28 @@ export const UserData = () => {
         console.log(data)
       const student = data.map((item =>(
           {FragmentsValues:[
-          {header: 'Ocena przejścia kursu',  value: item.courseCompletion},
-          {header: 'Ocena aktywności i zaangażowania na kursie',  value: item.courseEngagement},
-          {header: 'Ocena kodu w projekcie własnym',  value: item.projectDegree},
-          {header: 'Ocena pracy w zespole w Scrum',  value: item.teamProjectDegree},
-          {header: 'Preferowane miejsce pracy',  value: item.expectedTypeWork},
+          {header: 'Ocena przejścia kursu',  value: item.courseCompletion+'/5'},
+          {header: 'Ocena aktywności i zaangażowania na kursie',  value: item.courseEngagement+'/5'},
+          {header: 'Ocena kodu w projekcie własnym',  value: item.projectDegree+'/5'},
+          {header: 'Ocena pracy w zespole w Scrum',  value: item.teamProjectDegree+'/5'},
+          {header: 'Preferowane miejsce pracy',  value: TypeWork[item.expectedTypeWork]},
           {header: 'Docelowe miasto, gdzie chce pracować kandydat',  value: item.targetWorkCity},
-          {header: 'Oczekiwany typ kontraktu',  value: item.expectedContractType},
-          {header: 'Oczekiwane wynagrodzenie miesięczne netto',  value: item.expectedSalary},
-          {header: 'Zgoda na odbycie bezpłatnych praktyk/stażu na początek',  value: item.canTakeApprenticeship},
-          {header: 'Komercyjne doświadczenie w programowaniu',  value: item.monthsOfCommercialExp},
+          {header: 'Oczekiwany typ kontraktu',  value:  ContractType[item.expectedContractType]},
+          {header: 'Oczekiwane wynagrodzenie miesięczne netto',  value: item.expectedSalary+' zł'},
+          {header: 'Zgoda na odbycie bezpłatnych praktyk/stażu na początek',  value: Internship[item.canTakeApprenticeship]},
+          {header: 'Komercyjne doświadczenie w programowaniu',  value: item.monthsOfCommercialExp.toString()},
           ],id:item.studentId, name: item.firstName+' '+item.lastName.charAt(0)+'.'}
 
       ))) as Props[]
     setStudentData(student);
 
-      console.log(studentData);
     })();
   }, [page,filterCon]);
 
   return (
      <>
-       {studentData.map((item,index) =>
+
+       {studentData && studentData.map((item,index) =>
          <div className="user-data__container" key={index}>
            <div className="user-data__nav">
              <h4>{item.name}</h4>
@@ -125,13 +126,13 @@ export const UserData = () => {
                />
              </div>
            </div>
-           {/*{isOpen && (*/}
-           {/*    <div className="user-data__fragments">*/}
-           {/*      {item.FragmentsValues.map(({header, value}, id) => {*/}
-           {/*        return <UserDataFragment header={header} value={value} key={id}/>;*/}
-           {/*      })}*/}
-           {/*    </div>*/}
-           {/*)}*/}
+           {isOpen && (
+               <div className="user-data__fragments">
+                 {item.FragmentsValues.map(({header, value}, id) => {
+                   return <UserDataFragment header={header} value={value} key={id}/>;
+                 })}
+               </div>
+           )}
          </div>
        )}
      </>
