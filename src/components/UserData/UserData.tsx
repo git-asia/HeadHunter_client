@@ -1,5 +1,5 @@
-import { UserDataFragment } from "./UserDataFragment/UserDataFragment";
-import { IoIosArrowDown } from "react-icons/io";
+import {UserDataFragment} from "./UserDataFragment/UserDataFragment";
+import {IoIosArrowDown} from "react-icons/io";
 import {useContext, useEffect, useState} from "react";
 import "./UserData.scss";
 import {API_URL} from "../../config/apiUrl";
@@ -9,12 +9,10 @@ import {RowsPerPage} from "../../contexts/rowsPerPage.context";
 import {ContractType, Internship, TypeWork} from "../../../../HeadHunter_server/types/student/student.enum";
 
 
-
-
-
 interface Props {
   id : string;
   name: string;
+  open :boolean;
   FragmentsValues: {
     header: string;
     value: string;
@@ -37,14 +35,14 @@ interface AvailableStudent{
 }
 
 export const UserData = () => {
-  const [isOpen, setIsOpen] = useState(false);
+ // const [isOpen, setIsOpen] = useState(false);
   const {filterCon} = useContext(FilterContext)
   const {page} = useContext(PageContext)
   const {rowsPerPage} = useContext(RowsPerPage)
-  const [studentData, setStudentData] = useState<Props[]>();
+  const [studentData, setStudentData] = useState<Props[]>([]);
 
 
-  const changeStatus= async (studentId:string) =>{
+  const changeStatus= async (studentId:string, index:number) =>{
 
     try {
       const res = await fetch(`${API_URL}/student/status`, {
@@ -60,9 +58,28 @@ export const UserData = () => {
       const data = await res.json();
       console.log(data.message);
     } finally {
+
+        setStudentData((studentData) => {
+            return studentData.filter((_, i) => i !== index);
+        });
       // zmiana state
     }
   }
+
+   const isOpen =(index:number)=>{
+     setStudentData((studentData) => {
+            return studentData.map((item, i) => {
+         if (i === index) {
+           return {
+             ...item,
+             open: !item.open,
+           };
+         } else {
+           return item;
+         }
+       });
+     });
+   }
 
 
   useEffect(() => {
@@ -95,10 +112,12 @@ export const UserData = () => {
           {header: 'Oczekiwane wynagrodzenie miesięczne netto',  value: item.expectedSalary+' zł'},
           {header: 'Zgoda na odbycie bezpłatnych praktyk/stażu na początek',  value: Internship[item.canTakeApprenticeship]},
           {header: 'Komercyjne doświadczenie w programowaniu',  value: item.monthsOfCommercialExp.toString()},
-          ],id:item.studentId, name: item.firstName+' '+item.lastName.charAt(0)+'.'}
+          ],id:item.studentId, name: item.firstName+' '+item.lastName.charAt(0)+'.', open: false}
 
       ))) as Props[]
     setStudentData(student);
+
+
 
     })();
   }, [page,filterCon]);
@@ -114,19 +133,17 @@ export const UserData = () => {
                <input
                    type="button"
                    value="Zarezerwuj rozmowę"
-                   onClick={() => changeStatus(item.id)}
+                   onClick={() => changeStatus(item.id,index)}
                />
                <IoIosArrowDown
                    size={30}
                    fill="#666666"
-                   className={`${isOpen && "user-data__nav__svg--rotate"}`}
-                   onClick={() => {
-                     setIsOpen((prevState) => !prevState);
-                   }}
+                   className={`${item.open && "user-data__nav__svg--rotate"}`}
+                   onClick={() => {isOpen(index)}}
                />
              </div>
            </div>
-           {isOpen && (
+           {item.open && (
                <div className="user-data__fragments">
                  {item.FragmentsValues.map(({header, value}, id) => {
                    return <UserDataFragment header={header} value={value} key={id}/>;
