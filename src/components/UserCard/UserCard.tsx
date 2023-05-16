@@ -21,7 +21,7 @@ export const UserCard = ({ name, github, phoneNumber, email, aboutMe }: Props) =
   return (
     <div className="Usercard__container">
       <div className="Usercard__avatar">
-        <img src={logo} alt="user logo" />
+        <img src={github? `https://github.com/${github}.png`:logo} alt="user logo" />
       </div>
       <h4 className="Usercard__name">{name}</h4>
       <div className="Usercard__github">

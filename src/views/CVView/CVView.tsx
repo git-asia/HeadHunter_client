@@ -7,33 +7,10 @@ import React, {useEffect, useState} from "react";
 import "./CVView.scss";
 import "../../index.scss"
 
-interface Props {
-    bio: string;
-    bonusProjectUrls: string;
-    canTakeApprenticeship: number;
-    courseCompletion: number;
-    courseEngagement: number;
-    courses: string;
-    education: string;
-    expectedContractType: number;
-    expectedSalary: number;
-    expectedTypeWork: number;
-    firstName: string;
-    githubUsername: string;
-    lastName: string;
-    monthsOfCommercialExp: number;
-    phoneNumber: string;
-    portfolioUrls: string[];
-    projectDegree: number;
-    projectUrls: string[];
-    targetWorkCity: string;
-    teamProjectDegree: number;
-    userStatus: number;
-    workExperience: string
-}
-
 export const CVView = () => {
-    const id = "46f84261-df9d-11ed-a2b7-24fd5235b3db";
+    const contractType = ['', 'Umowa o pracę', 'B2B', 'Umowa zlecenie', 'Umowa o dzieło'];
+    const id = "46f84261-df9d-11ed-a2b7-24fd5235b3db"; //@TODO zamienić na prawdziwe ID
+    const [mail, setMail] = useState("");
     const [data, setData] = useState({
         bio:"",
         bonusProjectUrls : "",
@@ -50,9 +27,9 @@ export const CVView = () => {
         lastName : "",
         monthsOfCommercialExp : 0,
         phoneNumber : "",
-        portfolioUrls : [],
+        portfolioUrls : "",
         projectDegree : 1,
-        projectUrls : [],
+        projectUrls : "",
         targetWorkCity : "",
         teamProjectDegree : 1,
         userStatus : 1,
@@ -64,7 +41,10 @@ export const CVView = () => {
             const res = await fetch(`http://localhost:3001/student/getcv/${id}`);
             const downloadData = (await res.json())[0];
             setData(downloadData);
-            console.log(data);
+            console.log(data.portfolioUrls);
+            const resMail = await fetch(`http://localhost:3001/user/getemail/${id}`);
+            const email = (await resMail.json());
+            setMail(email);
         }
         fetchData()
             .catch(console.error);
@@ -82,7 +62,7 @@ export const CVView = () => {
           aboutMe={data.bio}
           name={(data.firstName) + " " + (data.lastName)}
           github={data.githubUsername}
-          email="email@gmail.com"
+          email={mail}
           phoneNumber={data.phoneNumber}
         />
         <UserCV
@@ -93,19 +73,19 @@ export const CVView = () => {
             { header: "Ocena pracy w zespole w Scrum", value: `${data.projectDegree}/5` },
           ]}
           expectations={[
-            { header: "Preferowane miejsce pracy", value: `${data.expectedTypeWork}` },
+            { header: "Preferowane miejsce pracy", value: `${data.expectedTypeWork===1? 'Praca w biurze':'Praca zdalna'}` },
             { header: "Docelowe miasto, gdzie chce pracować kandydat", value: `${data.targetWorkCity}` },
-            { header: "Oczekiwany typ kontraktu", value: `${data.expectedContractType}` },
+            { header: "Oczekiwany typ kontraktu", value: `${contractType[data.expectedContractType]}` },
             { header: "Oczekiwane wynagrodzenie miesięczne netto", value: `${data.expectedSalary} zł` },
-            { header: "Zgoda na odbycie bezpłatnych praktyk/stażu na początek", value: `${data.canTakeApprenticeship}` },
+            { header: "Zgoda na odbycie bezpłatnych praktyk/stażu na początek", value: `${data.canTakeApprenticeship===1 ? "Tak" : "Nie"}` },
             { header: "Komercyjne doświadczenie w programowaniu", value: `${data.monthsOfCommercialExp} miesięcy` },
           ]}
           education={data.education}
           courses={data.courses}
           experience={data.workExperience}
-          portfolio={["https://test1.pl", "https://test3.pl", "https://test6.pl"]}
-          finalProjects={["https://test1.pl", "https://test3.pl", "https://test7.pl"]}
-          scramProjects={["https://test2.pl", "https://test4.pl", "https://test8.pl"]}
+          portfolio={data.portfolioUrls.split(' ')}
+          finalProjects={data.projectUrls.split(' ')}
+          scramProjects={data.bonusProjectUrls.split(' ')}
         />
       </div>
     </div>
