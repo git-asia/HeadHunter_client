@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import TablePagination from '@mui/material/TablePagination';
+import {PageContext} from "../../contexts/page.context";
+import {RowsPerPage} from "../../contexts/rowsPerPage.context";
+
 import "./Pagination.scss";
 
-
 export const Pagination = () => {
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const {page, setPage} = useContext(PageContext);
+    const {rowsPerPage, setRowsPerPage} = useContext(RowsPerPage);
 
     const handleChangePage = (
         event: React.MouseEvent<HTMLButtonElement> | null,

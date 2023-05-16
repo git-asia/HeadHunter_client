@@ -1,5 +1,5 @@
 import { UserCV } from "../../components/UserCV/UserCV";
-import { UserCard } from "../../components/UserCard/UserCard";
+//import { UserCard } from "../../components/UserCard/UserCard";
 import { IoIosArrowDown } from "react-icons/io";
 import { Header } from "../../components/Header/Header";
 import React, {useEffect, useState} from "react";
@@ -87,7 +87,9 @@ export const CVView = () => {
           finalProjects={data.projectUrls.split(' ')}
           scramProjects={data.bonusProjectUrls.split(' ')}
         />
+
       </div>
     </div>
   );
 };
+

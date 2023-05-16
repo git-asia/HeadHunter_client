@@ -1,4 +1,5 @@
 import { AiFillStar } from "react-icons/ai";
+
 import "./UserDataFragment.scss";
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export const UserDataFragment = ({ header, value, showStars = false }: Props) => {
+
   const [valueStart, restOfValue] = value.split("/");
   return (
     <div className="user-data-fragment__container">

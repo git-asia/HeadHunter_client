@@ -11,6 +11,9 @@ export const PasswordReminder: React.FC = () => {
         <Grid container spacing={3}>
           <Grid item xs={12} className="email-box">
             <img src={logo} alt="Logo" className="logo" />
+
+            <p className="infoAboutSendLink">Na podany adres e-mail zostanie przesłany link.</p>
+
             <TextField
               className="login-email"
               id="login-email"
@@ -20,7 +23,7 @@ export const PasswordReminder: React.FC = () => {
               variant="outlined"
               fullWidth
             />
-            <Grid container xs={12} justifyContent="center">
+            <Grid container justifyContent="center">
               <Button className="login-btn">
                 Zresetuj hasło
               </Button>
