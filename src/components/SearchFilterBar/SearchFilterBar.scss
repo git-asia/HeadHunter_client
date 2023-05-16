@@ -1,0 +1,66 @@
+@import '../../variables';
+
+.SearchFilterBar-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  background-color: $lightest-dark;
+
+  .container {
+    padding: 1.7rem 0;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    border-bottom: $border-line;
+    width: calc(100% - 4%);
+    transform: translateX(-50%);
+
+  }
+
+  .search {
+    .icon {
+      font-size: $fs-xxl;
+      color: $text-dark;
+      background-color: $header-dark;
+      margin-left: 0.9rem;
+    }
+
+    .MuiInputBase-root {
+      height: 3.8rem;
+      width: 19.4rem;
+      background-color: $header-dark;
+      color: $dark-arrow;
+      font-family: $primary-font;
+      font-size: $fs-lg;
+      margin: 1rem 2rem;
+
+    }
+  }
+
+  .button {
+    background-color:$primary-dark;
+    margin: 1rem 2rem;
+    height: 3.9rem;
+    text-align: center;
+    float: right;
+
+    .text {
+      font-size: $fs-lg;
+      font-family: $primary-font ;
+      text-transform: capitalize;
+      color: $white;
+      margin-right: 0.5rem;
+      margin-left: 0.5rem;
+    }
+
+    .filter-icon {
+      color: $dark-arrow;
+      font-size: $fs-lg;
+      margin-left: 0.4rem;
+    }
+  }
+}

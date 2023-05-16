@@ -2,7 +2,13 @@
 
 .user-data__container {
   width: 100%;
+  height: 7rem;
   padding: 0 2rem;
+  border-top: 1.5rem solid $header-dark;
+
+  &:nth-child(1) {
+    border-top: none;
+  }
 }
 
 .user-data__nav {
@@ -37,14 +43,17 @@
       font-size: $fs-lg;
       line-height: 2.7rem;
     }
+    .user-data__nav__svg--rotate {
+      transform: rotate(180deg);
+    }
   }
 }
-.user-data__nav__svg--rotate {
-  transform: rotate(180deg);
-}
+
 .user-data__fragments {
+  width: 100%;
   display: flex;
   border-bottom: 1.6rem solid $header-dark;
+
   div:not(:last-child) {
     border-right: 2px solid $lightest-dark;
   }
