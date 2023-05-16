@@ -71,7 +71,7 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
   return (
     <div className="page-background">
       <Container className="login-container">
-        <Grid container spacing={1}>
+        <Grid container spacing={3}>
           <Grid item xs={12} className="email-box">
             <img src={logo} alt="Logo" className="logo" />
             <p className="infoAboutValidation"
@@ -117,14 +117,12 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
               onChange={e => setInputTextPassword(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/.test(e.target.value))}
             />
           </Grid>
-          <Grid item xs={12} container justifyContent="flex-end">
+          <Grid container justifyContent="flex-end">
             <Button className="forgot-password-link" color="primary">
               Zapomniałeś hasła?
             </Button>
           </Grid>
           <Grid
-            item
-            xs={12}
             container
             className="second-line"
             direction={"row"}
