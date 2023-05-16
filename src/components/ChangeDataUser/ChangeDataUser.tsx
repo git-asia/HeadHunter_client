@@ -3,9 +3,9 @@ import { Button, Container, Grid, TextField } from "@mui/material";
 import logo from "../../assets/images/logo.png";
 import "../../index.scss";
 import "./ChangeDataUser.scss";
-import {API_URL} from "../../config/apiUrl";
 
 export const ChangeDataUser: React.FC = () => {
+    const testId = "857cb663-e548-11ed-86df-24fd5235b3db"; // @TODO podmienić na prawdziwe ID
 
     const [formEmail, setFormEmail] = useState('');
 
@@ -25,7 +25,7 @@ export const ChangeDataUser: React.FC = () => {
         if(formEmail.includes('@')){
             setValidMail(true);
             const toSendMail = {
-                id: "857cb663-e548-11ed-86df-24fd5235b3db",
+                id: testId,
                 email: formEmail
             }
             try {
@@ -61,7 +61,7 @@ export const ChangeDataUser: React.FC = () => {
         } else {
             setValidPass2(true);
             const toSendPass = {
-                id: "857cb663-e548-11ed-86df-24fd5235b3db",
+                id: testId,
                 pass: formPass.pass,
                 pass2: formPass.pass2
             }
@@ -87,9 +87,26 @@ export const ChangeDataUser: React.FC = () => {
         }
     }
 
-    const haveJob = () => {
-        // zakończ współpracę
-        console.log(formEmail, formPass)
+    const haveJob = async () => {
+        const toSendStatus = {
+            studentId: testId,
+            userStatus: 3
+        }
+        try {
+            const res = await fetch(`http://localhost:3001/user/my-status`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(toSendStatus),
+            });
+            const data = await res.json();
+            if (data) {
+                console.log("Dane zostały zapisane.")
+            }
+        } catch (e) {
+            console.log("Coś poszło nie tak. Spróbuj później")
+        }
     }
 
     return (
