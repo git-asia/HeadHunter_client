@@ -48,11 +48,13 @@ export const ListView = () => {
                 <RowsPerPage.Provider value={{rowsPerPage,setRowsPerPage}}>
                     <FilterContext.Provider value={{filterCon, setFilterCon}}>
                         <PageContext.Provider value={{ page, setPage}}>
-                          <div className="list-wrapper">
-                            <NavbarStudents/>
-                            <SearchFilterBar/>
-                             <UserData/>
-                          </div>
+                            <div className="main-wrapper">
+                                <NavbarStudents/>
+                                <SearchFilterBar/>
+                                <div className="list-wrapper">
+                                    <UserData/>
+                                </div>
+                            </div>
                           <Pagination/>
                         </PageContext.Provider>
                     </FilterContext.Provider>
