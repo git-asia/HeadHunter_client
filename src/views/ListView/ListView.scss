@@ -1,16 +1,20 @@
-@import '../../variables';
+@import "../../variables";
 
 .page-wrapper {
   width: 100vw;
-  height: 91.2vh;
+  height: 100vh;
   padding: 1rem 0;
   background-color: $primary-dark;
 
-  .list-wrapper {
-    //height: 95%;
+  .main-wrapper {
     width: $width-80;
-    margin: 0 auto;
+    max-width: 180rem;
+    margin: 2rem auto;
     background-color: $lightest-dark;
+
+    .list-wrapper {
+      padding-bottom: 1.7rem;
+    }
   }
 }
 

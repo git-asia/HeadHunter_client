@@ -1,13 +1,13 @@
-import {UserDataFragment} from "./UserDataFragment/UserDataFragment";
-import {IoIosArrowDown} from "react-icons/io";
+import { UserDataFragment } from "./UserDataFragment/UserDataFragment";
+import { IoIosArrowDown } from "react-icons/io";
 import {useContext, useEffect, useState} from "react";
-import "./UserData.scss";
 import {API_URL} from "../../config/apiUrl";
 import {FilterContext} from "../../contexts/filter.context";
 import {PageContext} from "../../contexts/page.context";
 import {RowsPerPage} from "../../contexts/rowsPerPage.context";
 import {ContractType, Internship, TypeWork} from "../../../../HeadHunter_server/types/student/student.enum";
 
+import "./UserData.scss";
 
 interface Props {
   id : string;
@@ -116,8 +116,6 @@ export const UserData = () => {
 
       ))) as Props[]
     setStudentData(student);
-
-
 
     })();
   }, [page,filterCon]);
