@@ -1,0 +1,33 @@
+@import "../../_variables";
+
+.navbar-wrapper {
+  width: 100%;
+
+  .students-availability {
+    display: flex;
+    border-bottom: $border-line;
+
+    li {
+      height: 7rem;
+      display: flex;
+      align-items: center;
+      list-style: none;
+
+      button {
+        width: 100%;
+        height: 7rem;
+        font-size: $fs-xl;
+        padding: 1.9rem 3rem;
+        background-color: inherit;
+        color: $white;
+        cursor: pointer;
+
+        &.active {
+          border-bottom: 3px solid $active-underline;
+          padding-bottom: 1.6rem;
+        }
+      }
+    }
+  }
+}
+
