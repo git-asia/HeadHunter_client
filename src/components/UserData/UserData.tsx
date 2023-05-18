@@ -3,11 +3,28 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useContext, useEffect, useState } from "react";
 import { API_URL } from "../../config/apiUrl";
 import { FilterContext } from "../../contexts/filter.context";
-import { PageContext } from "../../contexts/page.context";
-import { RowsPerPage } from "../../contexts/rowsPerPage.context";
-//import {ContractType, Internship, TypeWork} from "../../../HeadHunter_server/types/student/student.enum";
+//import {ContractType, Internship, TypeWork} from "../../../../HeadHunter_server/types/student/student.enum";
+import { PaginationContext } from "../../contexts/pagination.context";
+
 
 import "./UserData.scss";
+
+enum TypeWork {
+  "Praca w biurze" = 1,
+  "Praca zdalna" = 2,
+}
+
+enum ContractType {
+  "Umowa o pracę" = 1,
+  "B2B" = 2,
+  "Umowa zlecenie" = 3,
+  "Umowa o dzieło" = 4,
+}
+
+enum Internship {
+  "Nie",
+  "Tak",
+}
 
 interface Props {
   id: string;
@@ -33,13 +50,12 @@ interface AvailableStudent {
   canTakeApprenticeship: number;
   monthsOfCommercialExp: number;
 }
+type StudentResults = { allRecords: number; data: AvailableStudent[] };
 
 export const UserData = () => {
-  // const [isOpen, setIsOpen] = useState(false);
   const { filterCon } = useContext(FilterContext);
-  const { page } = useContext(PageContext);
-  const { rowsPerPage } = useContext(RowsPerPage);
   const [studentData, setStudentData] = useState<Props[]>([]);
+  const { pagination, setPagination } = useContext(PaginationContext);
 
   const changeStatus = async (studentId: string, index: number) => {
     try {
@@ -87,28 +103,27 @@ export const UserData = () => {
     param += `${min}/${max}/`;
     param += `${filterCon.courseCompletion}/${filterCon.courseEngagement}/${filterCon.projectDegree}/${filterCon.teamProjectDegree}/`;
     param += `${filterCon.canTakeApprenticeship}/${filterCon.monthsOfCommercialExp}/`;
-    param += `${page}/${rowsPerPage}/`;
+    param += `${pagination.page}/${pagination.rowsPerPage}/`;
 
     (async () => {
       const res = await fetch(`${API_URL}/student/all/${param}`, {
-        //@TODO nie działa API_URL
+
         method: "GET",
       });
-      const data: AvailableStudent[] = await res.json();
-      console.log(data);
-      const student = data.map((item) => ({
+      const data: StudentResults = await res.json();
+      const student = data.data.map((item) => ({
         FragmentsValues: [
           { header: "Ocena przejścia kursu", value: item.courseCompletion + "/5" },
           { header: "Ocena aktywności i zaangażowania na kursie", value: item.courseEngagement + "/5" },
           { header: "Ocena kodu w projekcie własnym", value: item.projectDegree + "/5" },
           { header: "Ocena pracy w zespole w Scrum", value: item.teamProjectDegree + "/5" },
-          { header: "Preferowane miejsce pracy", value: [item.expectedTypeWork] },
+          { header: "Preferowane miejsce pracy", value: TypeWork[item.expectedTypeWork] },
           { header: "Docelowe miasto, gdzie chce pracować kandydat", value: item.targetWorkCity },
-          { header: "Oczekiwany typ kontraktu", value: [item.expectedContractType] },
+          { header: "Oczekiwany typ kontraktu", value: ContractType[item.expectedContractType] },
           { header: "Oczekiwane wynagrodzenie miesięczne netto", value: item.expectedSalary + " zł" },
           {
             header: "Zgoda na odbycie bezpłatnych praktyk/stażu na początek",
-            value: [item.canTakeApprenticeship],
+            value: Internship[item.canTakeApprenticeship],
           },
           { header: "Komercyjne doświadczenie w programowaniu", value: item.monthsOfCommercialExp.toString() },
         ],
@@ -117,8 +132,13 @@ export const UserData = () => {
         open: false,
       })) as Props[];
       setStudentData(student);
+
+      setPagination({
+        ...pagination,
+        allRecords: Number(data.allRecords),
+      });
     })();
-  }, [page, filterCon]);
+  }, [pagination.page, filterCon]);
 
   return (
     <>
