@@ -5,12 +5,10 @@ import {Pagination} from "../../components/Pagination/Pagination";
 import { Header } from "../../components/Header/Header";
 import {SearchFilterBar} from "../../components/SearchFilterBar/SearchFilterBar";
 import {FilterContext} from "../../contexts/filter.context";
-import {PageContext} from "../../contexts/page.context";
-import {RowsPerPage} from "../../contexts/rowsPerPage.context";
+import {PaginationContext} from "../../contexts/pagination.context";
 
 import "./ListView.scss";
 import "../../index.scss"
-import {API_URL} from "../../config/apiUrl";
 
 const initialState = {
     expectedTypeWork: {
@@ -38,27 +36,24 @@ const initialState = {
 export const ListView = () => {
 
     const [filterCon,setFilterCon] = useState(initialState)
-    const [page,setPage] = useState(0);
-    const [rowsPerPage,setRowsPerPage] = useState(10);
+    const [pagination,setPagination] = useState({page: 0, rowsPerPage:10, allRecords:0});
 
     return (
         <>
             <Header/>
             <div className="page-wrapper">
-                <RowsPerPage.Provider value={{rowsPerPage,setRowsPerPage}}>
-                    <FilterContext.Provider value={{filterCon, setFilterCon}}>
-                        <PageContext.Provider value={{ page, setPage}}>
-                            <div className="main-wrapper">
-                                <NavbarStudents/>
-                                <SearchFilterBar/>
-                                <div className="list-wrapper">
-                                    <UserData/>
-                                </div>
+                <FilterContext.Provider value={{filterCon, setFilterCon}}>
+                    <PaginationContext.Provider value={{ pagination, setPagination}}>
+                        <div className="main-wrapper">
+                            <NavbarStudents/>
+                            <SearchFilterBar/>
+                            <div className="list-wrapper">
+                                <UserData/>
                             </div>
-                          <Pagination/>
-                        </PageContext.Provider>
-                    </FilterContext.Provider>
-                 </RowsPerPage.Provider>
+                        </div>
+                      <Pagination/>
+                    </PaginationContext.Provider>
+                </FilterContext.Provider>
             </div>
         </>
     );
