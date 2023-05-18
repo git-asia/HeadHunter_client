@@ -54,11 +54,12 @@ export const CVView = () => {
   return (
     <div className="CVView__container">
       <Header/>
-      <div className="CVView__wrapper">
+      <div className="page__container">
         <div className="CVView__back">
-          <IoIosArrowDown size={30} className="CVView__back__svg" />
-          <span className="CVView__back__span">Wróć</span>
+            <IoIosArrowDown size={30} className="CVView__back__svg" />
+            <span className="CVView__back__span">Wróć</span>
         </div>
+      <div className="CVView__wrapper">
         <UserCard
           id = {id}
           aboutMe={data.bio}
@@ -89,7 +90,7 @@ export const CVView = () => {
           finalProjects={data.projectUrls.split(' ')}
           scramProjects={data.bonusProjectUrls.split(' ')}
         />
-
+      </div>
       </div>
     </div>
   );
