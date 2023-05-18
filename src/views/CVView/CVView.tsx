@@ -1,12 +1,12 @@
 import { UserCV } from "../../components/UserCV/UserCV";
-//import { UserCard } from "../../components/UserCard/UserCard";
+import { UserCard } from "../../components/UserCard/UserCard";
 import { IoIosArrowDown } from "react-icons/io";
 import { Header } from "../../components/Header/Header";
 import React, {useEffect, useState} from "react";
 
 import "./CVView.scss";
 import "../../index.scss"
-import {UserCard} from "../../components/UserCard/UserCard";
+import {API_URL} from "../../config/apiUrl";
 
 export const CVView = () => {
     const contractType = ['', 'Umowa o pracę', 'B2B', 'Umowa zlecenie', 'Umowa o dzieło'];
@@ -39,11 +39,11 @@ export const CVView = () => {
 
     useEffect( () => {
         const fetchData = async () => {
-            const res = await fetch(`http://localhost:3001/student/getcv/${id}`);
+            const res = await fetch(`${API_URL}/student/getcv/${id}`);
             const downloadData = (await res.json())[0];
             setData(downloadData);
             console.log(data.portfolioUrls);
-            const resMail = await fetch(`http://localhost:3001/user/getemail/${id}`);
+            const resMail = await fetch(`${API_URL}/user/getemail/${id}`);
             const email = (await resMail.json());
             setMail(email);
         }

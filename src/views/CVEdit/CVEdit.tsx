@@ -13,7 +13,7 @@ export const CVEdit = () => {
 
     useEffect( () => {
         const fetchData = async () => {
-            const res = await fetch(`${API_URL}/students/getcv/${userId}`);
+            const res = await fetch(`${API_URL}/student/getcvedit/${userId}`);
             const data = (await res.json())[0];
             setForm(data);
         }
@@ -28,7 +28,7 @@ export const CVEdit = () => {
                 ...form,
                 studentId: userId,
             }
-            const res = await fetch(`${API_URL}/students/changedata`, {
+            const res = await fetch(`${API_URL}/student/changedata`, {
                 method: "PATCH",
                 headers: {
                     'Content-Type': 'application/json',

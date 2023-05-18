@@ -3,7 +3,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import {useContext, useEffect, useState} from "react";
 import {API_URL} from "../../config/apiUrl";
 import {FilterContext} from "../../contexts/filter.context";
-import {ContractType, Internship, TypeWork} from "../../../../HeadHunter_server/types/student/student.enum";
+import {ContractType, Internship, TypeWork} from "../../../../../back_hh/HeadHunter_server/types/student/student.enum";
 import {PaginationContext} from "../../contexts/pagination.context";
 
 import "./UserData.scss";
