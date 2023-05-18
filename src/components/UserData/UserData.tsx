@@ -95,7 +95,7 @@ export const UserData = () => {
     param += `${page}/${rowsPerPage}/`;
 
     (async () => {
-      const res = await fetch(`http://localhost:3001/student/all/${param}`, {     //@TODO nie działa API_URL
+      const res = await fetch(`${API_URL}/student/all/${param}`, {
         method: 'GET'
       });
       const data: AvailableStudent[] = await res.json();
