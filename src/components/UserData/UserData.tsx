@@ -3,11 +3,11 @@ import { IoIosArrowDown } from "react-icons/io";
 import {useContext, useEffect, useState} from "react";
 import {API_URL} from "../../config/apiUrl";
 import {FilterContext} from "../../contexts/filter.context";
-import {PageContext} from "../../contexts/page.context";
-import {RowsPerPage} from "../../contexts/rowsPerPage.context";
 import {ContractType, Internship, TypeWork} from "../../../../HeadHunter_server/types/student/student.enum";
+import {PaginationContext} from "../../contexts/pagination.context";
 
 import "./UserData.scss";
+
 
 interface Props {
   id : string;
@@ -33,13 +33,12 @@ interface AvailableStudent{
   canTakeApprenticeship:number;
   monthsOfCommercialExp: number;
 }
+type StudentResults = {allRecords: number, data: AvailableStudent[]};
 
 export const UserData = () => {
- // const [isOpen, setIsOpen] = useState(false);
-  const {filterCon} = useContext(FilterContext)
-  const {page} = useContext(PageContext)
-  const {rowsPerPage} = useContext(RowsPerPage)
+  const {filterCon} = useContext(FilterContext);
   const [studentData, setStudentData] = useState<Props[]>([]);
+  const {pagination, setPagination} = useContext(PaginationContext);
 
 
   const changeStatus= async (studentId:string, index:number) =>{
@@ -92,15 +91,14 @@ export const UserData = () => {
     param += `${min}/${max}/`;
     param += `${filterCon.courseCompletion}/${filterCon.courseEngagement}/${filterCon.projectDegree}/${filterCon.teamProjectDegree}/`;
     param += `${filterCon.canTakeApprenticeship}/${filterCon.monthsOfCommercialExp}/`;
-    param += `${page}/${rowsPerPage}/`;
+    param += `${pagination.page}/${pagination.rowsPerPage}/`;
 
     (async () => {
       const res = await fetch(`${API_URL}/student/all/${param}`, {
         method: 'GET'
       });
-      const data: AvailableStudent[] = await res.json();
-        console.log(data)
-      const student = data.map((item =>(
+      const data: StudentResults = await res.json();
+      const student = data.data.map((item =>(
           {FragmentsValues:[
           {header: 'Ocena przejścia kursu',  value: item.courseCompletion+'/5'},
           {header: 'Ocena aktywności i zaangażowania na kursie',  value: item.courseEngagement+'/5'},
@@ -117,8 +115,14 @@ export const UserData = () => {
       ))) as Props[]
     setStudentData(student);
 
+      setPagination({
+          ...pagination,
+          allRecords: Number(data.allRecords),
+      })
+
+
     })();
-  }, [page,filterCon]);
+  }, [pagination.page,filterCon]);
 
   return (
      <>
