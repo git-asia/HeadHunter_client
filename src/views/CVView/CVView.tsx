@@ -6,6 +6,7 @@ import React, {useEffect, useState} from "react";
 
 import "./CVView.scss";
 import "../../index.scss"
+import {UserCard} from "../../components/UserCard/UserCard";
 
 export const CVView = () => {
     const contractType = ['', 'Umowa o pracę', 'B2B', 'Umowa zlecenie', 'Umowa o dzieło'];
@@ -59,6 +60,7 @@ export const CVView = () => {
           <span className="CVView__back__span">Wróć</span>
         </div>
         <UserCard
+          id = {id}
           aboutMe={data.bio}
           name={(data.firstName) + " " + (data.lastName)}
           github={data.githubUsername}
