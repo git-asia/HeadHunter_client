@@ -9,6 +9,7 @@ interface Props {
 }
 
 export const UserDataFragment = ({ header, value, showStars = false }: Props) => {
+
   const [valueStart, restOfValue] = value.split("/");
   return (
     <div className="user-data-fragment__container">
