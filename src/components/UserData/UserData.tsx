@@ -6,6 +6,7 @@ import { FilterContext } from "../../contexts/filter.context";
 //import {ContractType, Internship, TypeWork} from "../../../../HeadHunter_server/types/student/student.enum";
 import { PaginationContext } from "../../contexts/pagination.context";
 
+
 import "./UserData.scss";
 
 enum TypeWork {
@@ -106,6 +107,7 @@ export const UserData = () => {
 
     (async () => {
       const res = await fetch(`${API_URL}/student/all/${param}`, {
+
         method: "GET",
       });
       const data: StudentResults = await res.json();
