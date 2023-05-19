@@ -26,7 +26,7 @@ export const App = () => {
           <Route path="/" element={<Login  setLoggedIn={setLoggedIn}/>} />
         </Route>
         <Route  path="/" element={<AuthWrapper isLoggedIn={isLoggedIn}/>}>
-          <Route path="/list" element={<ListView />}/>
+          <Route path="/list/*" element={<ListView />}/>
           <Route path="/edit" element={<CVEdit />}/>
         </Route>
       </Routes>
