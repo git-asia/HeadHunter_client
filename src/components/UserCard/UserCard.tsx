@@ -26,7 +26,7 @@ export const UserCard = ({id, name, github, phoneNumber, email, aboutMe }: Props
   const changeStatus = async (studentId:string, action:string) =>{
         const hrId = '46f84261-df9d-11ed-a2b7-24fd5235b3db' // @TODO hrId pobrane z ciasteczka lub tokenu?
         try {
-            const res = await fetch(`${API_URL}/students/status`, {
+            const res = await fetch(`${API_URL}/student/status`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
