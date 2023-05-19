@@ -9,6 +9,7 @@ import {PaginationContext} from "../../contexts/pagination.context";
 
 import "./ListView.scss";
 import "../../index.scss"
+import {ReservedUserData} from "../../components/ReservedUserData/ReservedUserData";
 
 const initialState = {
     expectedTypeWork: {
@@ -48,7 +49,8 @@ export const ListView = () => {
                             <NavbarStudents/>
                             <SearchFilterBar/>
                             <div className="list-wrapper">
-                                <UserData/>
+                                {/*<UserData/>*/}
+                                <ReservedUserData />
                             </div>
                         </div>
                       <Pagination/>
