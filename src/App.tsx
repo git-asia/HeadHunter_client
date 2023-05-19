@@ -9,6 +9,7 @@ import { Login } from "./components/Login/Login";
 import "./index.scss"
 import {AddHr} from "./components/AddHr/AddHr";
 import {TestToken} from "./components/TestToken/TestToken";
+import {ChangeDataUser} from "./components/ChangeDataUser/ChangeDataUser";
 
 
 export const App = () => {
@@ -20,7 +21,7 @@ export const App = () => {
         <Route path="/addhr" element={<AddHr/>}/>
         <Route path="/cv" element={<CVView />}/>
         <Route path="/log/:token" element={<TestToken />}/>
-
+        <Route path="/change-data-user" element={<ChangeDataUser />}/>
         <Route>
           <Route path="/" element={<Login  setLoggedIn={setLoggedIn}/>} />
         </Route>

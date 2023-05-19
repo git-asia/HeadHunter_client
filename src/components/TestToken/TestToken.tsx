@@ -27,7 +27,7 @@ export const TestToken = () => {
                 </div>)
             } else if (data.length===36){
                 // console.log(data);
-                navigate('/cv');
+                navigate('/change-data-user');
             } else {
                 setTextInfo (<div>
                     <h1>Błąd!</h1>
