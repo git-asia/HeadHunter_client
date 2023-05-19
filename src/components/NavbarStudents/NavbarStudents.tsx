@@ -1,13 +1,25 @@
 import React, { useState, KeyboardEvent } from 'react';
 
 import "./NavbarStudents.scss"
+import {useLocation, useNavigate} from "react-router-dom";
 
 export const NavbarStudents = () => {
+  const location = useLocation();
+  let initial = 'allStudents';
+  if(location.pathname === '/list/reserved') {
+    initial = 'forInterview'
+  }
 
-  const [activeCategory, setActiveCategory] = useState('allStudents');
+  const [activeCategory, setActiveCategory] = useState(initial);
+  const navigate = useNavigate();
 
   const handleClick = (category: string) => {
     setActiveCategory(category);
+    if (category === 'allStudents') {
+      navigate('/list'); // Przekierowanie na /list
+    } else if (category === 'forInterview') {
+      navigate('/list/reserved'); // Przekierowanie na /list/reserved
+    }
   };
 
   const handleKeyPress = (event: KeyboardEvent<HTMLButtonElement>, category: string) => {
