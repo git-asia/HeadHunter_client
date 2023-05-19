@@ -3,28 +3,10 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useContext, useEffect, useState } from "react";
 import { API_URL } from "../../config/apiUrl";
 import { FilterContext } from "../../contexts/filter.context";
-//import {ContractType, Internship, TypeWork} from "../../../../HeadHunter_server/types/student/student.enum";
+import { ContractType, Internship, TypeWork } from "../../types";
 import { PaginationContext } from "../../contexts/pagination.context";
 
-
 import "./UserData.scss";
-
-enum TypeWork {
-  "Praca w biurze" = 1,
-  "Praca zdalna" = 2,
-}
-
-enum ContractType {
-  "Umowa o pracę" = 1,
-  "B2B" = 2,
-  "Umowa zlecenie" = 3,
-  "Umowa o dzieło" = 4,
-}
-
-enum Internship {
-  "Nie",
-  "Tak",
-}
 
 interface Props {
   id: string;
@@ -107,7 +89,6 @@ export const UserData = () => {
 
     (async () => {
       const res = await fetch(`${API_URL}/student/all/${param}`, {
-
         method: "GET",
       });
       const data: StudentResults = await res.json();
@@ -141,36 +122,34 @@ export const UserData = () => {
   }, [pagination.page, filterCon]);
 
   return (
-     <>
-       {studentData && studentData.map((item,index) =>
-         <div className="user-data__container" key={index}>
-
-           <div className="user-data__nav">
-             <h4>{item.name}</h4>
-             <div className="input-container">
-               <input
-                   type="button"
-                   value="Zarezerwuj rozmowę"
-                   onClick={() => changeStatus(item.id,index)}
-               />
-               <IoIosArrowDown
-                   size={30}
-                   fill="#666666"
-                   className={`${item.open && "user-data__nav__svg--rotate"}`}
-                   onClick={() => {isOpen(index)}}
-               />
-             </div>
-           </div>
-           {item.open && (
-               <div className="user-data__fragments">
-                 {item.FragmentsValues.map(({header, value}, id) => {
-                   return <UserDataFragment header={header} value={value} key={id}/>;
-                 })}
-               </div>
-           )}
-             <div className="test"></div>
-         </div>
-       )}
-     </>
+    <>
+      {studentData &&
+        studentData.map((item, index) => (
+          <div className="user-data__container" key={index}>
+            <div className="user-data__nav">
+              <h4>{item.name}</h4>
+              <div className="input-container">
+                <input type="button" value="Zarezerwuj rozmowę" onClick={() => changeStatus(item.id, index)} />
+                <IoIosArrowDown
+                  size={30}
+                  fill="#666666"
+                  className={`${item.open && "user-data__nav__svg--rotate"}`}
+                  onClick={() => {
+                    isOpen(index);
+                  }}
+                />
+              </div>
+            </div>
+            {item.open && (
+              <div className="user-data__fragments">
+                {item.FragmentsValues.map(({ header, value }, id) => {
+                  return <UserDataFragment header={header} value={value} key={id} />;
+                })}
+              </div>
+            )}
+            <div className="test"></div>
+          </div>
+        ))}
+    </>
   );
 };
