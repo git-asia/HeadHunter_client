@@ -15,7 +15,7 @@ interface Props {
   name: string;
   open: boolean;
   githubUsername: string;
-  reservationExpiresOn: Date | null;
+  reservationExpiresOn: string | null;
   FragmentsValues: {
     header: string;
     value: string;
