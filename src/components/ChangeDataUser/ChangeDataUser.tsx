@@ -3,8 +3,11 @@ import { Button, Container, Grid, TextField } from "@mui/material";
 import logo from "../../assets/images/logo.png";
 import "../../index.scss";
 import "./ChangeDataUser.scss";
+import {API_URL} from "../../config/apiUrl";
+import {useNavigate} from "react-router-dom";
 
 export const ChangeDataUser: React.FC = () => {
+    const navigate = useNavigate();
     const testId = "857cb663-e548-11ed-86df-24fd5235b3db"; // @TODO podmienić na prawdziwe ID
 
     const [formEmail, setFormEmail] = useState('');
@@ -29,7 +32,7 @@ export const ChangeDataUser: React.FC = () => {
                 email: formEmail
             }
             try {
-                const res = await fetch(`http://localhost:3001/user/changemail`, {
+                const res = await fetch(`${API_URL}/user/changemail`, {
                     method: "PATCH",
                     headers: {
                         'Content-Type': 'application/json',
@@ -39,7 +42,8 @@ export const ChangeDataUser: React.FC = () => {
                 const data = await res.json();
                 if (data) {
                     setFormEmail("");
-                    console.log("Dane zostały zapisane.")
+                    console.log("Dane zostały zapisane.");
+                    navigate("/edit");
                 }
             } catch (e) {
                 console.log("Coś poszło nie tak. Spróbuj później")
