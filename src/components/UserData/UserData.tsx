@@ -119,7 +119,7 @@ export const UserData = () => {
           ...pagination,
           allRecords: Number(data.allRecords),
       })
-
+        console.log(data);
 
     })();
   }, [pagination.page,filterCon]);
@@ -129,6 +129,7 @@ export const UserData = () => {
 
        {studentData && studentData.map((item,index) =>
          <div className="user-data__container" key={index}>
+
            <div className="user-data__nav">
              <h4>{item.name}</h4>
              <div className="input-container">
@@ -152,6 +153,7 @@ export const UserData = () => {
                  })}
                </div>
            )}
+             <div className="test"></div>
          </div>
        )}
      </>
