@@ -5,7 +5,7 @@ import { Header } from "../../components/Header/Header";
 import React, {useEffect, useState} from "react";
 
 import "./CVView.scss";
-import "../../index.scss"
+import "../../index.scss";
 import {UserCard} from "../../components/UserCard/UserCard";
 
 export const CVView = () => {
