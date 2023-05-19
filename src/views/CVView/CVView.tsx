@@ -3,10 +3,10 @@ import { UserCard } from "../../components/UserCard/UserCard";
 import { IoIosArrowDown } from "react-icons/io";
 import { Header } from "../../components/Header/Header";
 import React, {useEffect, useState} from "react";
+import {API_URL} from "../../config/apiUrl";
 
 import "./CVView.scss";
 import "../../index.scss"
-import {API_URL} from "../../config/apiUrl";
 
 export const CVView = () => {
     const contractType = ['', 'Umowa o pracę', 'B2B', 'Umowa zlecenie', 'Umowa o dzieło'];

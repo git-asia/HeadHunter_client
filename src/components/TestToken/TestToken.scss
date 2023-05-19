@@ -1,0 +1,26 @@
+@import '../../variables';
+
+.link-with-token-container {
+  max-width: 40rem;
+  display: block;
+  margin: 10rem auto;
+  vertical-align: middle;
+  color: $white;
+  text-align: center;
+
+  .logo {
+    height: auto;
+    max-width: 12.4rem;
+    display: block;
+    margin: 3rem auto;
+  }
+
+  h1 {
+    font-size: $fs-xxl;
+  }
+
+  p {
+    font-size: $fs-xl;
+  }
+
+}
