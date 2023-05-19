@@ -115,6 +115,7 @@ export const FilterWindow = (props:any) => {
 
     const lookState = ()=>{
         setFilterCon(filters);
+        props.handleClose();
     }
 
 

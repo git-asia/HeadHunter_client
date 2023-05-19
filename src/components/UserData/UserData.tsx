@@ -141,33 +141,36 @@ export const UserData = () => {
   }, [pagination.page, filterCon]);
 
   return (
-    <>
-      {studentData &&
-        studentData.map((item, index) => (
-          <div className="user-data__container" key={index}>
-            <div className="user-data__nav">
-              <h4>{item.name}</h4>
-              <div className="input-container">
-                <input type="button" value="Zarezerwuj rozmowę" onClick={() => changeStatus(item.id, index)} />
-                <IoIosArrowDown
-                  size={30}
-                  fill="#666666"
-                  className={`${item.open && "user-data__nav__svg--rotate"}`}
-                  onClick={() => {
-                    isOpen(index);
-                  }}
-                />
-              </div>
-            </div>
-            {item.open && (
-              <div className="user-data__fragments">
-                {item.FragmentsValues.map(({ header, value }, id) => {
-                  return <UserDataFragment header={header} value={value} key={id} />;
-                })}
-              </div>
-            )}
-          </div>
-        ))}
-    </>
+     <>
+       {studentData && studentData.map((item,index) =>
+         <div className="user-data__container" key={index}>
+
+           <div className="user-data__nav">
+             <h4>{item.name}</h4>
+             <div className="input-container">
+               <input
+                   type="button"
+                   value="Zarezerwuj rozmowę"
+                   onClick={() => changeStatus(item.id,index)}
+               />
+               <IoIosArrowDown
+                   size={30}
+                   fill="#666666"
+                   className={`${item.open && "user-data__nav__svg--rotate"}`}
+                   onClick={() => {isOpen(index)}}
+               />
+             </div>
+           </div>
+           {item.open && (
+               <div className="user-data__fragments">
+                 {item.FragmentsValues.map(({header, value}, id) => {
+                   return <UserDataFragment header={header} value={value} key={id}/>;
+                 })}
+               </div>
+           )}
+             <div className="test"></div>
+         </div>
+       )}
+     </>
   );
 };
