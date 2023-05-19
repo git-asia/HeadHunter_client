@@ -1,4 +1,3 @@
-import { ReservedUserDataFragment } from "./ReservedUserDataFragment/ReservedUserDataFragment";
 import { IoIosArrowDown } from "react-icons/io";
 import React, {useContext, useEffect, useState} from "react";
 import {API_URL} from "../../config/apiUrl";
@@ -6,9 +5,10 @@ import {FilterContext} from "../../contexts/filter.context";
 import {ContractType, Internship, TypeWork} from "../../../../HeadHunter_server/types/student/student.enum";
 import {PaginationContext} from "../../contexts/pagination.context";
 import {ReservedStudent} from "../../../../HeadHunter_server/types/student/student.entity";
+import {UserDataFragment} from "../UserData/UserDataFragment/UserDataFragment";
+import logo from "../../assets/images/avatar-holder.png";
 
 import "./ReservedUserData.scss";
-import logo from "../../assets/images/avatar-holder.png";
 
 interface Props {
   id : string;
@@ -74,8 +74,6 @@ export const ReservedUserData = () => {
             });
         }
     }
-
-
 
 
    const isOpen =(index:number)=>{
@@ -174,7 +172,7 @@ export const ReservedUserData = () => {
            {item.open && (
                <div className="user-data__fragments">
                  {item.FragmentsValues.map(({header, value}, id) => {
-                   return <ReservedUserDataFragment header={header} value={value} key={id}/>;
+                   return <UserDataFragment header={header} value={value} key={id}/>;
                  })}
                </div>
            )}
