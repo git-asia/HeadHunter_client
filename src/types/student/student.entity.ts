@@ -1,45 +1,50 @@
-export interface FilterStudent{
+export interface FilterStudent {
   courseCompletion: number;
   courseEngagement: number;
   teamProjectDegree: number;
   projectDegree: number;
   expectedTypeWork: number;
   expectedContractType: number;
-  canTakeApprenticeship:boolean | number;
+  canTakeApprenticeship: boolean | number;
   expectedSalaryMin: number;
   expectedSalaryMax: number;
   monthsOfCommercialExp: number;
 }
 
-export interface AvailableStudent extends Omit<FilterStudent, 'expectedSalaryMin' | 'expectedSalaryMax'>{
+export interface AvailableStudent extends Omit<FilterStudent, "expectedSalaryMin" | "expectedSalaryMax"> {
   studentId: string;
   firstName: string;
   lastName: string;
   targetWorkCity: string;
   expectedSalary: number;
+  courseCompletion: number;
+  courseEngagement: number;
+  teamProjectDegree: number;
+  projectDegree: number;
+  expectedTypeWork: number;
+  expectedContractType: number;
+  canTakeApprenticeship: number;
+  monthsOfCommercialExp: number;
 }
 
 export interface ReservedStudent extends AvailableStudent {
-  githubUsername:string;
+  githubUsername: string;
   reservationExpiresOn: Date | null;
 }
 
-export interface StudentEntity extends ReservedStudent{
+export interface StudentEntity extends ReservedStudent {
   phoneNumber: string | null;
   portfolioUrls: string | null;
-  projectUrls:string;
-  bio:string | null;
-  education:string | null;
-  workExperience:string | null;
-  courses:	string | null;
+  projectUrls: string;
+  bio: string | null;
+  education: string | null;
+  workExperience: string | null;
+  courses: string | null;
   userStatus: string;
-  bonusProjectUrls:string | null;
-  reservedBy:string | null;
+  bonusProjectUrls: string | null;
+  reservedBy: string | null;
 }
 
-
-export interface SingleStudent extends Omit<StudentEntity, 'reservationExpiresOn' | 'reservedBy' | 'userStatus'> {
+export interface SingleStudent extends Omit<StudentEntity, "reservationExpiresOn" | "reservedBy" | "userStatus"> {
   email: string;
 }
-
-

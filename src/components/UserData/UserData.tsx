@@ -3,7 +3,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useContext, useEffect, useState } from "react";
 import { API_URL } from "../../config/apiUrl";
 import { FilterContext } from "../../contexts/filter.context";
-import { ContractType, Internship, TypeWork } from "../../types";
+import { AvailableStudent, ContractType, Internship, TypeWork } from "../../types";
 import { PaginationContext } from "../../contexts/pagination.context";
 
 import "./UserData.scss";
@@ -17,21 +17,7 @@ interface Props {
     value: string;
   }[];
 }
-interface AvailableStudent {
-  studentId: string;
-  firstName: string;
-  lastName: string;
-  targetWorkCity: string;
-  expectedSalary: number;
-  courseCompletion: number;
-  courseEngagement: number;
-  teamProjectDegree: number;
-  projectDegree: number;
-  expectedTypeWork: number;
-  expectedContractType: number;
-  canTakeApprenticeship: number;
-  monthsOfCommercialExp: number;
-}
+
 type StudentResults = { allRecords: number; data: AvailableStudent[] };
 
 export const UserData = () => {
