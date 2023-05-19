@@ -3,6 +3,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import "../../index.scss";
 import "./TestToken.scss";
 import {API_URL} from "../../config/apiUrl";
+import logo from "../../assets/images/logo.png";
 
 export const TestToken = () => {
     const navigate = useNavigate();
@@ -37,5 +38,8 @@ export const TestToken = () => {
         fetchData().catch (console.error);
     }, []);
 
-    return textInfo;
+    return <div className="link-with-token-container">
+        <img src={logo} alt="Logo" className="logo" />
+        {textInfo}
+    </div>
 }
