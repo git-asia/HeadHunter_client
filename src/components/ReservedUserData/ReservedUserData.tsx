@@ -1,31 +1,58 @@
-import { UserDataFragment } from "./UserDataFragment/UserDataFragment";
 import { IoIosArrowDown } from "react-icons/io";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { API_URL } from "../../config/apiUrl";
 import { FilterContext } from "../../contexts/filter.context";
-import { AvailableStudent, ContractType, Internship, TypeWork } from "../../types";
+import { ContractType, Internship, TypeWork } from "../../types";
+import { ReservedStudent } from "../../types";
 import { PaginationContext } from "../../contexts/pagination.context";
+import { UserDataFragment } from "../UserData/UserDataFragment/UserDataFragment";
+import logo from "../../assets/images/avatar-holder.png";
 
-import "./UserData.scss";
+import "./ReservedUserData.scss";
 
 interface Props {
   id: string;
   name: string;
   open: boolean;
+  githubUsername: string;
+  reservationExpiresOn: string | null;
   FragmentsValues: {
     header: string;
     value: string;
   }[];
 }
 
-type StudentResults = { allRecords: number; data: AvailableStudent[] };
+type StudentResults = { allRecords: number; data: ReservedStudent[] };
 
-export const UserData = () => {
+export const ReservedUserData = () => {
   const { filterCon } = useContext(FilterContext);
   const [studentData, setStudentData] = useState<Props[]>([]);
   const { pagination, setPagination } = useContext(PaginationContext);
 
-  const changeStatus = async (studentId: string, index: number) => {
+  // const changeStatus= async (studentId:string, index:number) =>{
+  //
+  //   try {
+  //     const res = await fetch(`${API_URL}/student/status`, {
+  //       method: 'PATCH',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         action: 'reserve',
+  //         studentId,
+  //       }),
+  //     });
+  //     const data = await res.json();
+  //     console.log(data.message);
+  //   } finally {
+  //
+  //
+  //     // zmiana state
+  //   }
+  // }
+
+  const changeStatus = async (studentId: string, index: number, action: string) => {
+    const hrId = "46f84261-df9d-11ed-a2b7-24fd5235b3db"; // @TODO hrId pobrane z ciasteczka lub tokenu?
     try {
       const res = await fetch(`${API_URL}/student/status`, {
         method: "PATCH",
@@ -33,8 +60,9 @@ export const UserData = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          action: "reserve",
+          action,
           studentId,
+          hrId,
         }),
       });
       const data = await res.json();
@@ -43,7 +71,6 @@ export const UserData = () => {
       setStudentData((studentData) => {
         return studentData.filter((_, i) => i !== index);
       });
-      // zmiana state
     }
   };
 
@@ -61,6 +88,7 @@ export const UserData = () => {
       });
     });
   };
+  const hrId = "46f84261-df9d-11ed-a2b7-24fd5235b3db";
 
   useEffect(() => {
     const min = filterCon.expectedSalary.min === "" ? "0" : filterCon.expectedSalary.min;
@@ -72,9 +100,10 @@ export const UserData = () => {
     param += `${filterCon.courseCompletion}/${filterCon.courseEngagement}/${filterCon.projectDegree}/${filterCon.teamProjectDegree}/`;
     param += `${filterCon.canTakeApprenticeship}/${filterCon.monthsOfCommercialExp}/`;
     param += `${pagination.page}/${pagination.rowsPerPage}/`;
+    param += `${hrId}`;
 
     (async () => {
-      const res = await fetch(`${API_URL}/student/all/${param}`, {
+      const res = await fetch(`${API_URL}/student/reserved/${param}`, {
         method: "GET",
       });
       const data: StudentResults = await res.json();
@@ -95,15 +124,17 @@ export const UserData = () => {
           { header: "Komercyjne doświadczenie w programowaniu", value: item.monthsOfCommercialExp.toString() },
         ],
         id: item.studentId,
-        name: item.firstName + " " + item.lastName.charAt(0) + ".",
+        name: item.firstName + " " + item.lastName,
+        githubUsername: item.githubUsername,
+        reservationExpiresOn: item.reservationExpiresOn,
         open: false,
       })) as Props[];
       setStudentData(student);
-
       setPagination({
         ...pagination,
         allRecords: Number(data.allRecords),
       });
+      console.log(data);
     })();
   }, [pagination.page, filterCon]);
 
@@ -113,9 +144,21 @@ export const UserData = () => {
         studentData.map((item, index) => (
           <div className="user-data__container" key={index}>
             <div className="user-data__nav">
+              <span>{item.reservationExpiresOn}</span>
+              <img src={item.githubUsername ? `https://github.com/${item.githubUsername}.png` : logo} alt="user logo" />
               <h4>{item.name}</h4>
               <div className="input-container">
-                <input type="button" value="Zarezerwuj rozmowę" onClick={() => changeStatus(item.id, index)} />
+                <input
+                  type="button"
+                  value="Pokaż CV"
+                  //onClick={}  //TODO odesłanie na CV danego uzytkownika item.studentId
+                />
+                <input
+                  type="button"
+                  value="Brak zainteresowania"
+                  onClick={() => changeStatus(item.id, index, "disinterest")}
+                />
+                <input type="button" value="Zatrudniony" onClick={() => changeStatus(item.id, index, "employ")} />
                 <IoIosArrowDown
                   size={30}
                   fill="#666666"

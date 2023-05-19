@@ -6,9 +6,12 @@ import { Header } from "../../components/Header/Header";
 import {SearchFilterBar} from "../../components/SearchFilterBar/SearchFilterBar";
 import {FilterContext} from "../../contexts/filter.context";
 import {PaginationContext} from "../../contexts/pagination.context";
+import {ReservedUserData} from "../../components/ReservedUserData/ReservedUserData";
+import {Route, Routes} from "react-router-dom";
 
 import "./ListView.scss";
 import "../../index.scss"
+
 
 const initialState = {
     expectedTypeWork: {
@@ -48,7 +51,10 @@ export const ListView = () => {
                             <NavbarStudents/>
                             <SearchFilterBar/>
                             <div className="list-wrapper">
-                                <UserData/>
+                                <Routes>
+                                    <Route path="" element={<UserData/>}/>
+                                    <Route path="reserved" element={<ReservedUserData />}/>
+                                </Routes>
                             </div>
                         </div>
                       <Pagination/>
