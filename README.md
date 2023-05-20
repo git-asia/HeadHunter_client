@@ -20,6 +20,12 @@ By harmonizing the HR and IT job-seeking landscape, our application strives to b
 
 <br/>
 
+## Project Status
+
+Please note that the application is currently in an ongoing development phase. Our dedicated team is committed to further refining and enhancing the application to ensure it fulfills its intended objectives. We remain steadfast in our pursuit of delivering a comprehensive and top-quality solution that effectively connects HR professionals and IT job seekers. Continual improvements and updates are on the horizon as we strive to provide an exceptional user experience and meet the evolving needs of our valued users.
+
+<br/>
+
 ## Deployment
 
 Preview on Vercel: https://headhunter.vercel.app
