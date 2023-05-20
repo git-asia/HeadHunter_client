@@ -1,4 +1,4 @@
-# HeadHunter_client
+# HeadHunter frontend
 
 Preview on Vercel: https://headhunter.vercel.app
 
