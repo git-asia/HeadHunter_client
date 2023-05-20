@@ -1,5 +1,9 @@
 # HeadHunter_client
 
+Preview on Vercel: https://headhunter.vercel.app
+BE on Railway: https://headhunter.up.railway.app
+Test path to be: https://headhunter.up.railway.app/student/test
+
 ## :rocket: How to start
 
 ### Instaling dependencies
