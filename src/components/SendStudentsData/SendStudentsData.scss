@@ -1,0 +1,59 @@
+@import '../../variables';
+
+.send-students-data-container {
+
+  display: block;
+  margin: 5rem auto;
+  vertical-align: middle;
+  max-width: 40rem;
+  background: $header-dark;
+
+  .logo {
+    height: auto;
+    max-width: 12.4rem;
+    display: block;
+    margin: 3rem auto;
+  }
+
+  form {
+    color: $white;
+    font-size: $fs-sm;
+    text-align: center;
+
+
+
+    span.info-label {
+      display: block;
+    }
+
+    input {
+      height: 4rem;
+      width: 100%;
+      text-align-last: center;
+    }
+
+    input::file-selector-button {
+      background-color: $primary-btn;
+      margin-top: 1rem;
+      margin-right: 1rem;
+      padding: .5rem 1.6rem;
+      color: $white;
+    }
+    input::file-selector-button:hover {
+      border: solid 1px $white;
+    }
+
+    .send-students-btn {
+      height: 3rem;
+      margin: 1rem auto;
+      padding: .5rem 1.6rem;
+      text-align: center;
+      font-weight: normal;
+      background-color: $primary-btn;
+      border-radius: 0;
+      color: $white;
+      font-size: $fs-sm;
+      text-transform: none;
+    }
+  }
+}
