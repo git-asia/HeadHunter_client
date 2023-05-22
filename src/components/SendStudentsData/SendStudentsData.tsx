@@ -8,7 +8,7 @@ import {API_URL} from "../../config/apiUrl";
 export const SendStudentsData = () => {
     const sendForm = async (e: SyntheticEvent) => {
         //e.preventDefault();
-        const formData = new FormData(e.target); //@TODO nie wiem, jak otypować, ale działa
+        const formData = new FormData(e.target as HTMLFormElement);
         try {
             const response = await fetch(`${API_URL}/student/newstudents`, {
                 method: "POST",
