@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 
 export const ChangeDataUser: React.FC = () => {
     const navigate = useNavigate();
-    const testId = "857cb663-e548-11ed-86df-24fd5235b3db"; // @TODO podmienić na prawdziwe ID
+    const testId = "92406744-52fd-4c1b-af83-420fbbfe0624"; // @TODO podmienić na prawdziwe ID
 
     const [formEmail, setFormEmail] = useState('');
 
@@ -70,7 +70,7 @@ export const ChangeDataUser: React.FC = () => {
                 pass2: formPass.pass2
             }
             try {
-                const res = await fetch(`http://localhost:3001/user/newpass`, {
+                const res = await fetch(`${API_URL}/user/newpass`, {
                     method: "PATCH",
                     headers: {
                         'Content-Type': 'application/json',

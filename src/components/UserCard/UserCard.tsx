@@ -19,9 +19,12 @@ interface Props {
 
 export const UserCard = ({id, name, github, phoneNumber, email, aboutMe }: Props) => {
   const slicedPhoneNumber = [];
-  for (let i = 0; i < phoneNumber.length; i += 3) {
-    slicedPhoneNumber.push(phoneNumber.substring(i, i + 3));
+  if (phoneNumber !== null) {
+      for (let i = 0; i < phoneNumber.length; i += 3) {
+          slicedPhoneNumber.push(phoneNumber.substring(i, i + 3));
+      }
   }
+
 
   const changeStatus = async (studentId:string, action:string) =>{
         const hrId = '46f84261-df9d-11ed-a2b7-24fd5235b3db' // @TODO hrId pobrane z ciasteczka lub tokenu?
