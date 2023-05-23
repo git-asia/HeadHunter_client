@@ -17,9 +17,11 @@
     letter-spacing: 0;
     color: $light-arrow;
   }
+
   div {
     display: flex;
     width: 100%;
+
     .user-data-fragment__value {
       text-align: left;
       font: normal normal bold 15px/25px Catamaran;
@@ -32,11 +34,14 @@
         font-weight: normal;
       }
     }
+
     .user-data-fragment__stars {
       margin-left: 1rem;
+
       .user-data-fragment__star--red {
         fill: $primary-btn;
       }
+
       .user-data-fragment__star--gray {
         fill: $text-dark;
       }

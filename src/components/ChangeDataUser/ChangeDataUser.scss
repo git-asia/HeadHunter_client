@@ -7,7 +7,6 @@
   display: table-cell;
   vertical-align: middle;
 
-
   .change-user-data-container {
     width: 40%;
     .info{
@@ -21,9 +20,11 @@
       display: block;
       margin: 3rem auto;
     }
+
     .MuiInputBase-root {
       margin: 0;
     }
+
     .css-wb57ya-MuiFormControl-root-MuiTextField-root {
       align-items: center;
 
@@ -50,6 +51,7 @@
     input::placeholder {
       opacity: 0.75;
     }
+
     Button.change-user-data-btn {
       display: block;
       height: 4rem;

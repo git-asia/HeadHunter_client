@@ -135,7 +135,7 @@ export const UserData = () => {
                         })}
                     </div>
                 )}
-                <div className="test"></div>
+                <div className="test" />
             </div>
         ))}
         </>

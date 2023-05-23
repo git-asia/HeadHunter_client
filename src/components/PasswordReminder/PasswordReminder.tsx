@@ -3,7 +3,7 @@ import { Button, Container, Grid, TextField } from '@mui/material';
 
 import logo from '../../assets/images/logo.png';
 
-import '../../App.scss';
+import '../../index.scss';
 import './PasswordReminder.scss';
 
 export const PasswordReminder: React.FC = () => {

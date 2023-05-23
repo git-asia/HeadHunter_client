@@ -7,7 +7,6 @@ interface Props {
   value: string;
   showStars?: boolean;
 }
-
 export const UserDataFragment = ({ header, value, showStars = false }: Props) => {
 
     const [valueStart, restOfValue] = value.split('/');

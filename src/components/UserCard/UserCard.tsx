@@ -9,7 +9,7 @@ import { Button } from '../Button/Button';
 import './UserCard.scss';
 
 interface Props {
-    id: string;
+  id: string;
   name: string;
   github: string;
   phoneNumber: string;

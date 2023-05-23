@@ -4,10 +4,9 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-
 }
 
-.dropdown__menu{
+.dropdown__menu {
 
   background-color: $header-dark;
   color: $white;
@@ -16,12 +15,11 @@
     font-family: $primary-font ;
     font-size: $fs-xl;
   }
-
 }
 
-.dropdown__button{
+.dropdown__button {
 
-  .text{
+  .text {
     font-size: $fs-xl;
     font-family: $primary-font ;
     text-transform: capitalize;
@@ -31,10 +29,9 @@
     margin-left: 0.5rem;
     margin-top: 0.2rem;
   }
-
 }
 
-.dropdown__icon{
+.dropdown__icon {
   font-size: 2.3rem;
   color: $white;
   margin-top: -0.6rem;

@@ -21,7 +21,6 @@ export const CVEdit = () => {
                     updateForm(key, value);
                 }
             }
-
         }
         fetchData()
             .catch(console.error);

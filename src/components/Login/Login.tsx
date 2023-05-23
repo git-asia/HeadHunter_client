@@ -6,8 +6,8 @@ import { Button, Container, Grid, IconButton, InputAdornment, TextField } from '
 import logo from '../../assets/images/logo.png';
 import { API_URL } from '../../config/apiUrl';
 
-import '../../App.scss';
 import './Login.scss';
+import '../../index.scss'
 
 interface LoginProps {
   setLoggedIn: (loggedIn: boolean) => void;

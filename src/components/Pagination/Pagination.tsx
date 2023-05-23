@@ -56,7 +56,6 @@ export const Pagination = () => {
                     className: 'icon-arrow',
                     title: 'Następna strona'
                 }}
-
             />
         </div>
     );

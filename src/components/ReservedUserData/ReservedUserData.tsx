@@ -176,7 +176,7 @@ export const ReservedUserData = () => {
                         })}
                     </div>
                 )}
-                <div className="test"></div>
+                <div className="test" />
             </div>
         ))}
         </>

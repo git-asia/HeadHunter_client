@@ -72,7 +72,7 @@ export const SearchFilterBar = () => {
                     id="composition-button"
                     onClick={handleClickOpen}
                 >
-                    <FilterAltIcon className="filter-icon"/>
+                    <FilterAltIcon className="filter-icon" />
                     <span className="text"> Filtrowanie </span>
                 </Button>
 
@@ -81,9 +81,6 @@ export const SearchFilterBar = () => {
                 </Dialog>
 
             </div>
-
         </div>
-
     )
-
 }

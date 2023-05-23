@@ -52,8 +52,8 @@ export const ListView = () => {
                             <SearchFilterBar/>
                             <div className="list-wrapper">
                                 <Routes>
-                                    <Route path="" element={<UserData/>}/>
-                                    <Route path="reserved" element={<ReservedUserData />}/>
+                                    <Route path="/" element={<UserData />}/>
+                                    <Route path="/reserved" element={<ReservedUserData />}/>
                                 </Routes>
                             </div>
                         </div>
