@@ -1,4 +1,4 @@
-import {createContext} from "react";
+import { createContext } from 'react';
 
 const initialState = {
     expectedTypeWork: {
@@ -12,8 +12,8 @@ const initialState = {
         workContract: false,
     },
     expectedSalary: {
-        min: "",
-        max: "",
+        min: '',
+        max: '',
     },
     canTakeApprenticeship: null,
     monthsOfCommercialExp: '0',

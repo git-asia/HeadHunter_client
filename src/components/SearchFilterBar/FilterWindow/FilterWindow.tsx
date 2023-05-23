@@ -1,4 +1,4 @@
-import React, { useContext, useState} from "react";
+import React, { useContext, useState } from 'react';
 import {
     Autocomplete,
     Button,
@@ -16,10 +16,11 @@ import {
     TextField,
     ToggleButton,
     ToggleButtonGroup
-} from "@mui/material";
-import {FilterContext} from "../../../contexts/filter.context";
+} from '@mui/material';
 
-import "./FilterWindow.scss";
+import { FilterContext } from '../../../contexts/filter.context';
+
+import './FilterWindow.scss';
 
 type FilterState = {
     expectedTypeWork: {
@@ -72,7 +73,7 @@ export const FilterWindow = (props:any) => {
 
     }
 
-    const {filterCon,setFilterCon} = useContext(FilterContext)
+    const { filterCon,setFilterCon } = useContext(FilterContext)
     const [filters, setFilters] = useState<FilterState>(filterCon);
 
     const title= [['Ocena przejścia kursu','courseCompletion'],['Ocena aktywności i zaangażowania na kursie','courseEngagement'], ['Ocena kodu w projekcie własnym','projectDegree'], ['Ocena pracy w zespole w Scrum','teamProjectDegree']];
@@ -95,7 +96,7 @@ export const FilterWindow = (props:any) => {
         }
     };
 
-    const monthList: string[] = Array.from({length: 31}, (_, i) => {
+    const monthList: string[] = Array.from({ length: 31 }, (_, i) => {
         const month: string = i  + ' ' + months[2];
         if (i === 1) {
             return month.replace(months[2], months[0]);
@@ -117,7 +118,6 @@ export const FilterWindow = (props:any) => {
         setFilterCon(filters);
         props.handleClose();
     }
-
 
     return(
 
@@ -165,7 +165,7 @@ export const FilterWindow = (props:any) => {
                         value=''
                         onClick={() =>filtersChange('expectedTypeWork', 'inOffice')}
                         className={filters.expectedTypeWork.inOffice ? 'box-star-checked' : 'box-star'}
-                        style={{marginLeft: '16px'}}
+                        style={{ marginLeft: '16px' }}
                     >
                         <span className="text-checkbox">Praca w biurze</span>
                     </ToggleButton>
@@ -184,7 +184,7 @@ export const FilterWindow = (props:any) => {
                         value=''
                         onClick={() =>filtersChange('expectedContractType', 'b2b')}
                         className={filters.expectedContractType.b2b ? 'box-star-checked' : 'box-star'}
-                        style={{marginLeft: '16px'}}
+                        style={{ marginLeft: '16px' }}
                     >
                         <span className="text-checkbox">B2B</span>
                     </ToggleButton>
@@ -192,7 +192,7 @@ export const FilterWindow = (props:any) => {
                         value=''
                         onClick={() =>filtersChange('expectedContractType', 'mandateContract')}
                         className={filters.expectedContractType.mandateContract ? 'box-star-checked' : 'box-star'}
-                        style={{marginLeft: '16px'}}
+                        style={{ marginLeft: '16px' }}
                     >
                         <span className="text-checkbox">Umowa zlecenie</span>
                     </ToggleButton>
@@ -200,7 +200,7 @@ export const FilterWindow = (props:any) => {
                         value=''
                         onClick={() =>filtersChange('expectedContractType', 'workContract')}
                         className={filters.expectedContractType.workContract ? 'box-star-checked' : 'box-star'}
-                        style={{marginLeft: '16px'}}
+                        style={{ marginLeft: '16px' }}
                     >
                         <span className="text-checkbox">Umowa o dzieło</span>
                     </ToggleButton>

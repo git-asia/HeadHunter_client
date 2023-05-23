@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { NavbarStudents } from "../../components/NavbarStudents/NavbarStudents";
-import { UserData } from "../../components/UserData/UserData";
-import {Pagination} from "../../components/Pagination/Pagination";
-import { Header } from "../../components/Header/Header";
-import {SearchFilterBar} from "../../components/SearchFilterBar/SearchFilterBar";
-import {FilterContext} from "../../contexts/filter.context";
-import {PaginationContext} from "../../contexts/pagination.context";
-import {ReservedUserData} from "../../components/ReservedUserData/ReservedUserData";
-import {Route, Routes} from "react-router-dom";
+import React, { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
-import "./ListView.scss";
-import "../../index.scss"
+import { Header } from '../../components/Header/Header';
+import { NavbarStudents } from '../../components/NavbarStudents/NavbarStudents';
+import { Pagination } from '../../components/Pagination/Pagination';
+import { ReservedUserData } from '../../components/ReservedUserData/ReservedUserData';
+import { SearchFilterBar } from '../../components/SearchFilterBar/SearchFilterBar';
+import { UserData } from '../../components/UserData/UserData';
+import { FilterContext } from '../../contexts/filter.context';
+import { PaginationContext } from '../../contexts/pagination.context';
 
+import './ListView.scss';
+import '../../index.scss'
 
 const initialState = {
     expectedTypeWork: {
@@ -25,8 +25,8 @@ const initialState = {
         workContract: false,
     },
     expectedSalary: {
-        min: "",
-        max: "",
+        min: '',
+        max: '',
     },
     canTakeApprenticeship: null,
     monthsOfCommercialExp: '0',
@@ -39,14 +39,14 @@ const initialState = {
 export const ListView = () => {
 
     const [filterCon,setFilterCon] = useState(initialState)
-    const [pagination,setPagination] = useState({page: 0, rowsPerPage:10, allRecords:0});
+    const [pagination,setPagination] = useState({ page: 0, rowsPerPage:10, allRecords:0 });
 
     return (
         <>
             <Header/>
             <div className="page-wrapper">
-                <FilterContext.Provider value={{filterCon, setFilterCon}}>
-                    <PaginationContext.Provider value={{ pagination, setPagination}}>
+                <FilterContext.Provider value={{ filterCon, setFilterCon }}>
+                    <PaginationContext.Provider value={{ pagination, setPagination }}>
                         <div className="main-wrapper">
                             <NavbarStudents/>
                             <SearchFilterBar/>
@@ -57,11 +57,10 @@ export const ListView = () => {
                                 </Routes>
                             </div>
                         </div>
-                      <Pagination/>
+                        <Pagination/>
                     </PaginationContext.Provider>
                 </FilterContext.Provider>
             </div>
         </>
     );
 };
-

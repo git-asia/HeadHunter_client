@@ -6,7 +6,6 @@
         "plugin:jsx-a11y/recommended",
         "plugin:@typescript-eslint/recommended",
         "eslint-config-prettier"
-
     ],
     "settings": {
         "react": {
@@ -16,10 +15,45 @@
         "node": {
             "paths": ["src"],
             "extensions": [".js", ".jsx", ".ts", ".tsx"]
-        }
+            }
         }
     },
+
+    "plugins": [
+        "react", "simple-import-sort"
+    ],
     "rules": {
-        "react/react-in-jsx-scope": "off"    
-    }
+        "react/react-in-jsx-scope": "off",
+        "quotes": [2, "single", "avoid-escape"],
+        "indent": ["error", 4, { "SwitchCase": 1, "ignoredNodes": ["PropertyDefinition"] }],
+        "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
+        "@typescript-eslint/object-curly-spacing": ["error", "always"],
+        "@typescript-eslint/interface-name-prefix": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error"
+    },
+    "overrides": [
+        {
+            "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
+            "rules": {
+                "simple-import-sort/imports": [
+                    "error",
+                    {
+                        "groups": [
+                            ["^react", "^@?\\w"],
+                            ["^(@|components)(/.*|$)"],
+                            ["^\\u0000"],
+                            ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+                            ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+                            ["^.+\\.?(css)$"]
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
 }
+

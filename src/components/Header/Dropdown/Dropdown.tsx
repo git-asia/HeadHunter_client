@@ -1,11 +1,12 @@
 import * as React from 'react';
+import { useState } from 'react'
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { Avatar, Icon, } from '@mui/material';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import avatar from "../../../assets/images/avatar-holder.png";
-import {Avatar, Icon,} from "@mui/material";
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import {useState} from "react"
+
+import avatar from '../../../assets/images/avatar-holder.png';
 
 import './Dropdown.scss';
 
@@ -20,12 +21,10 @@ export const Dropdown = () => {
         const width = rect.width;
         setMenuWidth(width);
 
-
     };
     const handleClose = () => {
         setAnchorEl(null);
     };
-
 
     return (
         <div>
@@ -41,7 +40,7 @@ export const Dropdown = () => {
                     <Avatar alt="Imię Nazwisko" src={avatar} />
                     <span className="text"> Imię Nazwisko </span>
                     <Icon className="icon">
-                    <ArrowDropDownIcon className="dropdown__icon"/>
+                        <ArrowDropDownIcon className="dropdown__icon"/>
                     </Icon>
                 </Button>
 
