@@ -11,7 +11,7 @@ export interface FilterStudent {
   monthsOfCommercialExp: number;
 }
 
-export interface AvailableStudent extends Omit<FilterStudent, "expectedSalaryMin" | "expectedSalaryMax"> {
+export interface AvailableStudent extends Omit<FilterStudent, 'expectedSalaryMin' | 'expectedSalaryMax'> {
   studentId: string;
   firstName: string;
   lastName: string;
@@ -45,6 +45,6 @@ export interface StudentEntity extends ReservedStudent {
   reservedBy: string | null;
 }
 
-export interface SingleStudent extends Omit<StudentEntity, "reservationExpiresOn" | "reservedBy" | "userStatus"> {
+export interface SingleStudent extends Omit<StudentEntity, 'reservationExpiresOn' | 'reservedBy' | 'userStatus'> {
   email: string;
 }

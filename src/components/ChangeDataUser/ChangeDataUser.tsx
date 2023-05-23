@@ -1,14 +1,16 @@
-import React, {useState} from "react";
-import { Button, Container, Grid, TextField } from "@mui/material";
-import logo from "../../assets/images/logo.png";
-import "../../index.scss";
-import "./ChangeDataUser.scss";
-import {API_URL} from "../../config/apiUrl";
-import {useNavigate} from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button, Container, Grid, TextField } from '@mui/material';
+
+import logo from '../../assets/images/logo.png';
+import { API_URL } from '../../config/apiUrl';
+
+import '../../index.scss';
+import './ChangeDataUser.scss';
 
 export const ChangeDataUser: React.FC = () => {
     const navigate = useNavigate();
-    const testId = "857cb663-e548-11ed-86df-24fd5235b3db"; // @TODO podmienić na prawdziwe ID
+    const testId = '92406744-52fd-4c1b-af83-420fbbfe0624'; // @TODO podmienić na prawdziwe ID
 
     const [formEmail, setFormEmail] = useState('');
 
@@ -23,7 +25,6 @@ export const ChangeDataUser: React.FC = () => {
 
     const [validPass2, setValidPass2] = useState(true);
 
-
     const sendMail = async () => {
         if(formEmail.includes('@')){
             setValidMail(true);
@@ -33,7 +34,7 @@ export const ChangeDataUser: React.FC = () => {
             }
             try {
                 const res = await fetch(`${API_URL}/user/changemail`, {
-                    method: "PATCH",
+                    method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -41,16 +42,15 @@ export const ChangeDataUser: React.FC = () => {
                 });
                 const data = await res.json();
                 if (data) {
-                    setFormEmail("");
-                    console.log("Dane zostały zapisane.");
-                    navigate("/edit");
+                    setFormEmail('');
+                    console.log('Dane zostały zapisane.');
+                    navigate('/edit');
                 }
             } catch (e) {
-                console.log("Coś poszło nie tak. Spróbuj później")
+                console.log('Coś poszło nie tak. Spróbuj później')
             }
 
-
-            } else {
+        } else {
             setValidMail(false);
         }
     }
@@ -70,8 +70,8 @@ export const ChangeDataUser: React.FC = () => {
                 pass2: formPass.pass2
             }
             try {
-                const res = await fetch(`http://localhost:3001/user/newpass`, {
-                    method: "PATCH",
+                const res = await fetch(`${API_URL}/user/newpass`, {
+                    method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
                     },
@@ -83,10 +83,10 @@ export const ChangeDataUser: React.FC = () => {
                         pass: '',
                         pass2: ''
                     });
-                    console.log("Dane zostały zapisane.")
+                    console.log('Dane zostały zapisane.')
                 }
             } catch (e) {
-                console.log("Coś poszło nie tak. Spróbuj później")
+                console.log('Coś poszło nie tak. Spróbuj później')
             }
         }
     }
@@ -97,8 +97,8 @@ export const ChangeDataUser: React.FC = () => {
             userStatus: 3
         }
         try {
-            const res = await fetch(`http://localhost:3001/user/my-status`, {
-                method: "POST",
+            const res = await fetch('http://localhost:3001/user/my-status', {
+                method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -106,10 +106,10 @@ export const ChangeDataUser: React.FC = () => {
             });
             const data = await res.json();
             if (data) {
-                console.log("Dane zostały zapisane.")
+                console.log('Dane zostały zapisane.')
             }
         } catch (e) {
-            console.log("Coś poszło nie tak. Spróbuj później")
+            console.log('Coś poszło nie tak. Spróbuj później')
         }
     }
 
@@ -129,9 +129,9 @@ export const ChangeDataUser: React.FC = () => {
                             fullWidth
                         />
                         <p className="info"
-                           style={{display: validMail ? 'none' : ''}}>To nie jest prawidłowy adres e-mail</p>
+                            style={{ display: validMail ? 'none' : '' }}>To nie jest prawidłowy adres e-mail</p>
                         <Button className="change-user-data-btn"
-                        onClick={sendMail}>
+                            onClick={sendMail}>
                             Zapisz e-mail
                         </Button>
                     </Grid>
@@ -141,32 +141,32 @@ export const ChangeDataUser: React.FC = () => {
                             type="password"
                             placeholder="Podaj hasło"
                             value={formPass.pass}
-                            onChange={e => setFormPass({...formPass, pass: e.target.value})}
+                            onChange={e => setFormPass({ ...formPass, pass: e.target.value })}
                             variant="outlined"
                             fullWidth
                         />
                         <p className="info"
-                        style={{display: validPass ? 'none' : ''}}>
+                            style={{ display: validPass ? 'none' : '' }}>
                             Hasło musi zawierać min. 8 znaków: cyfrę, małą i dużą literę i znak specjalny.</p>
                         <TextField
                             type="password"
                             placeholder="Powtórz hasło"
                             value={formPass.pass2}
-                            onChange={e => setFormPass({...formPass, pass2: e.target.value})}
+                            onChange={e => setFormPass({ ...formPass, pass2: e.target.value })}
                             variant="outlined"
                             fullWidth
                         />
                         <p className="info"
-                           style={{display: validPass2 ? 'none' : ''}}>Hasła się różnią</p>
+                            style={{ display: validPass2 ? 'none' : '' }}>Hasła się różnią</p>
                         <Button className="change-user-data-btn"
-                                onClick={sendPass}>
+                            onClick={sendPass}>
                             Zapisz hasło
                         </Button>
                     </Grid>
                     <Grid item xs={12} className="work-box">
                         <p className="info">Naciśnięcie poniższego przycisku oznacza zakończenie korzystania z portalu. Powodzenia w nowej pracy!</p>
                         <Button className="change-user-data-btn"
-                        onClick={haveJob}>
+                            onClick={haveJob}>
                             Znalazłem pracę!
                         </Button>
                     </Grid>

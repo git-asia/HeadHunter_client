@@ -1,21 +1,27 @@
-import React, {SyntheticEvent, useEffect, useState} from "react";
-import { Header } from "../../components/Header/Header";
-import { IoIosArrowDown } from "react-icons/io";
-import { API_URL } from "../../config/apiUrl";
-import logo from "../../assets/images/avatar-holder.png";
-import {Button, Container, TextField} from "@mui/material";
+import React, { SyntheticEvent, useEffect, useState } from 'react';
+import { IoIosArrowDown } from 'react-icons/io';
+import { Button, Container, TextField } from '@mui/material';
 
-import "./CVEdit.scss";
-import "../../index.scss"
+import logo from '../../assets/images/avatar-holder.png';
+import { Header } from '../../components/Header/Header';
+import { API_URL } from '../../config/apiUrl';
+
+import './CVEdit.scss';
+import '../../index.scss'
 
 export const CVEdit = () => {
-    const userId = "5a06c091-e1d7-11ed-b007-24fd5235b3db"; // @TODO Nie wiem, skąd wziąć studentId
+    const userId = '92406744-52fd-4c1b-af83-420fbbfe0624'; // @TODO Nie wiem, skąd wziąć studentId
 
     useEffect( () => {
         const fetchData = async () => {
             const res = await fetch(`${API_URL}/student/getcvedit/${userId}`);
             const data = (await res.json())[0];
-            setForm(data);
+            for (const [key, value] of Object.entries(data)) {
+                if (value !== null){
+                    updateForm(key, value);
+                }
+            }
+
         }
         fetchData()
             .catch(console.error);
@@ -23,52 +29,58 @@ export const CVEdit = () => {
 
     const sendForm = async (e: SyntheticEvent) => {
         e.preventDefault();
-        try {
-            const dataToSend = {
-                ...form,
-                studentId: userId,
+        if ((form.firstName==='')||(form.lastName==='')||(form.githubUsername==='')||(form.projectUrls==='')){
+            setInfo(true);
+        } else {
+            try {
+                const dataToSend = {
+                    ...form,
+                    studentId: userId,
+                }
+                const res = await fetch(`${API_URL}/student/changedata`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dataToSend),
+                });
+                const data = await res.json();
+                if (data === userId) {
+                    console.log('Dane zostały zapisane');
+                }
+            } catch (e) {
+                console.log('Coś poszło nie tak. Spróbuj później');
             }
-            const res = await fetch(`${API_URL}/student/changedata`, {
-                method: "PATCH",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(dataToSend),
-            });
-            const data = await res.json();
-            if(data===userId){
-                console.log("Dane zostały zapisane");
-            }
-        } catch (e) {
-            console.log("Coś poszło nie tak. Spróbuj później");
         }
     };
 
-    const updateForm = (key: string, value: string | number) => {
+    const updateForm = (key: string, value: unknown) => {
         setForm(form => ({
             ...form,
             [key]: value,
         }))
     };
 
+    const [info, setInfo] = useState(false);
+
     const [form, setForm] = useState({
-        firstName: "",
-        lastName: "",
-        githubUsername: "",
-        phoneNumber: "",
+        firstName: '',
+        lastName: '',
+        githubUsername: '',
+        phoneNumber: '',
         expectedTypeWork: 1,
-        targetWorkCity: "",
+        targetWorkCity: '',
         expectedContractType: 1,
         expectedSalary: '',
         canTakeApprenticeship: 1,
         monthsOfCommercialExp: 0,
-        bio: "",
-        education: "",
-        courses: "",
-        workExperience: "",
-        portfolioUrls: "",
-        bonusProjectUrls: "",
-        projectUrls: ""
+        bio: '',
+        education: '',
+        courses: '',
+        workExperience: '',
+        portfolioUrls: '',
+        bonusProjectUrls: '',
+        projectUrls: ''
     });
 
     return (
@@ -81,7 +93,7 @@ export const CVEdit = () => {
                 </div>
                 <Container className="CVEdit_Usercard__container">
                     <div className="CVEdit_Usercard__avatar">
-                        <img src={form.githubUsername? `https://github.com/${form.githubUsername}.png`:logo} alt="user logo" />
+                        <img src={form.githubUsername ? `https://github.com/${form.githubUsername}.png`:logo} alt="user logo" />
                     </div>
                     <p>Imię:</p>
                     <TextField
@@ -153,8 +165,8 @@ export const CVEdit = () => {
                         />
                         <label>Oczekiwany typ kontraktu:
                             <select name="expectedContractType"
-                                    value={form.expectedContractType}
-                                    onChange={e => updateForm('expectedContractType', e.target.value)}>
+                                value={form.expectedContractType}
+                                onChange={e => updateForm('expectedContractType', e.target.value)}>
                                 <option value={1}>Umowa o pracę</option>
                                 <option value={2}>B2B</option>
                                 <option value={3}>Umowa zlecenie</option>
@@ -174,8 +186,8 @@ export const CVEdit = () => {
                         />
                         <label>Zgoda na odbycie bezpłatnych praktyk/stażu na początek
                             <select name="canTakeApprenticeship"
-                                    value={form.canTakeApprenticeship}
-                                    onChange={e => updateForm('canTakeApprenticeship', e.target.value)}>
+                                value={form.canTakeApprenticeship}
+                                onChange={e => updateForm('canTakeApprenticeship', e.target.value)}>
                                 <option value={1}>Tak</option>
                                 <option value={0}>Nie</option>
                             </select>
@@ -297,6 +309,7 @@ export const CVEdit = () => {
                             fullWidth
                         />
                     </div>
+                    <p style={{ display: info ? '' : 'none' }}>Musisz podać: imię, nazwisko, nick w Github oraz projekt na zaliczenie.</p>
                     <Button
                         className="sendCvBtn"
                         onClick={sendForm}

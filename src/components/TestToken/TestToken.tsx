@@ -1,9 +1,11 @@
-import React, {useEffect, useState} from "react";
-import {useNavigate, useParams} from "react-router-dom";
-import "../../index.scss";
-import "./TestToken.scss";
-import {API_URL} from "../../config/apiUrl";
-import logo from "../../assets/images/logo.png";
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import logo from '../../assets/images/logo.png';
+import { API_URL } from '../../config/apiUrl';
+
+import '../../index.scss';
+import './TestToken.scss';
 
 export const TestToken = () => {
     const navigate = useNavigate();
@@ -12,7 +14,7 @@ export const TestToken = () => {
         <p>Za chwilę zostaniesz przekierowany na stronę zmiany hasła.</p>
     </div>)
     const routeParams = useParams();
-    const {token} = routeParams;
+    const { token } = routeParams;
     //const token = '57ccdfc6-8578-4931-bd31-34a1ddd6c575';
 
     useEffect( () => {
