@@ -9,13 +9,18 @@ import "./CVEdit.scss";
 import "../../index.scss"
 
 export const CVEdit = () => {
-    const userId = "5a06c091-e1d7-11ed-b007-24fd5235b3db"; // @TODO Nie wiem, skąd wziąć studentId
+    const userId = "92406744-52fd-4c1b-af83-420fbbfe0624"; // @TODO Nie wiem, skąd wziąć studentId
 
     useEffect( () => {
         const fetchData = async () => {
             const res = await fetch(`${API_URL}/student/getcvedit/${userId}`);
             const data = (await res.json())[0];
-            setForm(data);
+            for (const [key, value] of Object.entries(data)) {
+                if (value !== null){
+                    updateForm(key, value);
+                }
+            }
+
         }
         fetchData()
             .catch(console.error);
@@ -23,33 +28,39 @@ export const CVEdit = () => {
 
     const sendForm = async (e: SyntheticEvent) => {
         e.preventDefault();
-        try {
-            const dataToSend = {
-                ...form,
-                studentId: userId,
+        if ((form.firstName==='')||(form.lastName==='')||(form.githubUsername==='')||(form.projectUrls==='')){
+            setInfo(true);
+        } else {
+            try {
+                const dataToSend = {
+                    ...form,
+                    studentId: userId,
+                }
+                const res = await fetch(`${API_URL}/student/changedata`, {
+                    method: "PATCH",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dataToSend),
+                });
+                const data = await res.json();
+                if (data === userId) {
+                    console.log("Dane zostały zapisane");
+                }
+            } catch (e) {
+                console.log("Coś poszło nie tak. Spróbuj później");
             }
-            const res = await fetch(`${API_URL}/student/changedata`, {
-                method: "PATCH",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(dataToSend),
-            });
-            const data = await res.json();
-            if(data===userId){
-                console.log("Dane zostały zapisane");
-            }
-        } catch (e) {
-            console.log("Coś poszło nie tak. Spróbuj później");
         }
     };
 
-    const updateForm = (key: string, value: string | number) => {
+    const updateForm = (key: string, value: unknown) => {
         setForm(form => ({
             ...form,
             [key]: value,
         }))
     };
+
+    const [info, setInfo] = useState(false);
 
     const [form, setForm] = useState({
         firstName: "",
@@ -81,7 +92,7 @@ export const CVEdit = () => {
                 </div>
                 <Container className="CVEdit_Usercard__container">
                     <div className="CVEdit_Usercard__avatar">
-                        <img src={form.githubUsername? `https://github.com/${form.githubUsername}.png`:logo} alt="user logo" />
+                        <img src={form.githubUsername ? `https://github.com/${form.githubUsername}.png`:logo} alt="user logo" />
                     </div>
                     <p>Imię:</p>
                     <TextField
@@ -297,6 +308,7 @@ export const CVEdit = () => {
                             fullWidth
                         />
                     </div>
+                    <p style={{display: info ? "" : "none"}}>Musisz podać: imię, nazwisko, nick w Github oraz projekt na zaliczenie.</p>
                     <Button
                         className="sendCvBtn"
                         onClick={sendForm}
