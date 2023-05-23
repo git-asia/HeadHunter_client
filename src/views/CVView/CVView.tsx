@@ -10,7 +10,7 @@ import "../../index.scss"
 
 export const CVView = () => {
     const contractType = ['', 'Umowa o pracę', 'B2B', 'Umowa zlecenie', 'Umowa o dzieło'];
-    const id = "46f84261-df9d-11ed-a2b7-24fd5235b3db"; //@TODO zamienić na prawdziwe ID
+    const id = "92406744-52fd-4c1b-af83-420fbbfe0624"; //@TODO zamienić na prawdziwe ID
     const [mail, setMail] = useState("");
     const [data, setData] = useState({
         bio:"",
@@ -86,9 +86,9 @@ export const CVView = () => {
           education={data.education}
           courses={data.courses}
           experience={data.workExperience}
-          portfolio={data.portfolioUrls.split(' ')}
-          finalProjects={data.projectUrls.split(' ')}
-          scramProjects={data.bonusProjectUrls.split(' ')}
+          portfolio={data.portfolioUrls === null? [] : data.portfolioUrls.split(' ')}
+          finalProjects={data.projectUrls === null? [] : data.projectUrls.split(' ')}
+          scramProjects={data.bonusProjectUrls === null? [] : data.bonusProjectUrls.split(' ')}
         />
       </div>
       </div>
