@@ -1,16 +1,16 @@
 @import '../../../variables';
 
-.dialog-paper{
+.dialog-paper {
   background-color: #0a0a0a;
   border-radius: 0;
   border-width: 0;
 
-  .title-bar{
+  .title-bar {
     justify-content: space-between;
     align-items: center;
     margin-bottom: -3rem;
 
-    .title{
+    .title {
       font-family: $primary-font;
       font-weight: bold;
       color: $white;
@@ -29,51 +29,52 @@
     }
   }
 
-  .box-star, .box-star:hover, .box-star-checked, .box-star-checked:hover, .MuiInputBase-root{
+  .box-star, .box-star:hover, .box-star-checked, .box-star-checked:hover, .MuiInputBase-root {
     color: $white;
     background-color: $lightest-dark;
     height: 3rem;
 
   }
 
-  .MuiInput-underline{
+  .MuiInput-underline {
     color: $white;
     font-size: $fs-xs;
     font-family: $secondary-font ;
     margin-left: 1rem;
   }
-  .box-star-checked, .box-star-checked:hover{
+  .box-star-checked, .box-star-checked:hover {
     background-color: $primary-btn;
   }
 
-  .icon{
+  .icon {
     color: $primary-btn;
     font-size: $fs-lg;
     margin-left: -0.5rem;
     padding: 0;
   }
-  .icon-active{
+  .icon-active {
     color: $white;
     font-size: $fs-lg;
     margin-left: -0.5rem;
     padding: 0;
   }
-  .text-checkbox{
+
+  .text-checkbox {
     font-size: $fs-xs;
     color: $white;
     font-family: $secondary-font ;
     text-transform: none;
   }
 
-  .margin-left{
+  .margin-left {
     margin-left: 0.8rem;
   }
 
-  .margin-right{
+  .margin-right {
     margin-right: 0.8rem;
   }
 
-  .title{
+  .title {
     margin-top: 2rem;
     margin-bottom: 1rem;
     color: $white;
@@ -81,30 +82,31 @@
     font-family: $secondary-font ;
   }
 
-  .cancel-button{
+  .cancel-button {
     font-family: $primary-font;
     font-size: $fs-lg;
     text-transform: none;
     color: $white ;
     border-radius: 0;
   }
-  .com-exp{
+
+  .com-exp {
     width: 12rem;
   }
 
-  .controlled-radio{
-    .MuiSvgIcon-root{
+  .controlled-radio {
+    .MuiSvgIcon-root {
       color: $lightest-dark;
     }
   }
 
-  .degree{
-    .MuiSelect-select{
+  .degree {
+    .MuiSelect-select {
       text-align: center;
     }
   }
 }
 
-.css-1t1j96h-MuiPaper-root-MuiDialog-paper{
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
   border-radius: 0;
 }

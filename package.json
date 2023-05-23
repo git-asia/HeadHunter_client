@@ -8,7 +8,8 @@
     "build": "VITE_API_URL=$VITE_API_URL tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .ts,.tsx",
-    "lint:fix": "eslint . --ext .ts,.tsx --fix"
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "eslint . --ignore-pattern \"node_modules/*\" --ext .js,.jsx,.ts,.tsx --fix"
   },
   "dependencies": {
     "@emotion/react": "^11.10.8",
@@ -28,9 +29,11 @@
     "@types/react-dom": "^18.2.1",
     "@types/react-icons": "^3.0.0",
     "@vitejs/plugin-react-swc": "^3.0.0",
-    "eslint": "^8.38.0",
+    "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "prettier": "^2.8.7",
     "typescript": "^4.9.3",
     "vite": "^4.2.0",

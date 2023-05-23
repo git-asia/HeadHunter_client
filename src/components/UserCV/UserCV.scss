@@ -4,31 +4,38 @@
   flex-grow: 1;
   max-width: 140rem;
 }
+
 .UserCV__text__container {
   padding: 2rem;
   min-height: 9rem;
 }
+
 .UserCV__text {
   color: $white;
   font-size: $fs-lg;
 }
+
 .UserCV__link__container {
   display: flex;
   margin-bottom: 0.5rem;
   align-items: center;
 }
+
 .UserCV__link {
   color: $links;
   font-size: $fs-lg;
 }
+
 .UserCV__link__svg {
   fill: $links;
   margin-right: 0.25rem;
   transform: rotate(-45deg);
 }
+
 .UserCV__fragment__container {
   display: flex;
   width: 100%;
+
   div:not(:last-child) {
     border-right: 2px solid $lightest-dark;
     flex-grow: 1;

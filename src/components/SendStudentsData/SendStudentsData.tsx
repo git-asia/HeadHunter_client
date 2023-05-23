@@ -1,9 +1,10 @@
-import React, {SyntheticEvent} from 'react';
-import logo from "../../assets/images/logo.png";
+import React, { SyntheticEvent } from 'react';
 
-import "../../index.scss";
-import "./SendStudentsData.scss";
-import {API_URL} from "../../config/apiUrl";
+import logo from '../../assets/images/logo.png';
+import { API_URL } from '../../config/apiUrl';
+
+import '../../index.scss';
+import './SendStudentsData.scss';
 
 export const SendStudentsData = () => {
     const sendForm = async (e: SyntheticEvent) => {
@@ -11,7 +12,7 @@ export const SendStudentsData = () => {
         const formData = new FormData(e.target as HTMLFormElement);
         try {
             const response = await fetch(`${API_URL}/student/newstudents`, {
-                method: "POST",
+                method: 'POST',
                 body: formData
             });
             if (response.ok) {
