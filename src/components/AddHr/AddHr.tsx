@@ -56,7 +56,7 @@ export const AddHr: React.FC = () => {
         } else {
             try {
                 const res = await fetch(
-                    `${API_URL}/manage/add-hr/:${form.email}/:${form.fullName}/:${form.company}/:${form.maxReservedStudents}'`,
+                    `${API_URL}/manage/add-hr/${form.email}/${form.fullName}/${form.company}/${form.maxReservedStudents}'`,
                 );
                 const data = await res.json();
                 if (data.success) {
