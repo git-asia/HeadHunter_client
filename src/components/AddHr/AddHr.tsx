@@ -46,14 +46,12 @@ export const AddHr: React.FC = () => {
         });
 
         if (
-            !form.email.includes('@') ||
-      form.fullName === '' ||
-      form.company === '' ||
-      Number(form.maxReservedStudents) < 1 ||
-      Number(form.maxReservedStudents) > 999
+            form.email.includes('@') &&
+      form.fullName !== '' &&
+      form.company !== '' &&
+      Number(form.maxReservedStudents) > 0 &&
+      Number(form.maxReservedStudents) < 1000
         ) {
-            console.log('Popraw dane w formularzu');
-        } else {
             try {
                 const res = await fetch(
                     `${API_URL}/manage/add-hr/${form.email}/${form.fullName}/${form.company}/${form.maxReservedStudents}'`,
