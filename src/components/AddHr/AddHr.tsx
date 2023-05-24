@@ -15,24 +15,35 @@ export const AddHr: React.FC = () => {
         maxReservedStudents: '',
     };
     const [form, setForm] = useState(emptyForm);
-    const [validForm1, setValidForm1] = useState(false);
-    const [validForm2, setValidForm2] = useState(false);
-    const [validForm3, setValidForm3] = useState(false);
-    const [validForm4, setValidForm4] = useState(false);
+    const [validForm, setValidForm] = useState({
+        email: false,
+        name: false,
+        company: false,
+        maxStudent: false
+    });
 
     const updateForm = (key: string, value: string | number) => {
         setForm((form) => ({
             ...form,
             [key]: value,
         }));
+
+        setValidForm({
+            email: !form.email.includes('@'),
+            name: form.fullName === '',
+            company: form.company === '',
+            maxStudent: Number(form.maxReservedStudents) < 1 || Number(form.maxReservedStudents) > 999
+        });
     };
 
     const sendForm = async (e: SyntheticEvent) => {
         e.preventDefault();
-        setValidForm1(!form.email.includes('@'));
-        setValidForm2(form.fullName === '');
-        setValidForm3(form.company === '');
-        setValidForm4(Number(form.maxReservedStudents) < 1 || Number(form.maxReservedStudents) > 999);
+        setValidForm({
+            email: !form.email.includes('@'),
+            name: form.fullName === '',
+            company: form.company === '',
+            maxStudent: Number(form.maxReservedStudents) < 1 || Number(form.maxReservedStudents) > 999
+        });
 
         if (
             !form.email.includes('@') ||
@@ -65,7 +76,7 @@ export const AddHr: React.FC = () => {
                     <Grid item xs={12}>
                         <img src={logo} alt="Logo" className="logo" />
                         <Grid>
-                            <p className="info-validation" style={{ display: validForm1 ? '' : 'none' }}>
+                            <p className="info-validation" style={{ display: validForm.email ? '' : 'none' }}>
                 Podaj prawidłowy adres e-mail
                             </p>
                             <TextField
@@ -74,14 +85,14 @@ export const AddHr: React.FC = () => {
                                 value={form.email}
                                 onChange={(e) => {
                                     updateForm('email', e.target.value);
-                                    setValidForm1(!form.email.includes('@'));
                                 }}
+                                required
                                 variant="outlined"
                                 fullWidth
                             />
                         </Grid>
                         <Grid>
-                            <p className="info-validation" style={{ display: validForm2 ? '' : 'none' }}>
+                            <p className="info-validation" style={{ display: validForm.name ? '' : 'none' }}>
                 Podaj imię i nazwisko HR
                             </p>
                             <TextField
@@ -90,14 +101,14 @@ export const AddHr: React.FC = () => {
                                 value={form.fullName}
                                 onChange={(e) => {
                                     updateForm('fullName', e.target.value);
-                                    setValidForm2(form.fullName === '');
                                 }}
+                                required
                                 variant="outlined"
                                 fullWidth
                             />
                         </Grid>
                         <Grid>
-                            <p className="info-validation" style={{ display: validForm3 ? '' : 'none' }}>
+                            <p className="info-validation" style={{ display: validForm.company ? '' : 'none' }}>
                 Podaj nazwę firmy HR
                             </p>
                             <TextField
@@ -106,14 +117,14 @@ export const AddHr: React.FC = () => {
                                 value={form.company}
                                 onChange={(e) => {
                                     updateForm('company', e.target.value);
-                                    setValidForm3(form.company === '');
                                 }}
+                                required
                                 variant="outlined"
                                 fullWidth
                             />
                         </Grid>
                         <Grid>
-                            <p className="info-validation" style={{ display: validForm4 ? '' : 'none' }}>
+                            <p className="info-validation" style={{ display: validForm.maxStudent ? '' : 'none' }}>
                 Podaj liczbę między 1-999
                             </p>
                             <TextField
@@ -122,8 +133,8 @@ export const AddHr: React.FC = () => {
                                 value={form.maxReservedStudents}
                                 onChange={(e) => {
                                     updateForm('maxReservedStudents', e.target.value);
-                                    setValidForm4(Number(form.maxReservedStudents) < 1 || Number(form.maxReservedStudents) > 999);
                                 }}
+                                required
                                 variant="outlined"
                                 fullWidth
                             />
