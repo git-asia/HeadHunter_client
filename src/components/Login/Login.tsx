@@ -59,10 +59,13 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
 
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
+        setInputTextEmail(/^\S+@\S+\.\S+$/.test(event.target.value));
     };
 
     const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
+        setInputTextPassword(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/.test(event.target.value));
+
     };
     const handlePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -83,10 +86,9 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
                             type="email"
                             placeholder="E-mail"
                             variant="outlined"
-                            onChange={e => setInputTextEmail(/^\S+@\S+\.\S+$/.test(e.target.value))}
                             fullWidth
                             value={email}
-                            // onChange={handleEmailChange} <--- poprawić
+                            onChange={handleEmailChange}
                         />
                         <p className="infoAboutValidation"
                             style={{ display: inputTextPassword ? 'none' : '' }}
@@ -99,7 +101,7 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
                             variant="outlined"
                             fullWidth
                             value={password}
-                            // onChange={handlePasswordChange} <--- poprawić
+                            onChange={handlePasswordChange}
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
@@ -114,7 +116,6 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
                                     </InputAdornment>
                                 ),
                             }}
-                            onChange={e => setInputTextPassword(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/.test(e.target.value))}
                         />
                     </Grid>
                     <Grid container justifyContent="flex-end">
