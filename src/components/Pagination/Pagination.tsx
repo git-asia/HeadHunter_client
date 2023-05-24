@@ -1,12 +1,12 @@
-import React, {useContext} from "react";
+import React, { useContext } from 'react';
 import TablePagination from '@mui/material/TablePagination';
 
+import { PaginationContext } from '../../contexts/pagination.context';
 
-import "./Pagination.scss";
-import {PaginationContext} from "../../contexts/pagination.context";
+import './Pagination.scss';
 
 export const Pagination = () => {
-    const {pagination, setPagination} = useContext(PaginationContext)
+    const { pagination, setPagination } = useContext(PaginationContext)
 
     const handleChangePage = (
         event: React.MouseEvent<HTMLButtonElement> | null,
@@ -29,7 +29,7 @@ export const Pagination = () => {
         })
     };
     return (
-         <div className="pagination-wrapper">
+        <div className="pagination-wrapper">
             <TablePagination
 
                 className="custom-pagination"
@@ -49,15 +49,14 @@ export const Pagination = () => {
                 }}
 
                 backIconButtonProps={{
-                    className: "icon-arrow icon-arrow-margin",
-                    title: "Poprzednia strona"
+                    className: 'icon-arrow icon-arrow-margin',
+                    title: 'Poprzednia strona'
                 }}
                 nextIconButtonProps={{
-                    className: "icon-arrow",
-                    title: "Następna strona"
+                    className: 'icon-arrow',
+                    title: 'Następna strona'
                 }}
-
-               />
-         </div>
+            />
+        </div>
     );
 };
