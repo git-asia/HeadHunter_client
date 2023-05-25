@@ -10,13 +10,13 @@ import './Login.scss';
 import '../../index.scss'
 
 interface LoginProps {
-  setLoggedIn: (loggedIn: boolean) => void;
+    setLoggedIn: (loggedIn: boolean) => void;
 }
 
-interface LoginParams {
-  email: string;
-  password: string;
-}
+// interface LoginParams {
+//     email: string;
+//     password: string;
+// }
 
 export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
     const navigate = useNavigate();
@@ -27,9 +27,9 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
     const [inputTextEmail, setInputTextEmail] = useState(false);
     const [inputTextPassword, setInputTextPassword] = useState(false);
 
-    const login = async ({ email, password }: LoginParams) => {
+    const login = async () => {
         try {
-            const response = await fetch(`${API_URL}/logowanie_z_BE`, {
+            const response = await fetch(`${API_URL}/user/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -40,10 +40,18 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
 
             if (response.ok) {
                 setLoggedIn(true);
-                localStorage.setItem('token', data.user.token);
-                navigate('/');
+                //localStorage.setItem('token', data.user.token);
+                localStorage.setItem('userid',data.id);
+                if (data.state === 1) {
+                    navigate('/admin');
+                } else if (data.state === 2) {
+                    navigate('/list/*');
+                } else {
+                    navigate('/edit');
+                }
             } else {
                 setError(data.message);
+                console.log(error);
             }
         } catch (error) {
             console.error(error);
@@ -51,11 +59,11 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
         }
     };
 
-    const handeSubmit = async (e: React.MouseEvent) => {
-        e.preventDefault();
-
-        const user = await login({ email, password });
-    };
+    // const handeSubmit = async (e: React.MouseEvent) => {
+    //     e.preventDefault();
+    //
+    //     const user = await login();
+    // };
 
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
@@ -120,7 +128,7 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
                     </Grid>
                     <Grid container justifyContent="flex-end">
                         <Button className="forgot-password-link" color="primary">
-              Zapomniałeś hasła?
+                            Zapomniałeś hasła?
                         </Button>
                     </Grid>
                     <Grid
@@ -131,8 +139,9 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
                         alignItems={'baseline'}
                     >
                         <Grid item>
-                            <Button className="login-btn">
-                Zaloguj się
+                            <Button className="login-btn"
+                                onClick={login}>
+                                Zaloguj się
                             </Button>
                         </Grid>
                     </Grid>

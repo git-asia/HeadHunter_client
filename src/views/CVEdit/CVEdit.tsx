@@ -10,7 +10,7 @@ import './CVEdit.scss';
 import '../../index.scss'
 
 export const CVEdit = () => {
-    const userId = '92406744-52fd-4c1b-af83-420fbbfe0624'; // @TODO Nie wiem, skąd wziąć studentId
+    const userId = localStorage.getItem('userid'); // @TODO Nie wiem, skąd wziąć studentId
 
     useEffect( () => {
         const fetchData = async () => {
@@ -28,9 +28,17 @@ export const CVEdit = () => {
 
     const sendForm = async (e: SyntheticEvent) => {
         e.preventDefault();
-        if ((form.firstName==='')||(form.lastName==='')||(form.githubUsername==='')||(form.projectUrls==='')){
+        let validproject = false;
+        form.projectUrls.split(' ').forEach(el => {
+            if (!/^(ftp|http|https):\/\/[^ "]+$/.test(el)) {
+                validproject = true;
+            }
+        });
+        console.log(form.firstName, form.lastName, form.githubUsername, form.projectUrls, validproject);
+        if ((form.firstName==='')||(form.lastName==='')||(form.githubUsername==='')||(form.projectUrls==='')||validproject){
             setInfo(true);
         } else {
+            setInfo(false);
             try {
                 const dataToSend = {
                     ...form,

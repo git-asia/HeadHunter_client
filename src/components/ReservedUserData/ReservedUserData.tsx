@@ -134,7 +134,6 @@ export const ReservedUserData = () => {
                 ...pagination,
                 allRecords: Number(data.allRecords),
             });
-            console.log(data);
         })();
     }, [pagination.page, filterCon]);
 
