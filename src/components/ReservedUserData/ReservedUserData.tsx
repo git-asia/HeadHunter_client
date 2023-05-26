@@ -162,11 +162,13 @@ export const ReservedUserData = () => {
         studentData.map((item, index) => (
             <div className="user-data__container" key={index}>
                 <div className="user-data__nav">
-                    <div className="reservation-date">
-                        <p>Rezerwacja do: </p>
-                        <p className='bold'>{formatDate(item.reservationExpiresOn)}</p>
+                    <div className='date-and-img'>
+                        <div className="reservation-date">
+                            <p>Rezerwacja do: </p>
+                            <p className='bold'>{formatDate(item.reservationExpiresOn)}</p>
+                        </div>
+                        <img src={item.githubUsername ? `https://github.com/${item.githubUsername}.png` : logo} alt="user logo" />
                     </div>
-                    <img src={item.githubUsername ? `https://github.com/${item.githubUsername}.png` : logo} alt="user logo" />
                     <h4>{item.name}</h4>
                     <div className="input-container">
                         <input
