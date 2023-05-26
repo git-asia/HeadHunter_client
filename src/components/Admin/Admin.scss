@@ -1,11 +1,11 @@
 @import '../../variables';
 
-.page-background {
+.admin-page-background {
   width: 100vw;
   height: 100vh;
   background: $header-dark;
   display: table-cell;
-  vertical-align: middle;
+  vertical-align: top;
 
   .admin-container {
     width: 40%;

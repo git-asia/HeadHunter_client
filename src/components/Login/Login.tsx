@@ -43,10 +43,19 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
                 //localStorage.setItem('token', data.user.token);
                 localStorage.setItem('userid',data.id);
                 if (data.state === 1) {
+                    localStorage.setItem('megakname','Administrator');
                     navigate('/admin');
                 } else if (data.state === 2) {
+                    const resName = await fetch(`${API_URL}/hr/name/${data.id}`);
+                    const fullName = await resName.json();
+                    localStorage.setItem('megakname', fullName);
+                    console.log(fullName);
                     navigate('/list');
                 } else {
+                    const resName = await fetch(`${API_URL}/student/name/${data.id}`);
+                    const { firstName, lastName, githubUsername } = await resName.json();
+                    localStorage.setItem('megakname', firstName+' '+lastName);
+                    localStorage.setItem('gitname', githubUsername);
                     navigate('/edit');
                 }
             } else {
