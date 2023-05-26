@@ -60,14 +60,14 @@ export const CVView = () => {
             <div className="page__container">
                 <Grid className="CVView__back"
                     onClick={() => {
-                        navigate('/list/*');
+                        navigate('/list/reserved');
                     }}>
                     <IoIosArrowDown size={30} className="CVView__back__svg" />
                     <span className="CVView__back__span">Wróć</span>
                 </Grid>
                 <div className="CVView__wrapper">
                     <UserCard
-                        id = {studentId}
+                        id = {studentId} //@TODO nie podobają mu się typy
                         aboutMe={data.bio}
                         name={(data.firstName) + ' ' + (data.lastName)}
                         github={data.githubUsername}

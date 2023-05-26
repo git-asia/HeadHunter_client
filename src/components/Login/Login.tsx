@@ -45,7 +45,7 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
                 if (data.state === 1) {
                     navigate('/admin');
                 } else if (data.state === 2) {
-                    navigate('/list/*');
+                    navigate('/list');
                 } else {
                     navigate('/edit');
                 }
