@@ -152,6 +152,10 @@ export const ReservedUserData = () => {
         return ''
     }
 
+    const showCv = (id:string) => {
+        navigate(`/cv/${id}`)
+    }
+
     return (
         <>
             {studentData &&
@@ -168,7 +172,7 @@ export const ReservedUserData = () => {
                         <input
                             type="button"
                             value="Pokaż CV"
-                            //onClick={}  //TODO odesłanie na CV danego uzytkownika item.studentId
+                            onClick={() => showCv(item.id)}
                         />
                         <input
                             type="button"
