@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
 
 import logo from '../../assets/images/avatar-holder.png';
 import { API_URL } from '../../config/apiUrl';
@@ -25,6 +26,10 @@ interface Props {
 type StudentResults = { allRecords: number; data: ReservedStudent[] };
 
 export const ReservedUserData = () => {
+
+    const navigate = useNavigate();
+    const hrId = localStorage.getItem('userid');
+
     const { filterCon } = useContext(FilterContext);
     const [studentData, setStudentData] = useState<Props[]>([]);
     const { pagination, setPagination } = useContext(PaginationContext);
@@ -52,7 +57,6 @@ export const ReservedUserData = () => {
     // }
 
     const changeStatus = async (studentId: string, index: number, action: string) => {
-        const hrId = '46f84261-df9d-11ed-a2b7-24fd5235b3db'; // @TODO hrId pobrane z ciasteczka lub tokenu?
         try {
             const res = await fetch(`${API_URL}/student/status`, {
                 method: 'PATCH',
@@ -88,7 +92,6 @@ export const ReservedUserData = () => {
             });
         });
     };
-    const hrId = '46f84261-df9d-11ed-a2b7-24fd5235b3db';
 
     useEffect(() => {
         const min = filterCon.expectedSalary.min === '' ? '0' : filterCon.expectedSalary.min;
@@ -135,7 +138,19 @@ export const ReservedUserData = () => {
                 allRecords: Number(data.allRecords),
             });
         })();
+
+        if (!hrId){
+            navigate('/');
+        }
     }, [pagination.page, filterCon]);
+
+    const formatDate = (dateReserv: string|null) => {
+        if (dateReserv){
+            const to = new Date(dateReserv);
+            return `${to.getDate()}.${to.getMonth()+1}.${to.getFullYear()} r.`
+        }
+        return ''
+    }
 
     return (
         <>
@@ -143,7 +158,10 @@ export const ReservedUserData = () => {
         studentData.map((item, index) => (
             <div className="user-data__container" key={index}>
                 <div className="user-data__nav">
-                    <span>{item.reservationExpiresOn}</span>
+                    <div className="reservation-date">
+                        <p>Rezerwacja do: </p>
+                        <p className='bold'>{formatDate(item.reservationExpiresOn)}</p>
+                    </div>
                     <img src={item.githubUsername ? `https://github.com/${item.githubUsername}.png` : logo} alt="user logo" />
                     <h4>{item.name}</h4>
                     <div className="input-container">

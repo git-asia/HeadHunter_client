@@ -8,7 +8,6 @@
   .test {
     border-top: 1.5rem solid $header-dark;
   }
-}
 
 .user-data__nav {
   display: flex;
@@ -16,6 +15,15 @@
   justify-content: space-between;
   height: 7rem;
   background-color: $lightest-dark;
+  color: $white;
+
+  .reservation-date{
+    font-size: $fs-lg;
+
+    .bold {
+      font-weight: bold;
+    }
+  }
 
   img {
     height: 100%;
@@ -27,7 +35,7 @@
     font-size: $fs-xl;
     line-height: 3rem;
     margin-left: 1.6rem;
-    color: #f7f7f7;
+    color: $white;
   }
 
   .input-container {
@@ -61,4 +69,5 @@
   div:not(:last-child) {
     border-right: 2px solid $lightest-dark;
   }
+}
 }
