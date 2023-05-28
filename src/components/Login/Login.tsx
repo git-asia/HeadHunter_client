@@ -40,7 +40,6 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
 
             if (response.ok) {
                 setLoggedIn(true);
-                localStorage.setItem('token', data.user.token);
                 navigate('/');
             } else {
                 setError(data.message);
