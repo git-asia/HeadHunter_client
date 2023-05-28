@@ -67,7 +67,7 @@ export const CVView = () => {
                 </Grid>
                 <div className="CVView__wrapper">
                     <UserCard
-                        id = {studentId} //@TODO nie podobają mu się typy
+                        id = {studentId} //@TODO problem with type ID
                         aboutMe={data.bio}
                         name={(data.firstName) + ' ' + (data.lastName)}
                         github={data.githubUsername}

@@ -10,7 +10,7 @@ import './CVEdit.scss';
 import '../../index.scss'
 
 export const CVEdit = () => {
-    const userId = localStorage.getItem('userid'); // @TODO Nie wiem, skąd wziąć studentId
+    const userId = localStorage.getItem('userid');
 
     useEffect( () => {
         const fetchData = async () => {
@@ -34,7 +34,6 @@ export const CVEdit = () => {
                 validproject = true;
             }
         });
-        console.log(form.firstName, form.lastName, form.githubUsername, form.projectUrls, validproject);
         if ((form.firstName==='')||(form.lastName==='')||(form.githubUsername==='')||(form.projectUrls==='')||validproject){
             setInfo(true);
         } else {
@@ -56,7 +55,7 @@ export const CVEdit = () => {
                     console.log('Dane zostały zapisane');
                 }
             } catch (e) {
-                console.log('Coś poszło nie tak. Spróbuj później');
+                console.error('Coś poszło nie tak. Spróbuj później');
             }
         }
     };

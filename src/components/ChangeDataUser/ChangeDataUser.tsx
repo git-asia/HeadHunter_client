@@ -10,7 +10,7 @@ import './ChangeDataUser.scss';
 
 export const ChangeDataUser: React.FC = () => {
     const navigate = useNavigate();
-    const testId = '92406744-52fd-4c1b-af83-420fbbfe0624'; // @TODO podmienić na prawdziwe ID
+    const testId = localStorage.getItem('userid');
 
     const [formEmail, setFormEmail] = useState('');
 
