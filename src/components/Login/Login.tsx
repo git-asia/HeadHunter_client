@@ -29,7 +29,7 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
 
     const login = async ({ email, password }: LoginParams) => {
         try {
-            const response = await fetch(`${API_URL}/logowanie_z_BE`, {
+            const response = await fetch(`${API_URL}/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
         }
     };
 
-    const handeSubmit = async (e: React.MouseEvent) => {
+    const handleSubmit = async (e: React.MouseEvent) => {
         e.preventDefault();
 
         const user = await login({ email, password });
