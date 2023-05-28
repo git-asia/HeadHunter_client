@@ -15,4 +15,4 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
             </StyledEngineProvider>
         </BrowserRouter>
     </React.StrictMode>,
-) 
+)
