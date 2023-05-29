@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button, Container, Grid } from '@mui/material';
 
 import logo from '../../assets/images/logo.png';
+import { Header } from '../Header/Header';
 
 import '../../index.scss';
 import './Admin.scss';
@@ -23,7 +24,8 @@ export const Admin: React.FC = () => {
     }
 
     return (
-        <div className="page-background">
+        <div className="admin-page-background">
+            <Header/>
             <Container className="admin-container">
                 <Grid container spacing={3}>
                     <Grid item xs={12}>

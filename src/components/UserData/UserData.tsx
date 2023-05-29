@@ -27,6 +27,8 @@ export const UserData = () => {
     const [studentData, setStudentData] = useState<Props[]>([]);
     const { pagination, setPagination } = useContext(PaginationContext);
 
+    const hrId = localStorage.getItem('userid');
+
     const changeStatus = async (studentId: string, index: number) => {
         try {
             const res = await fetch(`${API_URL}/student/status`, {
@@ -37,6 +39,7 @@ export const UserData = () => {
                 body: JSON.stringify({
                     action: UpdateAction.reserve,
                     studentId,
+                    hrId,
                 }),
             });
             const data = await res.json();

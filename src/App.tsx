@@ -23,7 +23,7 @@ export const App = () => {
                 <Route path="/addhr" element={<AddHr />} />
                 <Route path="/admin" element={<Admin />} />
                 <Route path="/send-student" element={<SendStudentsData />} />
-                <Route path="/cv" element={<CVView />} />
+                <Route path="/cv/:studentId" element={<CVView />} />
                 <Route path="/log/:token" element={<TestToken />} />
                 <Route path="/change-data-user" element={<ChangeDataUser />} />
                 <Route>
