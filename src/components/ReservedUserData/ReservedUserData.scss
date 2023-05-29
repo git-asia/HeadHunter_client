@@ -17,6 +17,10 @@
   height: 7rem;
   background-color: $lightest-dark;
 
+  img {
+    height: 100%;
+  }
+
   h4 {
     font-weight: normal;
     text-align: left;
@@ -35,7 +39,7 @@
     input {
       height: 3.9rem;
       background-color: #e02735;
-      color: #f7f7f7;
+      color: $white;
       outline: 0;
       border: 0;
       padding: 0.5rem 1rem;
