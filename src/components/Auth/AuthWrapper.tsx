@@ -5,6 +5,5 @@ interface AuthWrapperProps {
   isLoggedIn: boolean;
 }
 
-export const AuthWrapper: React.FC<AuthWrapperProps> = ({ isLoggedIn }) => {
-    return isLoggedIn ? <Outlet/>: <Navigate to="/auth/login" />;
-};
+export const AuthWrapper: React.FC<AuthWrapperProps> = ({ isLoggedIn }) =>
+    isLoggedIn ? <Outlet/> : <Navigate to="/auth/login" />;

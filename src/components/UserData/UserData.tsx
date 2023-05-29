@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
+import { AvailableStudent, ContractType, Internship, TypeWork, UpdateAction } from 'types';
 
 import { API_URL } from '../../config/apiUrl';
 import { FilterContext } from '../../contexts/filter.context';
 import { PaginationContext } from '../../contexts/pagination.context';
-import { AvailableStudent, ContractType, Internship, TypeWork } from '../../types';
 
 import { UserDataFragment } from './UserDataFragment/UserDataFragment';
 
@@ -14,7 +14,7 @@ interface Props {
   id: string;
   name: string;
   open: boolean;
-  FragmentsValues: {
+  fragmentsValues: {
     header: string;
     value: string;
   }[];
@@ -37,7 +37,7 @@ export const UserData = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    action: 'reserve',
+                    action: UpdateAction.reserve,
                     studentId,
                     hrId,
                 }),
@@ -84,7 +84,7 @@ export const UserData = () => {
             });
             const data: StudentResults = await res.json();
             const student = data.data.map((item) => ({
-                FragmentsValues: [
+                fragmentsValues: [
                     { header: 'Ocena przejścia kursu', value: item.courseCompletion + '/5' },
                     { header: 'Ocena aktywności i zaangażowania na kursie', value: item.courseEngagement + '/5' },
                     { header: 'Ocena kodu w projekcie własnym', value: item.projectDegree + '/5' },
@@ -133,7 +133,7 @@ export const UserData = () => {
                 </div>
                 {item.open && (
                     <div className="user-data__fragments">
-                        {item.FragmentsValues.map(({ header, value }, id) => {
+                        {item.fragmentsValues.map(({ header, value }, id) => {
                             return <UserDataFragment header={header} value={value} key={id} />;
                         })}
                     </div>
