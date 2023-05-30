@@ -1,5 +1,5 @@
-import React from 'react';
-import { Button, Container, Grid, TextField } from '@mui/material';
+import React, { useState } from 'react';
+import { Button, CircularProgress, Container, Grid, TextField } from '@mui/material';
 
 import logo from '../../assets/images/logo.png';
 
@@ -7,6 +7,7 @@ import '../../index.scss';
 import './PasswordReminder.scss';
 
 export const PasswordReminder: React.FC = () => {
+    const [spinner, setSpinner] = useState(false);
     return (
         <div className="page-background">
             <Container maxWidth="md" className="login-container">
@@ -26,8 +27,10 @@ export const PasswordReminder: React.FC = () => {
                             fullWidth
                         />
                         <Grid container justifyContent="center">
+                            <CircularProgress
+                                style={{ display: spinner ? '' : 'none' }}/>
                             <Button className="login-btn">
-                Zresetuj hasło
+                                Zresetuj hasło
                             </Button>
                         </Grid>
                     </Grid>
