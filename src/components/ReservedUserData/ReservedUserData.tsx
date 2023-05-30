@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 import { useNavigate } from 'react-router-dom';
+import { ContractType, Internship, ReservedStudent, TypeWork } from 'types';
 
 import logo from '../../assets/images/avatar-holder.png';
 import { API_URL } from '../../config/apiUrl';
 import { FilterContext } from '../../contexts/filter.context';
 import { PaginationContext } from '../../contexts/pagination.context';
-import { ContractType, Internship, ReservedStudent,TypeWork  } from '../../types';
 import { UserDataFragment } from '../UserData/UserDataFragment/UserDataFragment';
 
 import './ReservedUserData.scss';
