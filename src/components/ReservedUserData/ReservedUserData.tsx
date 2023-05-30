@@ -17,7 +17,7 @@ interface Props {
   open: boolean;
   githubUsername: string;
   reservationExpiresOn: string | null;
-  FragmentsValues: {
+  fragmentsValues: {
     header: string;
     value: string;
   }[];
@@ -111,7 +111,7 @@ export const ReservedUserData = () => {
             });
             const data: StudentResults = await res.json();
             const student = data.data.map((item) => ({
-                FragmentsValues: [
+                fragmentsValues: [
                     { header: 'Ocena przejścia kursu', value: item.courseCompletion + '/5' },
                     { header: 'Ocena aktywności i zaangażowania na kursie', value: item.courseEngagement + '/5' },
                     { header: 'Ocena kodu w projekcie własnym', value: item.projectDegree + '/5' },
@@ -194,7 +194,7 @@ export const ReservedUserData = () => {
                 </div>
                 {item.open && (
                     <div className="user-data__fragments">
-                        {item.FragmentsValues.map(({ header, value }, id) => {
+                        {item.fragmentsValues.map(({ header, value }, id) => {
                             return <UserDataFragment header={header} value={value} key={id} />;
                         })}
                     </div>
