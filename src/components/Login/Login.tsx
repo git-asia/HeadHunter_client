@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { Button, Container, Grid, IconButton, InputAdornment, TextField } from '@mui/material';
+import { Button, CircularProgress, Container, Grid, IconButton, InputAdornment, TextField } from '@mui/material';
 
 import logo from '../../assets/images/logo.png';
 import { API_URL } from '../../config/apiUrl';
@@ -26,8 +26,10 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [inputTextEmail, setInputTextEmail] = useState(false);
     const [inputTextPassword, setInputTextPassword] = useState(false);
+    const [spinner, setSpinner] = useState(false);
 
     const login = async () => {
+        setSpinner(true);
         try {
             const response = await fetch(`${API_URL}/user/login`, {
                 method: 'POST',
@@ -65,6 +67,9 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
         } catch (error) {
             console.error(error);
             setError('An error occurred during login.');
+        }
+        finally {
+            setSpinner(false);
         }
     };
 
@@ -148,6 +153,8 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
                         alignItems={'baseline'}
                     >
                         <Grid item>
+                            <CircularProgress 
+                                style={{ display: spinner ? '' : 'none' }}/>
                             <Button className="login-btn"
                                 onClick={login}>
                                 Zaloguj się
