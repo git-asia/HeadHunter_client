@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
-import { ReservedStudent, UpdateAction } from 'types';
+import { ReservedStudent, StudentProps, UpdateAction } from 'types';
 
 import { API_URL } from '../../config/apiUrl';
 import { FilterContext } from '../../contexts/filter.context';
@@ -12,21 +12,11 @@ import { UserDataFragment } from './UserDataFragment/UserDataFragment';
 
 import './UserData.scss';
 
-interface Props {
-  id: string;
-  name: string;
-  open: boolean;
-  fragmentsValues: {
-    header: string;
-    value: string;
-  }[];
-}
-
 type StudentResults = { allRecords: number; data: ReservedStudent[] };
 
 export const UserData = () => {
     const { filterCon } = useContext(FilterContext);
-    const [studentData, setStudentData] = useState<Props[]>([]);
+    const [studentData, setStudentData] = useState<StudentProps[]>([]);
     const { pagination, setPagination } = useContext(PaginationContext);
 
     const hrId = localStorage.getItem('userid');
@@ -50,7 +40,6 @@ export const UserData = () => {
             setStudentData((studentData) => {
                 return studentData.filter((_, i) => i !== index);
             });
-            // zmiana state
         }
     };
 
