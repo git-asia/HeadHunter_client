@@ -7,38 +7,16 @@ import { Pagination } from '../../components/Pagination/Pagination';
 import { ReservedUserData } from '../../components/ReservedUserData/ReservedUserData';
 import { SearchFilterBar } from '../../components/SearchFilterBar/SearchFilterBar';
 import { UserData } from '../../components/UserData/UserData';
+import { initialStateFilter } from '../../components/utils/initialState.filter';
 import { FilterContext } from '../../contexts/filter.context';
 import { PaginationContext } from '../../contexts/pagination.context';
 
 import './ListView.scss';
 import '../../index.scss'
 
-const initialState = {
-    expectedTypeWork: {
-        remoteWork: false,
-        inOffice: false,
-    },
-    expectedContractType: {
-        employmentContract: false,
-        b2b: false,
-        mandateContract: false,
-        workContract: false,
-    },
-    expectedSalary: {
-        min: '',
-        max: '',
-    },
-    canTakeApprenticeship: null,
-    monthsOfCommercialExp: '0',
-    courseCompletion: 1,
-    courseEngagement: 1,
-    projectDegree: 1,
-    teamProjectDegree: 1,
-};
-
 export const ListView = () => {
 
-    const [filterCon,setFilterCon] = useState(initialState)
+    const [filterCon,setFilterCon] = useState(initialStateFilter)
     const [pagination,setPagination] = useState({ page: 0, rowsPerPage:10, allRecords:0 });
 
     return (
