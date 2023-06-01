@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
-import { Button, Container, TextField } from '@mui/material';
+import { Button, CircularProgress, Container, TextField } from '@mui/material';
 
 import logo from '../../assets/images/avatar-holder.png';
 import { Header } from '../../components/Header/Header';
@@ -27,6 +27,7 @@ export const CVEdit = () => {
     }, []);
 
     const sendForm = async (e: SyntheticEvent) => {
+        setSpinner(true);
         e.preventDefault();
         let validproject = false;
         form.projectUrls.split(' ').forEach(el => {
@@ -56,6 +57,8 @@ export const CVEdit = () => {
                 }
             } catch (e) {
                 console.error('Coś poszło nie tak. Spróbuj później');
+            } finally {
+                setSpinner(false);
             }
         }
     };
@@ -66,6 +69,7 @@ export const CVEdit = () => {
             [key]: value,
         }))
     };
+    const [spinner, setSpinner] = useState(false);
 
     const [info, setInfo] = useState(false);
 
@@ -316,6 +320,8 @@ export const CVEdit = () => {
                         />
                     </div>
                     <p style={{ display: info ? '' : 'none' }}>Musisz podać: imię, nazwisko, nick w Github oraz projekt na zaliczenie.</p>
+                    <CircularProgress
+                        style={{ display: spinner ? '' : 'none' }}/>
                     <Button
                         className="sendCvBtn"
                         onClick={sendForm}

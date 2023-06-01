@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Container, Grid, TextField } from '@mui/material';
+import { Button, CircularProgress, Container, Grid, TextField } from '@mui/material';
 
 import logo from '../../assets/images/logo.png';
 import { API_URL } from '../../config/apiUrl';
@@ -24,8 +24,12 @@ export const ChangeDataUser: React.FC = () => {
     const [validPass, setValidPass] = useState(true);
 
     const [validPass2, setValidPass2] = useState(true);
+    const [spinnerMail, setSpinnerMail] = useState(false);
+    const [spinnerPass, setSpinnerPass] = useState(false);
+    const [spinnerJob, setSpinnerJob] = useState(false);
 
     const sendMail = async () => {
+        setSpinnerMail(true);
         if(formEmail.includes('@')){
             setValidMail(true);
             const toSendMail = {
@@ -48,6 +52,8 @@ export const ChangeDataUser: React.FC = () => {
                 }
             } catch (e) {
                 console.log('Coś poszło nie tak. Spróbuj później')
+            } finally {
+                setSpinnerMail(false);
             }
 
         } else {
@@ -56,6 +62,7 @@ export const ChangeDataUser: React.FC = () => {
     }
 
     const sendPass = async () => {
+        setSpinnerPass(true);
         const passwordRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/;
         if (!passwordRegex.test(formPass.pass)){
             setValidPass(false);
@@ -87,11 +94,14 @@ export const ChangeDataUser: React.FC = () => {
                 }
             } catch (e) {
                 console.log('Coś poszło nie tak. Spróbuj później')
+            } finally {
+                setSpinnerPass(false);
             }
         }
     }
 
     const haveJob = async () => {
+        setSpinnerJob(true);
         const toSendStatus = {
             studentId: testId,
             userStatus: 3
@@ -110,6 +120,8 @@ export const ChangeDataUser: React.FC = () => {
             }
         } catch (e) {
             console.log('Coś poszło nie tak. Spróbuj później')
+        } finally {
+            setSpinnerPass(false);
         }
     }
 
@@ -130,6 +142,8 @@ export const ChangeDataUser: React.FC = () => {
                         />
                         <p className="info"
                             style={{ display: validMail ? 'none' : '' }}>To nie jest prawidłowy adres e-mail</p>
+                        <CircularProgress
+                            style={{ display: spinnerMail ? '' : 'none' }}/>
                         <Button className="change-user-data-btn"
                             onClick={sendMail}>
                             Zapisz e-mail
@@ -158,6 +172,8 @@ export const ChangeDataUser: React.FC = () => {
                         />
                         <p className="info"
                             style={{ display: validPass2 ? 'none' : '' }}>Hasła się różnią</p>
+                        <CircularProgress
+                            style={{ display: spinnerPass ? '' : 'none' }}/>
                         <Button className="change-user-data-btn"
                             onClick={sendPass}>
                             Zapisz hasło
@@ -165,6 +181,8 @@ export const ChangeDataUser: React.FC = () => {
                     </Grid>
                     <Grid item xs={12} className="work-box">
                         <p className="info">Naciśnięcie poniższego przycisku oznacza zakończenie korzystania z portalu. Powodzenia w nowej pracy!</p>
+                        <CircularProgress
+                            style={{ display: spinnerJob ? '' : 'none' }}/>
                         <Button className="change-user-data-btn"
                             onClick={haveJob}>
                             Znalazłem pracę!

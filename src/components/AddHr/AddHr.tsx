@@ -1,5 +1,5 @@
 import React, { SyntheticEvent, useState } from 'react';
-import { Button, Container, Grid, TextField } from '@mui/material';
+import { Button, CircularProgress, Container, Grid, TextField } from '@mui/material';
 
 import logo from '../../assets/images/logo.png';
 import { API_URL } from '../../config/apiUrl';
@@ -21,6 +21,7 @@ export const AddHr: React.FC = () => {
         company: false,
         maxStudent: false
     });
+    const [spinner, setSpinner] = useState(false);
 
     const updateForm = (key: string, value: string | number) => {
         setForm((form) => ({
@@ -37,6 +38,7 @@ export const AddHr: React.FC = () => {
     };
 
     const sendForm = async (e: SyntheticEvent) => {
+        setSpinner(true);
         e.preventDefault();
         setValidForm({
             email: !form.email.includes('@'),
@@ -47,10 +49,10 @@ export const AddHr: React.FC = () => {
 
         if (
             form.email.includes('@') &&
-      form.fullName !== '' &&
-      form.company !== '' &&
-      Number(form.maxReservedStudents) > 0 &&
-      Number(form.maxReservedStudents) < 1000
+            form.fullName !== '' &&
+            form.company !== '' &&
+            Number(form.maxReservedStudents) > 0 &&
+            Number(form.maxReservedStudents) < 1000
         ) {
             try {
                 const res = await fetch(
@@ -63,6 +65,8 @@ export const AddHr: React.FC = () => {
                 }
             } catch (e) {
                 console.log('Coś poszło nie tak. Spróbuj później.');
+            } finally {
+                setSpinner(false);
             }
         }
     };
@@ -138,6 +142,8 @@ export const AddHr: React.FC = () => {
                             />
                         </Grid>
                         <Grid>
+                            <CircularProgress
+                                style={{ display: spinner ? '' : 'none' }}/>
                             <Button className="add-hr-btn" onClick={sendForm}>
                 Zapisz
                             </Button>

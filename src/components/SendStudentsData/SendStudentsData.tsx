@@ -1,4 +1,5 @@
-import React, { SyntheticEvent } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
+import { CircularProgress } from '@mui/material';
 
 import logo from '../../assets/images/logo.png';
 import { API_URL } from '../../config/apiUrl';
@@ -7,7 +8,9 @@ import '../../index.scss';
 import './SendStudentsData.scss';
 
 export const SendStudentsData = () => {
+    const [spinner, setSpinner] = useState(false);
     const sendForm = async (e: SyntheticEvent) => {
+        setSpinner(true);
         //e.preventDefault();
         const formData = new FormData(e.target as HTMLFormElement);
         try {
@@ -22,6 +25,8 @@ export const SendStudentsData = () => {
             }
         } catch (error) {
             console.log('coś nie poszło');
+        } finally {
+            setSpinner(false);
         }
     }
     return (
@@ -38,6 +43,8 @@ export const SendStudentsData = () => {
                     />
                 </label>
                 <div>
+                    <CircularProgress
+                        style={{ display: spinner ? '' : 'none' }}/>
                     <button
                         className="send-students-btn"
                         type="submit"
