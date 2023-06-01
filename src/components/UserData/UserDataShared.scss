@@ -1,0 +1,61 @@
+@import "../../variables";
+
+.shared-user-data {
+  width: 100%;
+  min-height: 7rem;
+  padding: 0 2rem;
+
+  .test {
+    border-top: 1.5rem solid $header-dark;
+  }
+}
+
+.shared-user-data-nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 7rem;
+  background-color: $lightest-dark;
+  color: $white;
+
+  h4 {
+    font-weight: normal;
+    text-align: left;
+    font-size: $fs-xl;
+    line-height: 3rem;
+    margin-left: 1.6rem;
+    color: $white;
+  }
+
+  .input-container {
+    display: flex;
+    padding: 0 1rem;
+    justify-content: space-between;
+    align-items: center;
+
+    input {
+      height: 3.9rem;
+      background-color: $primary-btn;
+      color: $white;
+      outline: 0;
+      border: 0;
+      padding: 0.5rem 1rem;
+      margin-right: 1.5rem;
+      font-size: $fs-lg;
+      line-height: 2.7rem;
+    }
+
+    .user-data__nav__svg--rotate {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.shared-user-data-fragment{
+  width: 100%;
+  display: flex;
+
+  div:not(:last-child) {
+    border-right: 2px solid $lightest-dark;
+  }
+}

@@ -1,31 +1,25 @@
 import { useContext, useEffect, useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
+import { ReservedStudent, StudentProps, UpdateAction } from 'types';
 
 import { API_URL } from '../../config/apiUrl';
 import { FilterContext } from '../../contexts/filter.context';
 import { PaginationContext } from '../../contexts/pagination.context';
-import { AvailableStudent, ContractType, Internship, TypeWork } from '../../types';
+import { filterQuery } from '../utils/filterQuery';
+import { fragmentValues } from '../utils/fragmentValues';
 
 import { UserDataFragment } from './UserDataFragment/UserDataFragment';
 
 import './UserData.scss';
 
-interface Props {
-  id: string;
-  name: string;
-  open: boolean;
-  FragmentsValues: {
-    header: string;
-    value: string;
-  }[];
-}
-
-type StudentResults = { allRecords: number; data: AvailableStudent[] };
+type StudentResults = { allRecords: number; data: ReservedStudent[] };
 
 export const UserData = () => {
     const { filterCon } = useContext(FilterContext);
-    const [studentData, setStudentData] = useState<Props[]>([]);
+    const [studentData, setStudentData] = useState<StudentProps[]>([]);
     const { pagination, setPagination } = useContext(PaginationContext);
+
+    const hrId = localStorage.getItem('userid');
 
     const changeStatus = async (studentId: string, index: number) => {
         try {
@@ -35,8 +29,9 @@ export const UserData = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    action: 'reserve',
+                    action: UpdateAction.reserve,
                     studentId,
+                    hrId,
                 }),
             });
             const data = await res.json();
@@ -45,7 +40,6 @@ export const UserData = () => {
             setStudentData((studentData) => {
                 return studentData.filter((_, i) => i !== index);
             });
-            // zmiana state
         }
     };
 
@@ -65,46 +59,20 @@ export const UserData = () => {
     };
 
     useEffect(() => {
-        const min = filterCon.expectedSalary.min === '' ? '0' : filterCon.expectedSalary.min;
-        const max = filterCon.expectedSalary.max === '' ? '999999' : filterCon.expectedSalary.max;
-
-        let param = `${filterCon.expectedTypeWork.remoteWork}/${filterCon.expectedTypeWork.inOffice}/`;
-        param += `${filterCon.expectedContractType.employmentContract}/${filterCon.expectedContractType.mandateContract}/${filterCon.expectedContractType.b2b}/${filterCon.expectedContractType.workContract}/`;
-        param += `${min}/${max}/`;
-        param += `${filterCon.courseCompletion}/${filterCon.courseEngagement}/${filterCon.projectDegree}/${filterCon.teamProjectDegree}/`;
-        param += `${filterCon.canTakeApprenticeship}/${filterCon.monthsOfCommercialExp}/`;
-        param += `${pagination.page}/${pagination.rowsPerPage}/`;
+        const filtersParams = new URLSearchParams(filterQuery(filterCon,pagination));
 
         (async () => {
-            const res = await fetch(`${API_URL}/student/all/${param}`, {
+            const res = await fetch(`${API_URL}/student/all?${filtersParams}`, {
                 method: 'GET',
             });
-            const data: StudentResults = await res.json();
-            const student = data.data.map((item) => ({
-                FragmentsValues: [
-                    { header: 'Ocena przejścia kursu', value: item.courseCompletion + '/5' },
-                    { header: 'Ocena aktywności i zaangażowania na kursie', value: item.courseEngagement + '/5' },
-                    { header: 'Ocena kodu w projekcie własnym', value: item.projectDegree + '/5' },
-                    { header: 'Ocena pracy w zespole w Scrum', value: item.teamProjectDegree + '/5' },
-                    { header: 'Preferowane miejsce pracy', value: TypeWork[item.expectedTypeWork] },
-                    { header: 'Docelowe miasto, gdzie chce pracować kandydat', value: item.targetWorkCity },
-                    { header: 'Oczekiwany typ kontraktu', value: ContractType[item.expectedContractType] },
-                    { header: 'Oczekiwane wynagrodzenie miesięczne netto', value: item.expectedSalary + ' zł' },
-                    {
-                        header: 'Zgoda na odbycie bezpłatnych praktyk/stażu na początek',
-                        value: Internship[item.canTakeApprenticeship],
-                    },
-                    { header: 'Komercyjne doświadczenie w programowaniu', value: item.monthsOfCommercialExp.toString() },
-                ],
-                id: item.studentId,
-                name: item.firstName + ' ' + item.lastName.charAt(0) + '.',
-                open: false,
-            })) as Props[];
+            const { data,allRecords }: StudentResults = await res.json();
+
+            const student = fragmentValues(data);
             setStudentData(student);
 
             setPagination({
                 ...pagination,
-                allRecords: Number(data.allRecords),
+                allRecords: Number(allRecords),
             });
         })();
     }, [pagination.page, filterCon]);
@@ -130,7 +98,7 @@ export const UserData = () => {
                 </div>
                 {item.open && (
                     <div className="user-data__fragments">
-                        {item.FragmentsValues.map(({ header, value }, id) => {
+                        {item.fragmentsValues.map(({ header, value }, id) => {
                             return <UserDataFragment header={header} value={value} key={id} />;
                         })}
                     </div>

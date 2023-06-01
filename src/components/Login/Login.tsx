@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { Button, Container, Grid, IconButton, InputAdornment, TextField } from '@mui/material';
+import { Button, CircularProgress, Container, Grid, IconButton, InputAdornment, TextField } from '@mui/material';
 
 import logo from '../../assets/images/logo.png';
 import { API_URL } from '../../config/apiUrl';
@@ -10,13 +10,13 @@ import './Login.scss';
 import '../../index.scss'
 
 interface LoginProps {
-  setLoggedIn: (loggedIn: boolean) => void;
+    setLoggedIn: (loggedIn: boolean) => void;
 }
 
-interface LoginParams {
-  email: string;
-  password: string;
-}
+// interface LoginParams {
+//     email: string;
+//     password: string;
+// }
 
 export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
     const navigate = useNavigate();
@@ -26,10 +26,12 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [inputTextEmail, setInputTextEmail] = useState(false);
     const [inputTextPassword, setInputTextPassword] = useState(false);
+    const [spinner, setSpinner] = useState(false);
 
-    const login = async ({ email, password }: LoginParams) => {
+    const login = async () => {
+        setSpinner(true);
         try {
-            const response = await fetch(`${API_URL}/logowanie_z_BE`, {
+            const response = await fetch(`${API_URL}/user/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -40,29 +42,52 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
 
             if (response.ok) {
                 setLoggedIn(true);
-                localStorage.setItem('token', data.user.token);
-                navigate('/');
+                //localStorage.setItem('token', data.user.token);
+                localStorage.setItem('userid',data.id);
+                if (data.state === 1) {
+                    localStorage.setItem('megakname','Administrator');
+                    navigate('/admin');
+                } else if (data.state === 2) {
+                    const resName = await fetch(`${API_URL}/hr/name/${data.id}`);
+                    const fullName = await resName.json();
+                    localStorage.setItem('megakname', fullName);
+                    console.log(fullName);
+                    navigate('/list');
+                } else {
+                    const resName = await fetch(`${API_URL}/student/name/${data.id}`);
+                    const { firstName, lastName, githubUsername } = await resName.json();
+                    localStorage.setItem('megakname', firstName+' '+lastName);
+                    localStorage.setItem('gitname', githubUsername);
+                    navigate('/edit');
+                }
             } else {
                 setError(data.message);
+                console.log(error);
             }
         } catch (error) {
             console.error(error);
             setError('An error occurred during login.');
         }
+        finally {
+            setSpinner(false);
+        }
     };
 
-    const handeSubmit = async (e: React.MouseEvent) => {
-        e.preventDefault();
-
-        const user = await login({ email, password });
-    };
+    // const handeSubmit = async (e: React.MouseEvent) => {
+    //     e.preventDefault();
+    //
+    //     const user = await login();
+    // };
 
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
+        setInputTextEmail(/^\S+@\S+\.\S+$/.test(event.target.value));
     };
 
     const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
+        setInputTextPassword(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/.test(event.target.value));
+
     };
     const handlePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -83,10 +108,9 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
                             type="email"
                             placeholder="E-mail"
                             variant="outlined"
-                            onChange={e => setInputTextEmail(/^\S+@\S+\.\S+$/.test(e.target.value))}
                             fullWidth
                             value={email}
-                            // onChange={handleEmailChange} <--- poprawić
+                            onChange={handleEmailChange}
                         />
                         <p className="infoAboutValidation"
                             style={{ display: inputTextPassword ? 'none' : '' }}
@@ -99,7 +123,7 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
                             variant="outlined"
                             fullWidth
                             value={password}
-                            // onChange={handlePasswordChange} <--- poprawić
+                            onChange={handlePasswordChange}
                             InputProps={{
                                 endAdornment: (
                                     <InputAdornment position="end">
@@ -114,12 +138,11 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
                                     </InputAdornment>
                                 ),
                             }}
-                            onChange={e => setInputTextPassword(/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/.test(e.target.value))}
                         />
                     </Grid>
                     <Grid container justifyContent="flex-end">
                         <Button className="forgot-password-link" color="primary">
-              Zapomniałeś hasła?
+                            Zapomniałeś hasła?
                         </Button>
                     </Grid>
                     <Grid
@@ -130,8 +153,11 @@ export const Login: React.FC<LoginProps> = ({ setLoggedIn }) => {
                         alignItems={'baseline'}
                     >
                         <Grid item>
-                            <Button className="login-btn">
-                Zaloguj się
+                            <CircularProgress 
+                                style={{ display: spinner ? '' : 'none' }}/>
+                            <Button className="login-btn"
+                                onClick={login}>
+                                Zaloguj się
                             </Button>
                         </Grid>
                     </Grid>

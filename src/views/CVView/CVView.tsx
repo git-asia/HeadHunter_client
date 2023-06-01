@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Grid } from '@mui/material';
 
 import { Header } from '../../components/Header/Header';
 import { UserCard } from '../../components/UserCard/UserCard';
@@ -10,8 +12,9 @@ import './CVView.scss';
 import '../../index.scss'
 
 export const CVView = () => {
+    const navigate = useNavigate();
     const contractType = ['', 'Umowa o pracę', 'B2B', 'Umowa zlecenie', 'Umowa o dzieło'];
-    const id = '92406744-52fd-4c1b-af83-420fbbfe0624'; //@TODO zamienić na prawdziwe ID
+    const { studentId } = useParams<string>();
     const [mail, setMail] = useState('');
     const [data, setData] = useState({
         bio:'',
@@ -40,11 +43,10 @@ export const CVView = () => {
 
     useEffect( () => {
         const fetchData = async () => {
-            const res = await fetch(`${API_URL}/student/getcv/${id}`);
+            const res = await fetch(`${API_URL}/student/getcv/${studentId}`);
             const downloadData = (await res.json())[0];
             setData(downloadData);
-            console.log(data.portfolioUrls);
-            const resMail = await fetch(`${API_URL}/user/getemail/${id}`);
+            const resMail = await fetch(`${API_URL}/user/getemail/${studentId}`);
             const email = (await resMail.json());
             setMail(email);
         }
@@ -56,13 +58,16 @@ export const CVView = () => {
         <div className="CVView__container">
             <Header/>
             <div className="page__container">
-                <div className="CVView__back">
+                <Grid className="CVView__back"
+                    onClick={() => {
+                        navigate('/list/reserved');
+                    }}>
                     <IoIosArrowDown size={30} className="CVView__back__svg" />
                     <span className="CVView__back__span">Wróć</span>
-                </div>
+                </Grid>
                 <div className="CVView__wrapper">
                     <UserCard
-                        id = {id}
+                        id = {studentId as string}
                         aboutMe={data.bio}
                         name={(data.firstName) + ' ' + (data.lastName)}
                         github={data.githubUsername}

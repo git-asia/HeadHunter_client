@@ -1,0 +1,47 @@
+@import '../../variables';
+
+.admin-page-background {
+  width: 100vw;
+  height: 100vh;
+  background: $header-dark;
+  display: table-cell;
+  vertical-align: top;
+
+  .admin-container {
+    width: 40%;
+
+    .logo {
+      height: auto;
+      max-width: 12.4rem;
+      display: block;
+      margin: 3rem auto;
+    }
+
+    .MuiInputBase-root {
+      margin: 0;
+    }
+
+    .css-wb57ya-MuiFormControl-root-MuiTextField-root {
+      align-items: center;
+
+      .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root {
+        font-family: unset;
+      }
+    }
+
+    Button.admin-btn {
+      display: block;
+      height: 4rem;
+      margin: 1rem auto;
+      padding: 1rem 1.6rem;
+      text-align: center;
+      font-weight: normal;
+      background-color: $primary-btn;
+      border-radius: 0;
+      color: $white;
+      font-size: $fs-sm;
+      text-transform: none;
+    }
+  }
+}
+

@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useEffect, useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
-import { Button, Container, TextField } from '@mui/material';
+import { Button, CircularProgress, Container, TextField } from '@mui/material';
 
 import logo from '../../assets/images/avatar-holder.png';
 import { Header } from '../../components/Header/Header';
@@ -10,7 +10,7 @@ import './CVEdit.scss';
 import '../../index.scss'
 
 export const CVEdit = () => {
-    const userId = '92406744-52fd-4c1b-af83-420fbbfe0624'; // @TODO Nie wiem, skąd wziąć studentId
+    const userId = localStorage.getItem('userid');
 
     useEffect( () => {
         const fetchData = async () => {
@@ -27,10 +27,18 @@ export const CVEdit = () => {
     }, []);
 
     const sendForm = async (e: SyntheticEvent) => {
+        setSpinner(true);
         e.preventDefault();
-        if ((form.firstName==='')||(form.lastName==='')||(form.githubUsername==='')||(form.projectUrls==='')){
+        let validproject = false;
+        form.projectUrls.split(' ').forEach(el => {
+            if (!/^(ftp|http|https):\/\/[^ "]+$/.test(el)) {
+                validproject = true;
+            }
+        });
+        if ((form.firstName==='')||(form.lastName==='')||(form.githubUsername==='')||(form.projectUrls==='')||validproject){
             setInfo(true);
         } else {
+            setInfo(false);
             try {
                 const dataToSend = {
                     ...form,
@@ -48,7 +56,9 @@ export const CVEdit = () => {
                     console.log('Dane zostały zapisane');
                 }
             } catch (e) {
-                console.log('Coś poszło nie tak. Spróbuj później');
+                console.error('Coś poszło nie tak. Spróbuj później');
+            } finally {
+                setSpinner(false);
             }
         }
     };
@@ -59,6 +69,7 @@ export const CVEdit = () => {
             [key]: value,
         }))
     };
+    const [spinner, setSpinner] = useState(false);
 
     const [info, setInfo] = useState(false);
 
@@ -309,6 +320,8 @@ export const CVEdit = () => {
                         />
                     </div>
                     <p style={{ display: info ? '' : 'none' }}>Musisz podać: imię, nazwisko, nick w Github oraz projekt na zaliczenie.</p>
+                    <CircularProgress
+                        style={{ display: spinner ? '' : 'none' }}/>
                     <Button
                         className="sendCvBtn"
                         onClick={sendForm}

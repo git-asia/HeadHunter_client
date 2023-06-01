@@ -28,13 +28,14 @@
   }
 
   .Usercard__github {
+    width: 100%;
     display: flex;
-    margin-bottom: 1.5rem;
     align-items: center;
+    justify-content: left;
 
     .Usercard__github__svg {
       fill: $links;
-      margin: 0 0.5rem;
+      margin-right: 1rem;
     }
 
     .Usercard__github__link {

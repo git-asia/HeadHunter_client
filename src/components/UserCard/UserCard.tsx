@@ -1,6 +1,9 @@
+import React, { useState } from 'react';
 import { BsGithub } from 'react-icons/bs';
 import { GiPhone } from 'react-icons/gi';
 import { GrMail } from 'react-icons/gr';
+import { useNavigate } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
 
 import logo from '../../assets/images/avatar-holder.png';
 import { API_URL } from '../../config/apiUrl';
@@ -18,6 +21,9 @@ interface Props {
 }
 
 export const UserCard = ({ id, name, github, phoneNumber, email, aboutMe }: Props) => {
+    const [spinner, setSpinner] = useState(false);
+    const navigate = useNavigate();
+    const hrId = localStorage.getItem('userid');
     const slicedPhoneNumber = [];
     if (phoneNumber !== null) {
         for (let i = 0; i < phoneNumber.length; i += 3) {
@@ -26,7 +32,7 @@ export const UserCard = ({ id, name, github, phoneNumber, email, aboutMe }: Prop
     }
 
     const changeStatus = async (studentId:string, action:string) =>{
-        const hrId = '46f84261-df9d-11ed-a2b7-24fd5235b3db' // @TODO hrId pobrane z ciasteczka lub tokenu?
+        setSpinner(true);
         try {
             const res = await fetch(`${API_URL}/student/status`, {
                 method: 'PATCH',
@@ -41,7 +47,9 @@ export const UserCard = ({ id, name, github, phoneNumber, email, aboutMe }: Prop
             });
             const data = await res.json();
             console.log(data.message);
+            navigate('../list/reserved');
         } finally {
+            setSpinner(false);
             // zmiana state
         }
     }
@@ -71,6 +79,8 @@ export const UserCard = ({ id, name, github, phoneNumber, email, aboutMe }: Prop
                 <p className="Usercard__aboutme__value">{aboutMe}</p>
             </div>
             <div className="Usercard__buttons">
+                <CircularProgress
+                    style={{ display: spinner ? '' : 'none' }}/>
                 <Button value="Brak zainteresowania"   onClick={()=>changeStatus(id,'disinterest')}/>
                 <Button value="Zatrudniony"  onClick={()=>changeStatus(id,'employ')} />
             </div>

@@ -1,58 +1,30 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
+import { useNavigate } from 'react-router-dom';
+import { ReservedStudent, StudentProps } from 'types';
 
 import logo from '../../assets/images/avatar-holder.png';
 import { API_URL } from '../../config/apiUrl';
 import { FilterContext } from '../../contexts/filter.context';
 import { PaginationContext } from '../../contexts/pagination.context';
-import { ContractType, Internship, ReservedStudent,TypeWork  } from '../../types';
 import { UserDataFragment } from '../UserData/UserDataFragment/UserDataFragment';
+import { filterQuery } from '../utils/filterQuery';
+import { fragmentValues } from '../utils/fragmentValues';
 
 import './ReservedUserData.scss';
-
-interface Props {
-  id: string;
-  name: string;
-  open: boolean;
-  githubUsername: string;
-  reservationExpiresOn: string | null;
-  FragmentsValues: {
-    header: string;
-    value: string;
-  }[];
-}
 
 type StudentResults = { allRecords: number; data: ReservedStudent[] };
 
 export const ReservedUserData = () => {
+
+    const navigate = useNavigate();
+    const hrId = localStorage.getItem('userid');
+
     const { filterCon } = useContext(FilterContext);
-    const [studentData, setStudentData] = useState<Props[]>([]);
+    const [studentData, setStudentData] = useState<StudentProps[]>([]);
     const { pagination, setPagination } = useContext(PaginationContext);
 
-    // const changeStatus= async (studentId:string, index:number) =>{
-    //
-    //   try {
-    //     const res = await fetch(`${API_URL}/student/status`, {
-    //       method: 'PATCH',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //       body: JSON.stringify({
-    //         action: 'reserve',
-    //         studentId,
-    //       }),
-    //     });
-    //     const data = await res.json();
-    //     console.log(data.message);
-    //   } finally {
-    //
-    //
-    //     // zmiana state
-    //   }
-    // }
-
     const changeStatus = async (studentId: string, index: number, action: string) => {
-        const hrId = '46f84261-df9d-11ed-a2b7-24fd5235b3db'; // @TODO hrId pobrane z ciasteczka lub tokenu?
         try {
             const res = await fetch(`${API_URL}/student/status`, {
                 method: 'PATCH',
@@ -88,70 +60,59 @@ export const ReservedUserData = () => {
             });
         });
     };
-    const hrId = '46f84261-df9d-11ed-a2b7-24fd5235b3db';
 
     useEffect(() => {
-        const min = filterCon.expectedSalary.min === '' ? '0' : filterCon.expectedSalary.min;
-        const max = filterCon.expectedSalary.max === '' ? '999999' : filterCon.expectedSalary.max;
-
-        let param = `${filterCon.expectedTypeWork.remoteWork}/${filterCon.expectedTypeWork.inOffice}/`;
-        param += `${filterCon.expectedContractType.employmentContract}/${filterCon.expectedContractType.mandateContract}/${filterCon.expectedContractType.b2b}/${filterCon.expectedContractType.workContract}/`;
-        param += `${min}/${max}/`;
-        param += `${filterCon.courseCompletion}/${filterCon.courseEngagement}/${filterCon.projectDegree}/${filterCon.teamProjectDegree}/`;
-        param += `${filterCon.canTakeApprenticeship}/${filterCon.monthsOfCommercialExp}/`;
-        param += `${pagination.page}/${pagination.rowsPerPage}/`;
-        param += `${hrId}`;
+        const filtersParams = new URLSearchParams(filterQuery(filterCon,pagination));
 
         (async () => {
-            const res = await fetch(`${API_URL}/student/reserved/${param}`, {
+            const res = await fetch(`${API_URL}/student/reserved?${filtersParams}`, {
                 method: 'GET',
             });
-            const data: StudentResults = await res.json();
-            const student = data.data.map((item) => ({
-                FragmentsValues: [
-                    { header: 'Ocena przejścia kursu', value: item.courseCompletion + '/5' },
-                    { header: 'Ocena aktywności i zaangażowania na kursie', value: item.courseEngagement + '/5' },
-                    { header: 'Ocena kodu w projekcie własnym', value: item.projectDegree + '/5' },
-                    { header: 'Ocena pracy w zespole w Scrum', value: item.teamProjectDegree + '/5' },
-                    { header: 'Preferowane miejsce pracy', value: TypeWork[item.expectedTypeWork] },
-                    { header: 'Docelowe miasto, gdzie chce pracować kandydat', value: item.targetWorkCity },
-                    { header: 'Oczekiwany typ kontraktu', value: ContractType[item.expectedContractType] },
-                    { header: 'Oczekiwane wynagrodzenie miesięczne netto', value: item.expectedSalary + ' zł' },
-                    {
-                        header: 'Zgoda na odbycie bezpłatnych praktyk/stażu na początek',
-                        value: Internship[item.canTakeApprenticeship],
-                    },
-                    { header: 'Komercyjne doświadczenie w programowaniu', value: item.monthsOfCommercialExp.toString() },
-                ],
-                id: item.studentId,
-                name: item.firstName + ' ' + item.lastName,
-                githubUsername: item.githubUsername,
-                reservationExpiresOn: item.reservationExpiresOn,
-                open: false,
-            })) as Props[];
+            const { data, allRecords }: StudentResults = await res.json();
+            const student = fragmentValues(data);
             setStudentData(student);
             setPagination({
                 ...pagination,
-                allRecords: Number(data.allRecords),
+                allRecords: Number(allRecords),
             });
-            console.log(data);
         })();
+
+        if (!hrId){
+            navigate('/');
+        }
     }, [pagination.page, filterCon]);
+
+    const formatDate = (reservationEndDate: string|null|undefined) => {
+        if (reservationEndDate){
+            const to = new Date(reservationEndDate);
+            return `${to.getDate()}.${to.getMonth()+1}.${to.getFullYear()} r.`
+        }
+        return ''
+    }
+
+    const showCv = (id:string) => {
+        navigate(`/cv/${id}`)
+    }
 
     return (
         <>
             {studentData &&
         studentData.map((item, index) => (
-            <div className="user-data__container" key={index}>
-                <div className="user-data__nav">
-                    <span>{item.reservationExpiresOn}</span>
-                    <img src={item.githubUsername ? `https://github.com/${item.githubUsername}.png` : logo} alt="user logo" />
+            <div className="reserved-user-data__container" key={index}>
+                <div className="reserved-user-data__nav">
+                    <div className='date-and-img'>
+                        <div className="reservation-date">
+                            <p>Rezerwacja do: </p>
+                            <p className='bold'>{formatDate(item.reservationExpiresOn)}</p>
+                        </div>
+                        <img src={item.githubUsername ? `https://github.com/${item.githubUsername}.png` : logo} alt="user logo" />
+                    </div>
                     <h4>{item.name}</h4>
                     <div className="input-container">
                         <input
                             type="button"
                             value="Pokaż CV"
-                            //onClick={}  //TODO odesłanie na CV danego uzytkownika item.studentId
+                            onClick={() => showCv(item.id)}
                         />
                         <input
                             type="button"
@@ -171,7 +132,7 @@ export const ReservedUserData = () => {
                 </div>
                 {item.open && (
                     <div className="user-data__fragments">
-                        {item.FragmentsValues.map(({ header, value }, id) => {
+                        {item.fragmentsValues.map(({ header, value }, id) => {
                             return <UserDataFragment header={header} value={value} key={id} />;
                         })}
                     </div>
