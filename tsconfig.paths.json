@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "types": [
+        "../HH_server/types",
+        "../HeadHunter_server/types"
+      ]
+    }
+  }
+}
