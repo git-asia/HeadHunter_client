@@ -17,61 +17,18 @@ import {
     ToggleButton,
     ToggleButtonGroup
 } from '@mui/material';
+import { FilterCon } from 'types';
 
 import { FilterContext } from '../../../contexts/filter.context';
+import { initialStateFilter } from '../../utils/initialState.filter';
 
 import './FilterWindow.scss';
 
-type FilterState = {
-    expectedTypeWork: {
-        remoteWork: boolean;
-        inOffice: boolean;
-    },
-    expectedContractType: {
-        employmentContract: boolean;
-        b2b: boolean;
-        mandateContract: boolean;
-        workContract: boolean;
-    },
-    expectedSalary:{
-        min:string;
-        max:string;
-
-    },
-    canTakeApprenticeship: boolean|null;
-    monthsOfCommercialExp: string|null;
-    courseCompletion: number
-    courseEngagement: number
-    projectDegree: number
-    teamProjectDegree: number
-
+interface FilterState extends FilterCon{
     [key: string]: any;
 }
 
 export const FilterWindow = (props:any) => {
-    const initialState = {
-        expectedTypeWork: {
-            remoteWork: false,
-            inOffice: false,
-        },
-        expectedContractType: {
-            employmentContract: false,
-            b2b: false,
-            mandateContract: false,
-            workContract: false,
-        },
-        expectedSalary:{
-            min: '',
-            max: '',
-        },
-        canTakeApprenticeship: null,
-        monthsOfCommercialExp: '0',
-        courseCompletion: 1,
-        courseEngagement: 1,
-        projectDegree: 1,
-        teamProjectDegree: 1,
-
-    }
 
     const { filterCon,setFilterCon } = useContext(FilterContext)
     const [filters, setFilters] = useState<FilterState>(filterCon);
@@ -110,8 +67,8 @@ export const FilterWindow = (props:any) => {
     });
 
     const clear = () =>{
-        setFilters(initialState);
-        setFilterCon(initialState);
+        setFilters(initialStateFilter);
+        setFilterCon(initialStateFilter);
     }
 
     const lookState = ()=>{
