@@ -98,8 +98,8 @@ export const ReservedUserData = () => {
         <>
             {studentData &&
         studentData.map((item, index) => (
-            <div className="user-data__container" key={index}>
-                <div className="user-data__nav">
+            <div className="reserved-user-data__container" key={index}>
+                <div className="reserved-user-data__nav">
                     <div className='date-and-img'>
                         <div className="reservation-date">
                             <p>Rezerwacja do: </p>
